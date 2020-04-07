@@ -18,8 +18,8 @@ import ru.art241111.pizzarecipes.ui.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
 
-    ArrayList<Dish> dishArrayList;
-    Context context;
+    private ArrayList<Dish> dishArrayList;
+    private Context context;
 
     public RecyclerViewAdapter(ArrayList<Dish> arrayList, Context context) {
         this.dishArrayList = arrayList;
@@ -70,7 +70,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.iv_dish.setImageResource(dish.getImageDish());
         holder.tv_name_dish.setText(dish.getNameDish());
         holder.tv_description_dish.setText(dish.getDescriptionDish());
-
     }
 
     @Override
