@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Technopolis recipe</string>
+    <string name="enter_ingredients">Введите название ингредиентов</string>
 </resources>
