@@ -1,5 +1,6 @@
 package ru.art241111.dish_recipes.ui.mainActivity;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import org.apmem.tools.layouts.FlowLayout;
 
 import java.util.ArrayList;
 
+import static ru.art241111.dish_recipes.ui.mainActivity.createArray.addItemsToArray.addItemsToArrayList;
 import static ru.art241111.dish_recipes.utils.constantSting.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,11 +86,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void removeIngredient(View ingredient, FlowLayout tableIngredients) {
         tableIngredients.removeView(ingredient);
-        //TODO: delete from arrayList
+
+        //TODO:delete from array
+
     }
 
     private void addIngredientsView(View ingredient, FlowLayout tableIngredients) {
         tableIngredients.addView(ingredient);
+        et_ingredients.setText("");
     }
 
     private void setListenerOnButton(Button bt_add_ingredients) {
@@ -102,17 +107,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListenerOnET(final EditText editText) {
         editText.setOnKeyListener(new View.OnKeyListener()  {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if(event.getAction() == KeyEvent.ACTION_DOWN &&
-                            (keyCode == KeyEvent.KEYCODE_ENTER))
-                    {
-                        // сохраняем текст, введенный до нажатия Enter в переменную
-                        addIngredients();
-                        return true;
-                    }
-                    return false;
-                }
-            }
+                                      public boolean onKey(View v, int keyCode, KeyEvent event) {
+                                          if(event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                  (keyCode == KeyEvent.KEYCODE_ENTER))
+                                          {
+                                              // сохраняем текст, введенный до нажатия Enter в переменную
+                                              addIngredients();
+                                              return true;
+                                          }
+                                          return false;
+                                      }
+                                  }
         );
     }
 
@@ -126,10 +131,4 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void addItemsToArrayList(ArrayList<Dish> dishArrayList) {
-        dishArrayList.add(new Dish(R.drawable.marghuerita,PIZZA_MARGHUERITA_NAME,PIZZA_MARGHUERITA_DESCRIPTION, PIZZA_MARGHUERITA_RECIPE));
-        dishArrayList.add(new Dish(R.drawable.margherita_in_four, PIZZA_MARGHUERITA_4_NAME,PIZZA_MARGHUERITA_4_DESCRIPTION,PIZZA_MARGHUERITA_4_RECIPE));
-        dishArrayList.add(new Dish(R.drawable.ceramelised, PIZZA_CERAMELISED_NAME,PIZZA_CERAMELISED_DESCRIPTION,PIZZA_CERAMELISED_RECIPE));
-        dishArrayList.add(new Dish(R.drawable.superhealthy, PIZZA_SUPERHEALTHY_NAME,PIZZA_SUPERHEALTHY_DESCRIPTION,PIZZA_SUPERHEALTHY_RECIPE));
-    }
 }
