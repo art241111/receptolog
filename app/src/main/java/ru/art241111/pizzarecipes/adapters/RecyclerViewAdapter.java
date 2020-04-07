@@ -1,4 +1,4 @@
-package ru.art241111.pizzarecipes;
+package ru.art241111.pizzarecipes.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import ru.art241111.pizzarecipes.models.Dish;
+import ru.art241111.pizzarecipes.R;
+import ru.art241111.pizzarecipes.ui.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
 

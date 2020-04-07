@@ -1,4 +1,4 @@
-package ru.art241111.pizzarecipes;
+package ru.art241111.pizzarecipes.models;
 
 public class Dish {
     private int imageDish;

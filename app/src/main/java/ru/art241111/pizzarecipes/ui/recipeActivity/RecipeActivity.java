@@ -1,6 +1,7 @@
-package ru.art241111.pizzarecipes;
+package ru.art241111.pizzarecipes.ui.recipeActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import ru.art241111.pizzarecipes.R;
 
 import android.content.Intent;
 import android.os.Bundle;
