@@ -2,4 +2,5 @@
     <string name="app_name">Technopolis recipe</string>
     <string name="enter_ingredients">Введите название ингредиентов</string>
     <string name="str_add">+</string>
+    <string name="default_value_ingredient">ingredient</string>
 </resources>

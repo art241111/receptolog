@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.mainActivity.MainActivity"
     android:padding="10dp">
 
@@ -37,12 +38,22 @@
             />
     </LinearLayout>
 
+    <org.apmem.tools.layouts.FlowLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/ll_add_ingredients"
+        android:id="@+id/tr_list_ingredients"
+
+        >
+    </org.apmem.tools.layouts.FlowLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dish"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_add_ingredients"
+        android:layout_below="@id/tr_list_ingredients"
         />
 
 </RelativeLayout>
