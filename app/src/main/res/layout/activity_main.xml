@@ -19,13 +19,21 @@
             android:hint = "@string/enter_ingredients"
             android:ems="10"
             android:layout_weight="10"
+            android:maxLines="1"
+            android:inputType="text"
             />
 
-        <ImageButton
+        <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_add_white_24dp"
-            android:background="@drawable/background_button"/>
+
+            android:text="+"
+            android:textSize="30sp"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+
+            android:background="@drawable/background_button"
+            />
     </LinearLayout>
 
 
