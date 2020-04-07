@@ -1,8 +1,8 @@
-package ru.art241111.pizzarecipes.ui.recipeActivity;
+package ru.art241111.dish_recipes.ui.recipeActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import ru.art241111.pizzarecipes.R;
-import ru.art241111.pizzarecipes.models.Dish;
+import ru.art241111.dish_recipes.R;
+import ru.art241111.dish_recipes.models.Dish;
 
 import android.content.Intent;
 import android.os.Bundle;

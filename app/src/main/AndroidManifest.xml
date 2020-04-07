@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.art241111.pizzarecipes">
+    package="ru.art241111.dish_recipes">
 
     <application
         android:allowBackup="true"
@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.recipeActivity.RecipeActivity" />
+        <activity android:name="ru.art241111.dish_recipes.ui.recipeActivity.RecipeActivity" />
 
-        <activity android:name=".ui.mainActivity.MainActivity"
+        <activity android:name="ru.art241111.dish_recipes.ui.mainActivity.MainActivity"
                   android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

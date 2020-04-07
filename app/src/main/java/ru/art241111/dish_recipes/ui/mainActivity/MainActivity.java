@@ -1,17 +1,17 @@
-package ru.art241111.pizzarecipes.ui.mainActivity;
+package ru.art241111.dish_recipes.ui.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.art241111.pizzarecipes.models.Dish;
-import ru.art241111.pizzarecipes.R;
-import ru.art241111.pizzarecipes.adapters.RecyclerViewAdapter;
+import ru.art241111.dish_recipes.models.Dish;
+import ru.art241111.dish_recipes.R;
+import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
-import static ru.art241111.pizzarecipes.utils.constantSting.*;
+import static ru.art241111.dish_recipes.utils.constantSting.*;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package ru.art241111.pizzarecipes;
+package ru.art241111.dish_recipes;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package ru.art241111.pizzarecipes.utils;
+package ru.art241111.dish_recipes.utils;
 
 public class constantSting {
     public static final String PIZZA_MARGHUERITA_NAME = "Next level Margherita pizza";
