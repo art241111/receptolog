@@ -35,11 +35,11 @@
             android:textAlignment="center"
 
             android:background="@drawable/background_button"
-            />
+            android:gravity="center" />
+
     </LinearLayout>
 
     <org.apmem.tools.layouts.FlowLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 
