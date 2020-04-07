@@ -16,6 +16,9 @@ public class Dish {
         this.recipe = recipe;
     }
 
+    public Dish() {
+    }
+
     public String getRecipe() {
         return recipe;
     }
