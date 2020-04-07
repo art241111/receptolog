@@ -8,22 +8,17 @@ import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.apmem.tools.layouts.FlowLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static ru.art241111.dish_recipes.utils.constantSting.*;
 
@@ -61,15 +56,20 @@ public class MainActivity extends AppCompatActivity {
         String ingredientName = et_ingredients.getText().toString();
         ingredients.add(ingredientName);
 
-        addIngredientsView(ingredientName);
+        final FlowLayout tableIngredients = findViewById(R.id.fl_list_ingredients);
+
+        View ingredient = createNewIngredientView();
+        customizationNewView(ingredientName, ingredient, tableIngredients);
+        addIngredientsView(ingredient,tableIngredients);
     }
 
-    private void addIngredientsView(final String ingredientName) {
-        final FlowLayout tableRow = findViewById(R.id.tr_list_ingredients);
-
+    private View createNewIngredientView() {
         LayoutInflater inflater = getLayoutInflater();
         final View ingredient = inflater.inflate(R.layout.ingredient, null);
+        return ingredient;
+    }
 
+    private void customizationNewView(String ingredientName, final View ingredient, final FlowLayout tableIngredients) {
         TextView textView = ingredient.findViewById(R.id.tv_name_ingredient);
         textView.setText(ingredientName);
 
@@ -77,12 +77,18 @@ public class MainActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableRow.removeView(ingredient);
-                //TODO: delete from arrayList
+                removeIngredient(ingredient, tableIngredients);
             }
         });
+    }
 
-        tableRow.addView(ingredient);
+    private void removeIngredient(View ingredient, FlowLayout tableIngredients) {
+        tableIngredients.removeView(ingredient);
+        //TODO: delete from arrayList
+    }
+
+    private void addIngredientsView(View ingredient, FlowLayout tableIngredients) {
+        tableIngredients.addView(ingredient);
     }
 
     private void setListenerOnButton(Button bt_add_ingredients) {
