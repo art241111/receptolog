@@ -35,7 +35,7 @@
             android:textAlignment="center"
 
             android:background="@drawable/background_button"
-            android:gravity="center" />
+             />
 
     </LinearLayout>
 
