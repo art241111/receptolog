@@ -24,6 +24,7 @@
             android:autofillHints="" />
 
         <Button
+            android:id="@+id/bt_add_ingredients"
             android:layout_width="40dp"
             android:layout_height="40dp"
 
