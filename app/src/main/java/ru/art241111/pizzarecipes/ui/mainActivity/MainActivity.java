@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         addItemsToArrayList(dishArrayList);
 
         recyclerView = findViewById(R.id.rv_dish);
+        customizationRecyclerView(dishArrayList);
+
+    }
+
+    private void customizationRecyclerView(ArrayList<Dish> dishArrayList) {
         recyclerView.setHasFixedSize(true);
 
         adapter = new RecyclerViewAdapter(dishArrayList, this);
