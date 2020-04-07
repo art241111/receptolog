@@ -1,6 +1,7 @@
 package ru.art241111.dish_recipes.ui.mainActivity;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ingredients = new ArrayList<>();
+        restoringValuesOfIngredients(savedInstanceState);
 
         et_ingredients = findViewById(R.id.et_ingredients);
         setListenerOnET(et_ingredients);
@@ -52,13 +55,25 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rv_dish);
         customizationRecyclerView(dishArrayList);
-
     }
 
-    private void addIngredients(){
-        String ingredientName = et_ingredients.getText().toString();
-        ingredients.add(ingredientName);
+    private void restoringValuesOfIngredients(Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            ingredients = savedInstanceState.getStringArrayList("ingredients");
+            assert ingredients != null;
+            for (int i = 0; i < ingredients.size(); i++) {
+                drawView(ingredients.get(i));
+            }
+        }
+    }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArrayList("ingredients", ingredients);
+    }
+
+    private void drawView(String ingredientName){
         final FlowLayout tableIngredients = findViewById(R.id.fl_list_ingredients);
 
         LayoutInflater inflater = getLayoutInflater();
@@ -67,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         customizationNewView(ingredientName, ingredient, tableIngredients);
 
         tableIngredients.addView(ingredient);
+    }
+    private void addIngredients(){
+        String ingredientName = et_ingredients.getText().toString();
+        ingredients.add(ingredientName);
+
+        drawView(ingredientName);
         et_ingredients.setText("");
     }
 
