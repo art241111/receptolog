@@ -9,6 +9,7 @@ import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,18 +61,16 @@ public class MainActivity extends AppCompatActivity {
 
         final FlowLayout tableIngredients = findViewById(R.id.fl_list_ingredients);
 
-        View ingredient = createNewIngredientView();
-        customizationNewView(ingredientName, ingredient, tableIngredients);
-        addIngredientsView(ingredient,tableIngredients);
-    }
-
-    private View createNewIngredientView() {
         LayoutInflater inflater = getLayoutInflater();
         final View ingredient = inflater.inflate(R.layout.ingredient, null);
-        return ingredient;
+
+        customizationNewView(ingredientName, ingredient, tableIngredients);
+
+        tableIngredients.addView(ingredient);
+        et_ingredients.setText("");
     }
 
-    private void customizationNewView(String ingredientName, final View ingredient, final FlowLayout tableIngredients) {
+    private void customizationNewView(final String ingredientName, final View ingredient, final FlowLayout tableIngredients) {
         TextView textView = ingredient.findViewById(R.id.tv_name_ingredient);
         textView.setText(ingredientName);
 
@@ -79,21 +78,10 @@ public class MainActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeIngredient(ingredient, tableIngredients);
+                tableIngredients.removeView(ingredient);
+                ingredients.remove(ingredientName);
             }
         });
-    }
-
-    private void removeIngredient(View ingredient, FlowLayout tableIngredients) {
-        tableIngredients.removeView(ingredient);
-
-        //TODO:delete from array
-
-    }
-
-    private void addIngredientsView(View ingredient, FlowLayout tableIngredients) {
-        tableIngredients.addView(ingredient);
-        et_ingredients.setText("");
     }
 
     private void setListenerOnButton(Button bt_add_ingredients) {
