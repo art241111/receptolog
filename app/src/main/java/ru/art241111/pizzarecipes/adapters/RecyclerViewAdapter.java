@@ -27,11 +27,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     class RecyclerViewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public ImageView iv_dish;
-        public TextView tv_name_dish;
-        public TextView tv_description_dish;
+        ImageView iv_dish;
+        TextView tv_name_dish;
+        TextView tv_description_dish;
 
-        public RecyclerViewViewHolder(@NonNull View itemView) {
+        RecyclerViewViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 
@@ -60,8 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_view_item, viewGroup, false);
 
-        RecyclerViewViewHolder recyclerViewViewHolder = new RecyclerViewViewHolder(view);
-        return recyclerViewViewHolder;
+        return new RecyclerViewViewHolder(view);
     }
 
     @Override
