@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         et_ingredients = findViewById(R.id.et_ingredients);
         setListenerOnET(et_ingredients);
-
         setListenerOnButton((Button) findViewById(R.id.bt_add_ingredients));
 
         ArrayList<Dish> dishArrayList = new ArrayList<>();
