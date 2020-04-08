@@ -25,22 +25,42 @@ public class RecipeActivity extends AppCompatActivity {
         Dish dish = new Dish();
 
         getDataFromIntent(dish);
-
         setTextToTextView(dish);
 
         setupTabHost();
+        customizationScrollView();
+    }
 
-        ScrollView scrollView = findViewById(R.id.scrollable);
-        scrollView.fullScroll(View.FOCUS_UP);
+    private void getDataFromIntent(Dish dish) {
+        Intent intent = getIntent();
+        if(intent != null){
+            dish.setNameDish(intent.getStringExtra("name"));
+            dish.setDescriptionDish(intent.getStringExtra("description"));
+            dish.setRecipe(intent.getStringExtra("recipe"));
+            dish.setImageDish(intent.getIntExtra("imageResource", 1));
+        }
+    }
+
+    private void setTextToTextView(Dish dish) {
+        ImageView iv_dish = findViewById(R.id.iv_recipe_dish);
+        TextView name = findViewById(R.id.tv_name_dish);
+        TextView description = findViewById(R.id.tv_description_dish);
+        TextView recipe = findViewById(R.id.tv_recipe_dish);
+        TextView ingredients = findViewById(R.id.tv_ingredients);
+
+        iv_dish.setImageResource(dish.getImageDish());
+        name.setText(dish.getNameDish());
+        description.setText(dish.getDescriptionDish());
+        recipe.setText(dish.getRecipe());
+        ingredients.setText(dish.getDescriptionDish());
     }
 
     private void setupTabHost() {
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        TabHost tabHost = findViewById(R.id.tabHost);
 
         tabHost.setup();
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("tag1");
-
         tabSpec.setContent(R.id.tab1);
         tabSpec.setIndicator("Ингредиенты");
         tabHost.addTab(tabSpec);
@@ -51,33 +71,9 @@ public class RecipeActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec);
     }
 
-    private void setTextToTextView(Dish dish) {
-        ImageView iv_dish = findViewById(R.id.iv_recipe_dish);
-        TextView name = findViewById(R.id.tv_name_dish);
-        TextView description = findViewById(R.id.tv_description_dish);
-        TextView recipe = findViewById(R.id.tv_recipe_dish);
-        TextView ingredients = findViewById(R.id.tv_ingredients);
 
-
-
-        iv_dish.setImageResource(dish.getImageDish());
-        name.setText(dish.getNameDish());
-        description.setText(dish.getDescriptionDish());
-        recipe.setText(dish.getRecipe());
-        ingredients.setText(dish.getDescriptionDish());
-    }
-
-    private void getDataFromIntent(Dish dish) {
-        Intent intent = getIntent();
-        if(intent != null){
-            dish.setNameDish(intent.getStringExtra("name"));
-            dish.setDescriptionDish(intent.getStringExtra("description"));
-            dish.setRecipe(intent.getStringExtra("recipe"));
-            dish.setImageDish(intent.getIntExtra("imageResource", 1));
-
-
-
-
-        }
+    private void customizationScrollView() {
+        ScrollView scrollView = findViewById(R.id.scrollable);
+        scrollView.fullScroll(View.FOCUS_UP);
     }
 }

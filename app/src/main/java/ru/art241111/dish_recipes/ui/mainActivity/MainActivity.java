@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    FlowLayout tableIngredients;
 
     EditText et_ingredients;
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tableIngredients = findViewById(R.id.fl_list_ingredients);
 
         ingredients = new ArrayList<>();
         restoringValuesOfIngredients(savedInstanceState);
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             ingredients = savedInstanceState.getStringArrayList("ingredients");
             assert ingredients != null;
             for (int i = 0; i < ingredients.size(); i++) {
-                drawView(ingredients.get(i));
+                createIngredientView(ingredients.get(i));
             }
         }
     }
@@ -70,38 +73,6 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putStringArrayList("ingredients", ingredients);
-    }
-
-    private void drawView(String ingredientName){
-        final FlowLayout tableIngredients = findViewById(R.id.fl_list_ingredients);
-
-        LayoutInflater inflater = getLayoutInflater();
-        final View ingredient = inflater.inflate(R.layout.ingredient, null);
-
-        customizationNewView(ingredientName, ingredient, tableIngredients);
-
-        tableIngredients.addView(ingredient);
-    }
-    private void addIngredients(){
-        String ingredientName = et_ingredients.getText().toString();
-        ingredients.add(ingredientName);
-
-        drawView(ingredientName);
-        et_ingredients.setText("");
-    }
-
-    private void customizationNewView(final String ingredientName, final View ingredient, final FlowLayout tableIngredients) {
-        TextView textView = ingredient.findViewById(R.id.tv_name_ingredient);
-        textView.setText(ingredientName);
-
-        ImageView imageView = ingredient.findViewById(R.id.btn_delete);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tableIngredients.removeView(ingredient);
-                ingredients.remove(ingredientName);
-            }
-        });
     }
 
     private void setListenerOnButton(Button bt_add_ingredients) {
@@ -128,6 +99,34 @@ public class MainActivity extends AppCompatActivity {
                                   }
         );
     }
+    private void addIngredients(){
+        String ingredientName = et_ingredients.getText().toString();
+
+        ingredients.add(ingredientName);
+        createIngredientView(ingredientName);
+
+        et_ingredients.setText("");
+        }
+        private void createIngredientView(String ingredientName){
+            LayoutInflater inflater = getLayoutInflater();
+            final View ingredient = inflater.inflate(R.layout.ingredient, null);
+
+            fillingInDataToIngredientView(ingredient, ingredientName);
+            tableIngredients.addView(ingredient);
+            }
+            private void fillingInDataToIngredientView(final View ingredient,final String ingredientName) {
+                TextView textView = ingredient.findViewById(R.id.tv_name_ingredient);
+                textView.setText(ingredientName);
+
+                ImageView imageView = ingredient.findViewById(R.id.btn_delete);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tableIngredients.removeView(ingredient);
+                        ingredients.remove(ingredientName);
+                    }
+                });
+            }
 
     private void customizationRecyclerView(ArrayList<Dish> dishArrayList) {
         recyclerView.setHasFixedSize(true);

@@ -7,7 +7,10 @@ import ru.art241111.dish_recipes.models.Dish;
 
 import static ru.art241111.dish_recipes.utils.constantSting.*;
 
-
+/**
+ * Тоже времеенный класс, который добавляет в массив значения рецептов
+ * В будующем бдет заменен на подгрузку данных из БД
+ */
 public class addItemsToArray {
     public static void addItemsToArrayList(ArrayList<Dish> dishArrayList) {
         dishArrayList.add(new Dish(R.drawable.marghuerita,PIZZA_MARGHUERITA_NAME,PIZZA_MARGHUERITA_DESCRIPTION, PIZZA_MARGHUERITA_RECIPE));

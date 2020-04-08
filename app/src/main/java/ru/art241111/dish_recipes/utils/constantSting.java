@@ -1,5 +1,8 @@
 package ru.art241111.dish_recipes.utils;
 
+/**
+ * Временный файл, пока не подключена база данных
+ */
 public class constantSting {
     public static final String PIZZA_MARGHUERITA_NAME = "Next level Margherita pizza";
     public static final String PIZZA_MARGHUERITA_DESCRIPTION = "Forget takeaways – you can’t beat a homemade Margherita pizza topped with fresh tomato sauce and melted cheese. Here's how to master this everyday classic...";
