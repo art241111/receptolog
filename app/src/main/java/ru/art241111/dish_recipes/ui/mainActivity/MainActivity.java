@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
     private void addIngredients(){
-        String ingredientName = et_ingredients.getText().toString();
+        String ingredientName = et_ingredients.getText().toString().trim();
 
         ingredients.add(ingredientName);
         createIngredientView(ingredientName);
