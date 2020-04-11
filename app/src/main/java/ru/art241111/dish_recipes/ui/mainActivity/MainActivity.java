@@ -10,13 +10,13 @@ import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +25,7 @@ import org.apmem.tools.layouts.FlowLayout;
 import java.util.ArrayList;
 
 import static ru.art241111.dish_recipes.ui.mainActivity.createArray.addItemsToArray.addItemsToArrayList;
-import static ru.art241111.dish_recipes.utils.constantSting.*;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,13 +50,22 @@ public class MainActivity extends AppCompatActivity {
 
         et_ingredients = findViewById(R.id.et_ingredients);
         setListenerOnET(et_ingredients);
-        setListenerOnButton((Button) findViewById(R.id.bt_add_ingredients));
+        setListenerOnButton(findViewById(R.id.ib_add_ingredients));
 
         ArrayList<Dish> dishArrayList = new ArrayList<>();
         addItemsToArrayList(dishArrayList);
 
         recyclerView = findViewById(R.id.rv_dish);
         customizationRecyclerView(dishArrayList);
+    }
+
+    private void setListenerOnButton(View button) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addIngredients();
+            }
+        });
     }
 
     private void restoringValuesOfIngredients(Bundle savedInstanceState) {
@@ -75,14 +84,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putStringArrayList("ingredients", ingredients);
     }
 
-    private void setListenerOnButton(Button bt_add_ingredients) {
-        bt_add_ingredients.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addIngredients();
-            }
-        });
-    }
+
 
     private void setListenerOnET(final EditText editText) {
         editText.setOnKeyListener(new View.OnKeyListener()  {
