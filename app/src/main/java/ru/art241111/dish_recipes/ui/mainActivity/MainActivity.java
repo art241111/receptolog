@@ -28,7 +28,6 @@ import static ru.art241111.dish_recipes.ui.mainActivity.createArray.addItemsToAr
 
 
 public class MainActivity extends AppCompatActivity {
-
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;

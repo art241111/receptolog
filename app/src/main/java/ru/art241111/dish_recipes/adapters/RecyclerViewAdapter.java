@@ -17,7 +17,6 @@ import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.ui.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
-
     private ArrayList<Dish> dishArrayList;
     private Context context;
 
@@ -46,10 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Dish dish = dishArrayList.get(position);
 
             Intent intent = new Intent(context, RecipeActivity.class);
-            intent.putExtra("imageResource", dish.getImageDish());
-            intent.putExtra("name", dish.getNameDish());
-            intent.putExtra("description", dish.getDescriptionDish());
-            intent.putExtra("recipe", dish.getRecipe());
+            intent.putExtra("Dish",dish);
 
             context.startActivity(intent);
         }

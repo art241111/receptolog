@@ -1,6 +1,9 @@
 package ru.art241111.dish_recipes.models;
 
-public class Dish {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Dish implements Parcelable {
     private int imageDish;
     private String nameDish;
     private String descriptionDish;
@@ -17,6 +20,40 @@ public class Dish {
     }
 
     public Dish() {
+    }
+
+    protected Dish(Parcel in) {
+        imageDish = in.readInt();
+        nameDish = in.readString();
+        descriptionDish = in.readString();
+        recipe = in.readString();
+        rating = in.readInt();
+    }
+
+    public static final Creator<Dish> CREATOR = new Creator<Dish>() {
+        @Override
+        public Dish createFromParcel(Parcel in) {
+            return new Dish(in);
+        }
+
+        @Override
+        public Dish[] newArray(int size) {
+            return new Dish[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(imageDish);
+        dest.writeString(nameDish);
+        dest.writeString(descriptionDish);
+        dest.writeString(recipe);
+        dest.writeInt(rating);
     }
 
     public String getRecipe() {
@@ -58,4 +95,6 @@ public class Dish {
     public void setDescriptionDish(String descriptionDish) {
         this.descriptionDish = descriptionDish;
     }
+
+
 }

@@ -15,30 +15,23 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 public class RecipeActivity extends AppCompatActivity {
-
+    private Dish getDataFromIntent(){
+        Intent intent = getIntent();
+        if(intent != null){
+            return intent.getParcelableExtra("Dish");
+        } else return new Dish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        Dish dish = new Dish();
-
-        getDataFromIntent(dish);
+        Dish dish = getDataFromIntent();
         setTextToTextView(dish);
 
         setupTabHost();
         customizationScrollView();
-    }
-
-    private void getDataFromIntent(Dish dish) {
-        Intent intent = getIntent();
-        if(intent != null){
-            dish.setNameDish(intent.getStringExtra("name"));
-            dish.setDescriptionDish(intent.getStringExtra("description"));
-            dish.setRecipe(intent.getStringExtra("recipe"));
-            dish.setImageDish(intent.getIntExtra("imageResource", 1));
-        }
     }
 
     private void setTextToTextView(Dish dish) {
