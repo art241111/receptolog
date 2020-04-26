@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.art241111.dish_recipes.models.Dish;
+import ru.art241111.dish_recipes.models.FullDish;
 import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
@@ -14,9 +14,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         setListenerOnET(et_ingredients);
         setListenerOnButton(findViewById(R.id.ib_add_ingredients));
 
-        ArrayList<Dish> dishArrayList = new ArrayList<>();
-        addItemsToArrayList(dishArrayList);
+        ArrayList<FullDish> fullDishArrayList = new ArrayList<>();
+        addItemsToArrayList(fullDishArrayList);
 
         recyclerView = findViewById(R.id.rv_dish);
-        customizationRecyclerView(dishArrayList);
+        customizationRecyclerView(fullDishArrayList);
     }
 
     private void setListenerOnButton(View button) {
@@ -129,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
 
-    private void customizationRecyclerView(ArrayList<Dish> dishArrayList) {
+    private void customizationRecyclerView(ArrayList<FullDish> fullDishArrayList) {
         recyclerView.setHasFixedSize(true);
 
-        adapter = new RecyclerViewAdapter(dishArrayList, this);
+        adapter = new RecyclerViewAdapter(fullDishArrayList, this);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);

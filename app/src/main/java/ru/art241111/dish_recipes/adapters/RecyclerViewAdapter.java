@@ -12,16 +12,16 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.art241111.dish_recipes.models.Dish;
+import ru.art241111.dish_recipes.models.FullDish;
 import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.ui.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
-    private ArrayList<Dish> dishArrayList;
+    private ArrayList<FullDish> fullDishArrayList;
     private Context context;
 
-    public RecyclerViewAdapter(ArrayList<Dish> arrayList, Context context) {
-        this.dishArrayList = arrayList;
+    public RecyclerViewAdapter(ArrayList<FullDish> arrayList, Context context) {
+        this.fullDishArrayList = arrayList;
         this.context = context;
     }
 
@@ -42,10 +42,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            Dish dish = dishArrayList.get(position);
+            FullDish fullDish = fullDishArrayList.get(position);
 
             Intent intent = new Intent(context, RecipeActivity.class);
-            intent.putExtra("Dish",dish);
+            intent.putExtra("Dish", fullDish);
 
             context.startActivity(intent);
         }
@@ -62,16 +62,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewViewHolder holder, int position) {
-        Dish dish = dishArrayList.get(position);
+        FullDish fullDish = fullDishArrayList.get(position);
 
-        holder.iv_dish.setImageResource(dish.getImageDish());
-        holder.tv_name_dish.setText(dish.getNameDish());
-        holder.tv_description_dish.setText(dish.getDescriptionDish());
+        holder.iv_dish.setImageResource(fullDish.getImageDish());
+        holder.tv_name_dish.setText(fullDish.getNameDish());
+        holder.tv_description_dish.setText(fullDish.getDescriptionDish());
     }
 
     @Override
     public int getItemCount() {
-        return dishArrayList.size();
+        return fullDishArrayList.size();
     }
 
 
