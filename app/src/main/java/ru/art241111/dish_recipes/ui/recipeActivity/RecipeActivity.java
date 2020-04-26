@@ -27,11 +27,11 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        Dish dish = getDataFromIntent();
-        setTextToTextView(dish);
-
         setupTabHost();
         customizationScrollView();
+
+        Dish dish = getDataFromIntent();
+        setTextToTextView(dish);
     }
 
     private void setTextToTextView(Dish dish) {
