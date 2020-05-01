@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.mainActivity;
+package ru.art241111.dish_recipes.view.searchDishActivity;
 
 
 import androidx.annotation.NonNull;
