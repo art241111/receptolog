@@ -23,7 +23,7 @@ import org.apmem.tools.layouts.FlowLayout;
 
 import java.util.ArrayList;
 
-import static ru.art241111.dish_recipes.models.createArray.addItemsToArray.addItemsToArrayList;
+import static ru.art241111.dish_recipes.models.API.getDish.getDish;
 
 
 public class searchDishActivity extends AppCompatActivity {
@@ -50,8 +50,7 @@ public class searchDishActivity extends AppCompatActivity {
         setListenerOnET(et_ingredients);
         setListenerOnButton(findViewById(R.id.ib_add_ingredients));
 
-        ArrayList<Dish> fullDishArrayList = new ArrayList<>();
-        addItemsToArrayList(fullDishArrayList);
+        ArrayList<Dish> fullDishArrayList = getDish();
 
         recyclerView = findViewById(R.id.rv_dish);
         customizationRecyclerView(fullDishArrayList);

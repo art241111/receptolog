@@ -13,7 +13,7 @@ import static ru.art241111.dish_recipes.utils.createDish.*;
  * В будующем бдет заменен на подгрузку данных из БД
  */
 public class getDish {
-    public static ArrayList<Dish> addItemsToArrayList() {
+    public static ArrayList<Dish> getDish() {
         ArrayList<Dish> fullDishArrayList = new ArrayList<>();
         fullDishArrayList.add(new FullDish(R.drawable.marghuerita,PIZZA_MARGHUERITA_NAME,PIZZA_MARGHUERITA_DESCRIPTION, PIZZA_MARGHUERITA_RECIPE));
         fullDishArrayList.add(new FullDish(R.drawable.margherita_in_four, PIZZA_MARGHUERITA_4_NAME,PIZZA_MARGHUERITA_4_DESCRIPTION,PIZZA_MARGHUERITA_4_RECIPE));
