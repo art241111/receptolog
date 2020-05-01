@@ -7,8 +7,9 @@ import ru.art241111.dish_recipes.models.localDataSource.OnDishLocalReadyCallback
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
 import ru.art241111.dish_recipes.models.remoteDataSource.OnDishRemoteReadyCallback
 
-
-
+/**
+ * Repository for getting data
+ */
 class DishRepository(val netManager: NetManager) {
     val localDataSource = DishLocalDataSource()
     val remoteDataSource = DishRemoteDataSource()

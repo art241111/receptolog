@@ -5,7 +5,7 @@ import ru.art241111.dish_recipes.data.Dish
 import ru.art241111.dish_recipes.models.API.getDishes.getDishes
 
 /**
- * Repository for getting local data
+ * Repository for getting and saving local data
  */
 class DishLocalDataSource {
     fun getRepositories(onRepositoryReadyCallback: OnDishLocalReadyCallback) {
