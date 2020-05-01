@@ -7,7 +7,7 @@ import ru.art241111.dish_recipes.models.API.getDishes.getDishes
 /**
  * Repository for getting local data
  */
-class GitDishLocalDataSource {
+class DishLocalDataSource {
     fun getRepositories(onRepositoryReadyCallback: OnDishLocalReadyCallback) {
         val arrayList = getDishes()
         Handler().postDelayed({ onRepositoryReadyCallback.onLocalDataReady(arrayList) }, 2000)
