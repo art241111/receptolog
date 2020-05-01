@@ -23,10 +23,10 @@ import org.apmem.tools.layouts.FlowLayout;
 
 import java.util.ArrayList;
 
-import static ru.art241111.dish_recipes.view.mainActivity.createArray.addItemsToArray.addItemsToArrayList;
+import static ru.art241111.dish_recipes.models.createArray.addItemsToArray.addItemsToArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class searchDishActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search_dish);
 
         tableIngredients = findViewById(R.id.fl_list_ingredients);
 

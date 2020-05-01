@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.mainActivity.createArray;
+package ru.art241111.dish_recipes.models.createArray;
 
 import java.util.ArrayList;
 

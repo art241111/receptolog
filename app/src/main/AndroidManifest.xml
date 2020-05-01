@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity" />
 
-        <activity android:name="ru.art241111.dish_recipes.view.mainActivity.MainActivity"
+        <activity android:name="ru.art241111.dish_recipes.view.mainActivity.searchDishActivity"
                   android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
