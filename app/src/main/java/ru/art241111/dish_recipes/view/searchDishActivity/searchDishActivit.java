@@ -26,7 +26,8 @@ import java.util.ArrayList;
 import static ru.art241111.dish_recipes.models.API.getDishes.getDishes;
 
 
-public class searchDishActivity extends AppCompatActivity {
+public class searchDishActivit extends AppCompatActivity {
+
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
