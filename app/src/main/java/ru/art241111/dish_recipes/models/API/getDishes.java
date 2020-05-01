@@ -12,8 +12,8 @@ import static ru.art241111.dish_recipes.utils.createDish.*;
  * Тоже времеенный класс, который добавляет в массив значения рецептов
  * В будующем бдет заменен на подгрузку данных из БД
  */
-public class getDish {
-    public static ArrayList<Dish> getDish() {
+public class getDishes {
+    public static ArrayList<Dish> getDishes() {
         ArrayList<Dish> fullDishArrayList = new ArrayList<>();
         fullDishArrayList.add(new FullDish(R.drawable.marghuerita,PIZZA_MARGHUERITA_NAME,PIZZA_MARGHUERITA_DESCRIPTION, PIZZA_MARGHUERITA_RECIPE));
         fullDishArrayList.add(new FullDish(R.drawable.margherita_in_four, PIZZA_MARGHUERITA_4_NAME,PIZZA_MARGHUERITA_4_DESCRIPTION,PIZZA_MARGHUERITA_4_RECIPE));
