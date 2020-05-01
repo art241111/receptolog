@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.models;
+package ru.art241111.dish_recipes.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

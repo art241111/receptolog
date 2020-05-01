@@ -1,8 +1,8 @@
-package ru.art241111.dish_recipes.ui.recipeActivity;
+package ru.art241111.dish_recipes.view.recipeActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import ru.art241111.dish_recipes.R;
-import ru.art241111.dish_recipes.models.FullDish;
+import ru.art241111.dish_recipes.data.FullDish;
 
 import android.content.Intent;
 import android.os.Bundle;

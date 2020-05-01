@@ -12,16 +12,18 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.art241111.dish_recipes.models.FullDish;
+
+import ru.art241111.dish_recipes.data.Dish;
+import ru.art241111.dish_recipes.data.FullDish;
 import ru.art241111.dish_recipes.R;
-import ru.art241111.dish_recipes.ui.recipeActivity.RecipeActivity;
+import ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
-    private ArrayList<FullDish> fullDishArrayList;
+    private ArrayList<Dish> dishArrayList;
     private Context context;
 
-    public RecyclerViewAdapter(ArrayList<FullDish> arrayList, Context context) {
-        this.fullDishArrayList = arrayList;
+    public RecyclerViewAdapter(ArrayList<Dish> arrayList, Context context) {
+        this.dishArrayList = arrayList;
         this.context = context;
     }
 
@@ -42,10 +44,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            FullDish fullDish = fullDishArrayList.get(position);
+            FullDish dish = (FullDish) dishArrayList.get(position);
 
             Intent intent = new Intent(context, RecipeActivity.class);
-            intent.putExtra("Dish", fullDish);
+            intent.putExtra("Dish", dish);
 
             context.startActivity(intent);
         }
@@ -62,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewViewHolder holder, int position) {
-        FullDish fullDish = fullDishArrayList.get(position);
+        FullDish fullDish = (FullDish)dishArrayList.get(position);
 
         holder.iv_dish.setImageResource(fullDish.getImageDish());
         holder.tv_name_dish.setText(fullDish.getNameDish());
@@ -71,7 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return fullDishArrayList.size();
+        return dishArrayList.size();
     }
 
 

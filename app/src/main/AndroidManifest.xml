@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ru.art241111.dish_recipes.ui.recipeActivity.RecipeActivity" />
+        <activity android:name="ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity" />
 
-        <activity android:name="ru.art241111.dish_recipes.ui.mainActivity.MainActivity"
+        <activity android:name="ru.art241111.dish_recipes.view.mainActivity.MainActivity"
                   android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

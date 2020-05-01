@@ -1,11 +1,12 @@
-package ru.art241111.dish_recipes.ui.mainActivity;
+package ru.art241111.dish_recipes.view.mainActivity;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.art241111.dish_recipes.models.FullDish;
+
+import ru.art241111.dish_recipes.data.Dish;
 import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
 
@@ -22,7 +23,7 @@ import org.apmem.tools.layouts.FlowLayout;
 
 import java.util.ArrayList;
 
-import static ru.art241111.dish_recipes.ui.mainActivity.createArray.addItemsToArray.addItemsToArrayList;
+import static ru.art241111.dish_recipes.view.mainActivity.createArray.addItemsToArray.addItemsToArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setListenerOnET(et_ingredients);
         setListenerOnButton(findViewById(R.id.ib_add_ingredients));
 
-        ArrayList<FullDish> fullDishArrayList = new ArrayList<>();
+        ArrayList<Dish> fullDishArrayList = new ArrayList<>();
         addItemsToArrayList(fullDishArrayList);
 
         recyclerView = findViewById(R.id.rv_dish);
@@ -127,10 +128,10 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
 
-    private void customizationRecyclerView(ArrayList<FullDish> fullDishArrayList) {
+    private void customizationRecyclerView(ArrayList<Dish> dishArrayList) {
         recyclerView.setHasFixedSize(true);
 
-        adapter = new RecyclerViewAdapter(fullDishArrayList, this);
+        adapter = new RecyclerViewAdapter(dishArrayList, this);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);
