@@ -8,12 +8,23 @@ import android.os.Parcelable;
  * @author Artem Geraimov.
  */
 public class FullDish implements Parcelable {
+    // Image resource
     private int imageDish;
+    // Title of dish
     private String nameDish;
+    // Description dish
     private String descriptionDish;
+    // Dish recipe
     private String recipe;
 
     // Constructors.
+    /**
+     * Constructor with all elements
+     * @param imageDish - directory image
+     * @param nameDish - title of dish
+     * @param descriptionDish - description of dish
+     * @param recipe - dish recipe
+     */
     public FullDish(int imageDish, String nameDish, String descriptionDish, String recipe) {
         this.imageDish = imageDish;
         this.nameDish = nameDish;
@@ -21,8 +32,15 @@ public class FullDish implements Parcelable {
         this.recipe = recipe;
     }
 
+    /**
+     * Empty constructor
+     */
     public FullDish() {}
 
+    /**
+     * Constructor to Parcel
+     * @param in - parcel
+     */
     protected FullDish(Parcel in) {
         imageDish = in.readInt();
         nameDish = in.readString();
