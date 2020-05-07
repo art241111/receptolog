@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
-import ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity
+import ru.art241111.dish_recipes.view.dishActivity.DishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItemClickListener {
@@ -121,8 +121,7 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
      * @param position - the position of the item on which the user clicked.
      */
     override fun onItemClick(position: Int) {
-        val viewModel = ViewModelProviders.of(this).get(SearchDishViewModel::class.java)
-        val intent = Intent(this, RecipeActivity::class.java)
+        val intent = Intent(this, DishActivity::class.java)
         intent.putExtra("Dish", viewModel.dishes.value?.get(position))
 
         this.startActivity(intent)

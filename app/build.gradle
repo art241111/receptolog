@@ -64,6 +64,7 @@ dependencies {
 
     // data binding
     kapt "androidx.databinding:databinding-compiler:4.1.0-alpha08"
+//    kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
     //lifecycle
     implementation "android.arch.lifecycle:runtime:1.1.1"

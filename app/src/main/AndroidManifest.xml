@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity" />
+        <activity android:name="ru.art241111.dish_recipes.view.dishActivity.DishActivity" />
 
         <activity android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity"
                   android:windowSoftInputMode="stateHidden">
