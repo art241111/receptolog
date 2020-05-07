@@ -13,7 +13,6 @@ import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
 class DishRepository(val netManager: NetManager) {
     val localDataSource = DishLocalDataSource()
     val remoteDataSource = DishRemoteDataSource()
-
     /**
      * Get data from repositories.
      * If internet connect work, then data takes from internet,
