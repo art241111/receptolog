@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.art241111.dish_recipes.data.Dish;
 import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.adapters.RecyclerViewAdapter;
+import ru.art241111.dish_recipes.data.FullDish;
 
 import android.os.Bundle;
 
@@ -51,7 +51,7 @@ public class searchDishActivit extends AppCompatActivity {
         setListenerOnET(et_ingredients);
         setListenerOnButton(findViewById(R.id.ib_add_ingredients));
 
-        ArrayList<Dish> fullDishArrayList = getDishes();
+        ArrayList<FullDish> fullDishArrayList = getDishes();
 
         recyclerView = findViewById(R.id.rv_dish);
         customizationRecyclerView(fullDishArrayList);
@@ -128,7 +128,7 @@ public class searchDishActivit extends AppCompatActivity {
                 });
             }
 
-    private void customizationRecyclerView(ArrayList<Dish> dishArrayList) {
+    private void customizationRecyclerView(ArrayList<FullDish> dishArrayList) {
         recyclerView.setHasFixedSize(true);
 
         adapter = new RecyclerViewAdapter(dishArrayList, this);

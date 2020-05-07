@@ -54,6 +54,15 @@
             >
         </org.apmem.tools.layouts.FlowLayout>
 
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/fl_list_ingredients"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_dish"
             android:layout_width="match_parent"

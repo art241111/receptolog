@@ -1,7 +1,7 @@
 package ru.art241111.dish_recipes.models.remoteDataSource
 
-import ru.art241111.dish_recipes.data.Dish
+import ru.art241111.dish_recipes.data.FullDish
 
 interface OnDishRemoteReadyCallback {
-    fun onRemoteDataReady(data: ArrayList<Dish>)
+    fun onRemoteDataReady(data: ArrayList<FullDish>)
 }

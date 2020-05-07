@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.art241111.dish_recipes.data.Dish;
 import ru.art241111.dish_recipes.data.FullDish;
 import ru.art241111.dish_recipes.R;
 import ru.art241111.dish_recipes.view.recipeActivity.RecipeActivity;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder> {
-    private ArrayList<Dish> dishArrayList;
+    private ArrayList<FullDish> dishArrayList;
     private Context context;
 
-    public RecyclerViewAdapter(ArrayList<Dish> arrayList, Context context) {
+    public RecyclerViewAdapter(ArrayList<FullDish> arrayList, Context context) {
         this.dishArrayList = arrayList;
         this.context = context;
     }

@@ -3,7 +3,7 @@ package ru.art241111.dish_recipes.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FullDish implements Parcelable, Dish {
+public class FullDish implements Parcelable {
     private int imageDish;
     private String nameDish;
     private String descriptionDish;
