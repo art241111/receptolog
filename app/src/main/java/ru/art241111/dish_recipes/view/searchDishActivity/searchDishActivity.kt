@@ -58,8 +58,14 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
      */
     private fun onAddButtonClickListener() {
         binding.ibAddIngredients.setOnClickListener{
+            // Add ingredients to array
             viewModel.addIngredient(binding.etIngredients.text.toString())
+
+            // Create ingredient view
             addIngredientToFlowLayout(binding.etIngredients.text.toString())
+
+            // Clear EditText
+            binding.etIngredients.text.clear()
         }
     }
 
