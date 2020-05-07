@@ -1,7 +1,8 @@
 package ru.art241111.dish_recipes.utils;
 
 /**
- * Временный файл, пока не подключена база данных
+ * Temporary file until the database is connected.
+ * @author Artem Geraimov.
  */
 public class createDish {
     public static final String PIZZA_MARGHUERITA_NAME = "Next level Margherita pizza";

@@ -3,15 +3,17 @@ package ru.art241111.dish_recipes.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Model of dishes.
+ * @author Artem Geraimov.
+ */
 public class FullDish implements Parcelable {
     private int imageDish;
     private String nameDish;
     private String descriptionDish;
     private String recipe;
 
-    //TODO add rating
-    private int rating;
-
+    // Constructors.
     public FullDish(int imageDish, String nameDish, String descriptionDish, String recipe) {
         this.imageDish = imageDish;
         this.nameDish = nameDish;
@@ -27,9 +29,9 @@ public class FullDish implements Parcelable {
         nameDish = in.readString();
         descriptionDish = in.readString();
         recipe = in.readString();
-        rating = in.readInt();
     }
 
+    // Migrate to parcelable.
     public static final Creator<FullDish> CREATOR = new Creator<FullDish>() {
         @Override
         public FullDish createFromParcel(Parcel in) {
@@ -53,9 +55,9 @@ public class FullDish implements Parcelable {
         dest.writeString(nameDish);
         dest.writeString(descriptionDish);
         dest.writeString(recipe);
-        dest.writeInt(rating);
     }
 
+    // Setters and getters.
     public String getRecipe() {
         return recipe;
     }
@@ -78,14 +80,6 @@ public class FullDish implements Parcelable {
 
     public void setNameDish(String nameDish) {
         this.nameDish = nameDish;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getDescriptionDish() {

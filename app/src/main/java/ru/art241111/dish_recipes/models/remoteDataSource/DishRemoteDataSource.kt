@@ -7,10 +7,13 @@ import ru.art241111.dish_recipes.models.API.getDishes.getDishes
 import java.util.concurrent.TimeUnit
 
 /**
- * Repository for getting remote data
+ * Repository for getting remote data.
+ * @author Artem Gerasimov.
  */
-
 class DishRemoteDataSource {
+    /**
+     * Take data from remove repository.
+     */
     fun getRepositories() : Observable<ArrayList<FullDish>> {
         val arrayList = getDishes()
         return Observable.just(arrayList).delay(2, TimeUnit.SECONDS)

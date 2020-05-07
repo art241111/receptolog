@@ -8,10 +8,15 @@ import ru.art241111.dish_recipes.data.FullDish;
 import static ru.art241111.dish_recipes.utils.createDish.*;
 
 /**
- * Тоже времеенный класс, который добавляет в массив значения рецептов
- * В будующем бдет заменен на подгрузку данных из БД
+ * This is also a temporary class that adds recipe values to the array.
+ * In the future, it will be replaced with loading data from the database.
+ * @author Artem Geraimov.
  */
 public class getDishes {
+    /**
+     * Create array with dishes.
+     * @return array with dishes.
+     */
     public static ArrayList<FullDish> getDishes() {
         ArrayList<FullDish> fullDishArrayList = new ArrayList<>();
         fullDishArrayList.add(new FullDish(R.drawable.marghuerita,PIZZA_MARGHUERITA_NAME,PIZZA_MARGHUERITA_DESCRIPTION, PIZZA_MARGHUERITA_RECIPE));

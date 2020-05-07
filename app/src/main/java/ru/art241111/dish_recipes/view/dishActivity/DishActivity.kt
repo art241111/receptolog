@@ -7,14 +7,17 @@ import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.ActivityDishBinding
 
-
+/**
+ * Activate to show recipes in more detail.
+ * @author Artem Geraimov.
+ */
 class DishActivity : AppCompatActivity() {
-    // binding with layout
+    // binding with layout.
     private lateinit var binding: ActivityDishBinding
 
     /**
      * Take data from intent.
-     * If intent null, return empty object
+     * If intent null, return empty object.
      */
     private fun getDataFromIntent(): FullDish? {
         val intent = intent
@@ -24,23 +27,23 @@ class DishActivity : AppCompatActivity() {
     }
 
     /**
-     * Start activity, draw layout
+     * Start activity, draw layout.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // A binding with layout
+        // A binding with layout.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dish)
 
-        // Loading dish data to layout
+        // Loading dish data to layout.
         val dish = getDataFromIntent()
         binding.fullDish = dish
 
-        // Setup and customization tab host
+        // Setup and customization tab host.
         setupTabHost()
     }
 
     /**
-     * Setup and customization tab host
+     * Setup and customization tab host.
      */
      private fun setupTabHost() {
         binding.tabHost.setup()

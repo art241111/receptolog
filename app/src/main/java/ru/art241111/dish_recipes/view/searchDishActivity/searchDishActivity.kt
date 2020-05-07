@@ -16,6 +16,11 @@ import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
 import ru.art241111.dish_recipes.view.dishActivity.DishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
+/**
+ * Main activity.
+ * Activation for searching recipes by ingredients.
+ * @author Artem Geraimov.
+ */
 class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItemClickListener {
     private lateinit var binding: ActivitySearchDishBinding
     private lateinit var viewModel: SearchDishViewModel
@@ -23,12 +28,12 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // A binding with layout
+        // A binding with layout.
         binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_search_dish
         )
 
-        // Add viewModel to binding
+        // Add viewModel to binding.
         viewModel = ViewModelProviders.of(this)
                                       .get(SearchDishViewModel::class.java)
         binding.viewModel = viewModel
@@ -37,15 +42,15 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
-        // Set click Listener on add button
+        // Set click Listener on add button.
         onAddButtonClickListener()
 
-        // Ingredients recovery after app death
+        // Ingredients recovery after app death.
         recoveryIngredients()
     }
 
     /**
-     * Ingredients recovery after app death
+     * Ingredients recovery after app death.
      */
     private fun recoveryIngredients() {
         for (ingredient in viewModel.ingredients){
@@ -54,47 +59,47 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
     }
 
     /**
-     * Click listener of add button
+     * Click listener of add button.
      */
     private fun onAddButtonClickListener() {
         binding.ibAddIngredients.setOnClickListener{
-            // Add ingredients to array
+            // Add ingredients to array.
             viewModel.addIngredient(binding.etIngredients.text.toString())
 
-            // Create ingredient view
+            // Create ingredient view.
             addIngredientToFlowLayout(binding.etIngredients.text.toString())
 
-            // Clear EditText
+            // Clear EditText.
             binding.etIngredients.text.clear()
         }
     }
 
     /**
-     * Add ingredient to flow layout
-     * @param ingredientName - name of ingredient
+     * Add ingredient to flow layout.
+     * @param ingredientName - name of ingredient.
      */
     private fun addIngredientToFlowLayout(ingredientName: String) {
         val inflater = layoutInflater
         val ingredient = inflater.inflate(R.layout.ingredient, null)
 
-        // Customization ingredients view
+        // Customization ingredients view.
         fillingInDataToIngredientView(ingredient, ingredientName)
 
-        // Add ingredient to FlowLayout
+        // Add ingredient to FlowLayout.
         binding.flListIngredients.addView(ingredient)
     }
 
     /**
-     * Filling in the view data
-     * @param ingredient - new view
-     * @param ingredientName - name of ingredient
+     * Filling in the view data.
+     * @param ingredient - new view.
+     * @param ingredientName - name of ingredient.
      */
     private fun fillingInDataToIngredientView(ingredient: View, ingredientName: String) {
-        // Set ingredients name
+        // Set ingredients name.
         val textView = ingredient.findViewById<TextView>(R.id.tv_name_ingredient)
         textView.text = ingredientName
 
-        // Add click listener om delete button
+        // Add click listener om delete button.
         val imageView = ingredient.findViewById<ImageView>(R.id.btn_delete)
         imageView.setOnClickListener {
             binding.flListIngredients.removeView(ingredient)

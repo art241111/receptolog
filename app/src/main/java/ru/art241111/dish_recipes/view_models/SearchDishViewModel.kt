@@ -15,32 +15,35 @@ import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 
-
+/**
+ * ViewModel to work with data and searchDishActivity
+ * @author Artem Geraimov.
+ */
 class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application) {
 
-    // Data repository
+    // Data repository.
     private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
 
-    // Array of dishes
+    // Array of dishes.
     val dishes = MutableLiveData<ArrayList<FullDish>>()
 
-    // Array of ingredients
+    // Array of ingredients.
     val ingredients = ArrayList<String>()
 
-    // Check data is loading or not
+    // Check data is loading or not.
     val isLoading = ObservableField(false)
 
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
 
     /**
-     * load dishes from repositories
+     * load dishes from repositories.
      */
     fun loadDishes() {
         isLoading.set(true)
 
-        // Get information from repository
+        // Get information from repository.
         compositeDisposable += dishRepository
                 .getRepositories()
                 .subscribeOn(Schedulers.newThread())
@@ -62,7 +65,7 @@ class SearchDishViewModel(application: Application)
     }
 
     /**
-     * Delete observer's
+     * Delete observer's.
      */
     override fun onCleared() {
         super.onCleared()
@@ -72,14 +75,14 @@ class SearchDishViewModel(application: Application)
     }
 
     /**
-     * Add ingredient to ingredients array
+     * Add ingredient to ingredients array.
      */
     fun addIngredient(ingredient: String){
         ingredients.add(ingredient)
     }
 
     /**
-     * Remove ingredient to ingredients array
+     * Remove ingredient to ingredients array.
      */
     fun deleteIngredient(ingredient: String){
         ingredients.remove(ingredient)

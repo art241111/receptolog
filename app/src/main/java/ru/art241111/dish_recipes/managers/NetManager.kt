@@ -4,9 +4,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 
 /**
- * NetManager - Checks whether there is Internet access
+ * NetManager - Checks whether there is Internet access.
+ * @author Artem Geraimov.
  */
-
 class NetManager(private var applicationContext: Context) {
     private var status: Boolean? = false
 
