@@ -49,9 +49,7 @@
             android:layout_height="wrap_content"
 
             android:layout_below="@id/ll_add_ingredients"
-            android:id="@+id/fl_list_ingredients"
-
-            >
+            android:id="@+id/fl_list_ingredients" >
         </org.apmem.tools.layouts.FlowLayout>
 
         <ProgressBar

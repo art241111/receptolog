@@ -24,7 +24,7 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
         fun bind(dish: FullDish, listener: OnItemClickListener?) {
             binding.dish = dish
             if (listener != null) {
-                binding.root.setOnClickListener { _ -> listener.onItemClick(layoutPosition) }
+                binding.root.setOnClickListener { listener.onItemClick(layoutPosition) }
             }
 
             binding.executePendingBindings()
@@ -32,7 +32,7 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val binding = RecyclerViewItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
