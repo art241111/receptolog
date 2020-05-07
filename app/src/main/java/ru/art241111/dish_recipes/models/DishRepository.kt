@@ -4,7 +4,6 @@ import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
-import ru.art241111.dish_recipes.models.remoteDataSource.OnDishRemoteReadyCallback
 
 /**
  * Repository for getting data
