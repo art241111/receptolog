@@ -1,91 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="12dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="dish"
+            type="ru.art241111.dish_recipes.data.FullDish" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="12dp">
 
-        <ImageView
-            android:id="@+id/iv_dish"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerInside" />
-
-        <TextView
-            android:id="@+id/tv_name_dish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Заголовок блюда"
-            android:textStyle="bold"
-            android:textSize="20sp"
-
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/iv_dish"
-            />
-
-        <LinearLayout
-            android:id="@+id/ll_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            android:layout_below="@id/tv_name_dish"
-            android:layout_alignStart="@id/tv_name_dish"
-            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_star_border_black_24dp"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_star_border_black_24dp"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_star_border_black_24dp"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_star_border_black_24dp"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_star_border_black_24dp"/>
+                android:id="@+id/iv_dish"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                app:imageResource="@{dish.imageDish}"/>
 
             <TextView
+                android:id="@+id/tv_name_dish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text = "(0 rating)"
 
-                android:layout_marginStart="10dp"/>
-        </LinearLayout>
+                android:text="@{dish.nameDish}"
+                android:textStyle="bold"
+                android:textSize="20sp"
 
-        <TextView
-            android:id="@+id/tv_description_dish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/iv_dish"
+                />
 
-            android:text="Описание блюда. Описание блюда. Описание блюда. Описание блюда. Описание блюда. Описание блюда."
-            android:textSize="15sp"
+            <LinearLayout
+                android:id="@+id/ll_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
 
-            android:layout_below="@id/ll_rating"
-            android:layout_alignStart="@id/ll_rating"
-            />
-    </RelativeLayout>
+                android:layout_below="@id/tv_name_dish"
+                android:layout_alignStart="@id/tv_name_dish"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_border_black_24dp"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_border_black_24dp"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_border_black_24dp"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_border_black_24dp"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_border_black_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "(0 rating)"
+
+                    android:layout_marginStart="10dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_description_dish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@{dish.descriptionDish}"
+                android:textSize="15sp"
+
+                android:layout_below="@id/ll_rating"
+                android:layout_alignStart="@id/ll_rating"
+                />
+        </RelativeLayout>
 
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,9 +1,10 @@
 package ru.art241111.dish_recipes.utils;
 
 /**
- * Временный файл, пока не подключена база данных
+ * Temporary file until the database is connected.
+ * @author Artem Geraimov.
  */
-public class constantSting {
+public class createDish {
     public static final String PIZZA_MARGHUERITA_NAME = "Next level Margherita pizza";
     public static final String PIZZA_MARGHUERITA_DESCRIPTION = "Forget takeaways – you can’t beat a homemade Margherita pizza topped with fresh tomato sauce and melted cheese. Here's how to master this everyday classic...";
     public static final String PIZZA_MARGHUERITA_RECIPE = "First, make the dough. Tip the flour into a bowl and add 300ml tepid water. Mix together and set aside at room temperature for 1 hr. Dissolve the yeast in 2 tbsp water and mix this and 15g of salt through the dough. Cover with cling film and leave somewhere warm to double in size for a few hours. For a sourer flavour, leave in the fridge for at least 8 hrs and up to 24 hrs – the longer you leave it the sourer it will be.\n" +
