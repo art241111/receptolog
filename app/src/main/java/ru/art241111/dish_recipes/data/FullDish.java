@@ -21,8 +21,7 @@ public class FullDish implements Parcelable {
         this.recipe = recipe;
     }
 
-    public FullDish() {
-    }
+    public FullDish() {}
 
     protected FullDish(Parcel in) {
         imageDish = in.readInt();
