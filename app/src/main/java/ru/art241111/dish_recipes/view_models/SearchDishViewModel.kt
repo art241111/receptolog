@@ -17,10 +17,10 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application) {
 
-    var dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
-    var repositories = MutableLiveData<ArrayList<FullDish>>()
+    private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
+    private val repositories = MutableLiveData<ArrayList<FullDish>>()
 
-    val isLoading = ObservableField(false)
+    private val isLoading = ObservableField(false)
 
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
