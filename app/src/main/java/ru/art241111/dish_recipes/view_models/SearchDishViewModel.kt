@@ -18,9 +18,9 @@ class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application) {
 
     private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
-    private val repositories = MutableLiveData<ArrayList<FullDish>>()
+    val dishes = MutableLiveData<ArrayList<FullDish>>()
 
-    private val isLoading = ObservableField(false)
+    val isLoading = ObservableField(false)
 
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
@@ -38,7 +38,7 @@ class SearchDishViewModel(application: Application)
                     }
 
                     override fun onNext(data: ArrayList<FullDish>) {
-                        repositories.value = data
+                        dishes.value = data
                     }
 
                     override fun onComplete() {
