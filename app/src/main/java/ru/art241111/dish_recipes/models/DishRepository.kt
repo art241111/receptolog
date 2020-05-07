@@ -1,5 +1,6 @@
 package ru.art241111.dish_recipes.models
 
+import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
@@ -12,22 +13,17 @@ class DishRepository(val netManager: NetManager) {
     val localDataSource = DishLocalDataSource()
     val remoteDataSource = DishRemoteDataSource()
 
-    fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
+    fun getRepositories(): Observable<ArrayList<FullDish>> {
         netManager.isConnectedToInternet?.let {
             if (it) {
-                remoteDataSource.getRepositories(object : OnDishRemoteReadyCallback {
-                    override fun onRemoteDataReady(data: ArrayList<FullDish>) {
-                        localDataSource.saveRepositories(data)
-                        onRepositoryReadyCallback.onDataReady(data)
-                    }
-                })
-            } else {
-                localDataSource.getRepositories(object : OnDishLocalReadyCallback {
-                    override fun onLocalDataReady(data: ArrayList<FullDish>) {
-                        onRepositoryReadyCallback.onDataReady(data)
-                    }
-                })
+                return remoteDataSource.getRepositories().flatMap {
+                    return@flatMap localDataSource.saveRepositories(it)
+                            .toSingleDefault(it)
+                            .toObservable()
+                }
             }
         }
+
+        return localDataSource.getRepositories()
     }
 }
