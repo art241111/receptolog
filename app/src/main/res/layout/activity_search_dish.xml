@@ -61,7 +61,8 @@
             android:indeterminate="true"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/fl_list_ingredients"/>
+            android:layout_below="@id/fl_list_ingredients"
+            android:layout_marginTop="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_dish"
