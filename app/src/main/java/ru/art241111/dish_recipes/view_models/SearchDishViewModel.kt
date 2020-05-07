@@ -39,6 +39,8 @@ class SearchDishViewModel(application: Application)
      */
     fun loadDishes() {
         isLoading.set(true)
+
+        // Get information from repository
         compositeDisposable += dishRepository
                 .getRepositories()
                 .subscribeOn(Schedulers.newThread())
