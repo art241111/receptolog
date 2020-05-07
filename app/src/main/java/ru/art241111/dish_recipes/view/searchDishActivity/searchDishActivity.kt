@@ -48,7 +48,7 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
      * Ingredients recovery after app death
      */
     private fun recoveryIngredients() {
-        for (ingredient in viewModel.ingredientsArray){
+        for (ingredient in viewModel.ingredients){
             addIngredientToFlowLayout(ingredient)
         }
     }
@@ -121,6 +121,4 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
 
         this.startActivity(intent)
     }
-
-
 }

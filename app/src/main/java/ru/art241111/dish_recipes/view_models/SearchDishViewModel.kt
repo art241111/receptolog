@@ -2,6 +2,7 @@ package ru.art241111.dish_recipes.view_models
 
 import android.app.Application
 import android.text.Editable
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -25,7 +26,7 @@ class SearchDishViewModel(application: Application)
     val dishes = MutableLiveData<ArrayList<FullDish>>()
 
     // Array of ingredients
-    val ingredientsArray = ArrayList<String>()
+    val ingredients = ArrayList<String>()
 
     // Check data is loading or not
     val isLoading = ObservableField(false)
@@ -44,8 +45,8 @@ class SearchDishViewModel(application: Application)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<ArrayList<FullDish>>() {
                     override fun onError(e: Throwable) {
-                        //if some error happens in our data layer our app will not crash, we will
-                        // get error here
+                        Log.e("SearchDishViewModel.kt",
+                                "Error with reading data + ${e.message}")
                     }
 
                     override fun onNext(data: ArrayList<FullDish>) {
@@ -58,7 +59,9 @@ class SearchDishViewModel(application: Application)
                 })
     }
 
-    // Reply
+    /**
+     * Delete observer's
+     */
     override fun onCleared() {
         super.onCleared()
         if (!compositeDisposable.isDisposed) {
@@ -66,11 +69,17 @@ class SearchDishViewModel(application: Application)
         }
     }
 
+    /**
+     * Add ingredient to ingredients array
+     */
     fun addIngredient(ingredient: String){
-        ingredientsArray.add(ingredient)
+        ingredients.add(ingredient)
     }
 
+    /**
+     * Remove ingredient to ingredients array
+     */
     fun deleteIngredient(ingredient: String){
-        ingredientsArray.remove(ingredient)
+        ingredients.remove(ingredient)
     }
 }
