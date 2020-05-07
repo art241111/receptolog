@@ -13,13 +13,15 @@ import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
 class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
                                 private var listener: OnItemClickListener)
                                 : RecyclerView.Adapter<DishesRecyclerViewAdapter.ViewHolder>() {
-
     /**
      * link data.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
             = holder.bind(items[position], listener)
 
+    /**
+     * Set size
+     */
     override fun getItemCount(): Int = items.size
 
     /**

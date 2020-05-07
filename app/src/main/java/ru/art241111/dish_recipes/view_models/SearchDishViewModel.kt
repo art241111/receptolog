@@ -77,14 +77,14 @@ class SearchDishViewModel(application: Application)
     /**
      * Add ingredient to ingredients array.
      */
-    fun addIngredient(ingredient: String){
+    fun addIngredient(ingredient: String) {
         ingredients.add(ingredient)
     }
 
     /**
      * Remove ingredient to ingredients array.
      */
-    fun deleteIngredient(ingredient: String){
+    fun deleteIngredient(ingredient: String) {
         ingredients.remove(ingredient)
     }
 }
