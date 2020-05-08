@@ -32,7 +32,7 @@
                         android:layout_height="300dp"
                         android:scaleType="centerInside"
                         android:paddingBottom="5dp"
-                        app:imageResource="@{full_dish.imageDish}"/>
+                        app:profileImage="@{full_dish.urlImageRecipe}"/>
                     <TextView
                         android:id="@+id/tv_name_dish"
                         android:layout_width="match_parent"
@@ -40,14 +40,11 @@
 
                         android:text="@{full_dish.nameDish}"
                         android:textStyle="bold"
-                        android:textSize="40sp"
-
-                        android:paddingBottom="5dp" />
+                        android:textSize="30sp" />
                     <TextView
                         android:id="@+id/tv_description_dish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="5dp"
 
                         android:text="@{full_dish.descriptionDish}"
                     />
@@ -81,7 +78,7 @@
                                         android:id="@+id/tv_ingredients"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="@{full_dish.descriptionDish}"
+                                        android:text="@{full_dish.stringIngredients}"
                                         />
                                 </LinearLayout>
 

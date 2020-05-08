@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.adapters
+package ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,13 +23,6 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
      * Set size
      */
     override fun getItemCount(): Int = items.size
-
-    /**
-     * Interface to work with button click.
-     */
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
 
     /**
      * Create items.

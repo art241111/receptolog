@@ -2,16 +2,33 @@ package ru.art241111.dish_recipes.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Model of dishes.
  * @author Artem Geraimov.
  */
 public class FullDish implements Parcelable {
+    // Deprecated
     private int imageDish;
+
     private String nameDish;
     private String descriptionDish;
     private String recipe;
+    private String urlImageRecipe;
+    private List<String> ingredients;
+
+    public static Creator<FullDish> getCREATOR() {
+        return CREATOR;
+    }
 
     // Constructors.
     public FullDish(int imageDish, String nameDish, String descriptionDish, String recipe) {
@@ -28,6 +45,10 @@ public class FullDish implements Parcelable {
         nameDish = in.readString();
         descriptionDish = in.readString();
         recipe = in.readString();
+        urlImageRecipe = in.readString();
+
+        ingredients = new ArrayList<>();
+        in.readStringList(ingredients);
     }
 
     // Migrate to parcelable.
@@ -54,6 +75,8 @@ public class FullDish implements Parcelable {
         dest.writeString(nameDish);
         dest.writeString(descriptionDish);
         dest.writeString(recipe);
+        dest.writeString(urlImageRecipe);
+        dest.writeStringList(ingredients);
     }
 
     // Setters and getters.
@@ -89,5 +112,34 @@ public class FullDish implements Parcelable {
         this.descriptionDish = descriptionDish;
     }
 
+    public String getUrlImageRecipe() {
+        return urlImageRecipe;
+    }
 
+    public void setUrlImageRecipe(String urlImageRecipe) {
+        this.urlImageRecipe = urlImageRecipe;
+    }
+
+    public String getStringIngredients() {
+        StringBuilder out = new StringBuilder();
+        for (String ingredient:ingredients) {
+            out.append(ingredient).append("\n");
+        }
+        return out.toString();
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    @BindingAdapter("profileImage")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl).apply(new RequestOptions().circleCrop())
+                .into(view);
+    }
 }

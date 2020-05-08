@@ -1,10 +1,10 @@
 package ru.art241111.dish_recipes.models
 
 import io.reactivex.Observable
-import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
+import ru.art241111.dish_recipes.models.remoteDataSource.Recipes
 
 /**
  * Repository for getting data.
@@ -19,11 +19,11 @@ class DishRepository(val netManager: NetManager) {
      * else from local repository.
      * @return data from repositories.
      */
-    fun getRepositories(): Observable<ArrayList<FullDish>> {
+    fun getDishes(ingredients: ArrayList<String>): Observable<List<Recipes>> {
         netManager.isConnectedToInternet?.let { it ->
             if (it) {
-                return remoteDataSource.getRepositories().flatMap {
-                    return@flatMap localDataSource.saveRepositories(it)
+                return remoteDataSource.getDishes(ingredients).flatMap {
+                    return@flatMap localDataSource.saveDishes(it)
                             .toSingleDefault(it)
                             .toObservable()
                 }

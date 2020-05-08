@@ -2,6 +2,7 @@ package ru.art241111.dish_recipes.view.searchDishActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.art241111.dish_recipes.R
-import ru.art241111.dish_recipes.adapters.DishesRecyclerViewAdapter
+import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
+import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
 import ru.art241111.dish_recipes.view.dishActivity.DishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
@@ -21,7 +23,7 @@ import ru.art241111.dish_recipes.view_models.SearchDishViewModel
  * Activation for searching recipes by ingredients.
  * @author Artem Geraimov.
  */
-class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItemClickListener {
+class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
     private lateinit var binding: ActivitySearchDishBinding
     private lateinit var viewModel: SearchDishViewModel
 
@@ -45,8 +47,52 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
         // Set click Listener on add button.
         onAddButtonClickListener()
 
+        // Set click listener on keyboard enter
+        onEnterKeyboardListener()
+
         // Ingredients recovery after app death.
         recoveryIngredients()
+    }
+
+    /**
+     * Method to add and search ingredients
+     */
+    private fun addIngredients(){
+        // Add ingredients to array.
+        viewModel.addIngredient(binding.etIngredients.text.toString())
+
+        // Create ingredient view.
+        addIngredientToFlowLayout(binding.etIngredients.text.toString())
+
+        // Clear EditText.
+        binding.etIngredients.text.clear()
+
+        // Load new data
+        viewModel.loadDishes()
+    }
+
+    /**
+     * Set click listener on enter keyboard
+     */
+    private fun onEnterKeyboardListener() {
+        binding.etIngredients.setOnKeyListener(
+                View.OnKeyListener { _, keyCode, event ->
+                    if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                        addIngredients()
+                        return@OnKeyListener true
+                    }
+                    false
+                }
+        )
+    }
+
+    /**
+     * Click listener of add button.
+     */
+    private fun onAddButtonClickListener() {
+        binding.ibAddIngredients.setOnClickListener{
+            addIngredients()
+        }
     }
 
     /**
@@ -55,22 +101,6 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
     private fun recoveryIngredients() {
         for (ingredient in viewModel.ingredients){
             addIngredientToFlowLayout(ingredient)
-        }
-    }
-
-    /**
-     * Click listener of add button.
-     */
-    private fun onAddButtonClickListener() {
-        binding.ibAddIngredients.setOnClickListener{
-            // Add ingredients to array.
-            viewModel.addIngredient(binding.etIngredients.text.toString())
-
-            // Create ingredient view.
-            addIngredientToFlowLayout(binding.etIngredients.text.toString())
-
-            // Clear EditText.
-            binding.etIngredients.text.clear()
         }
     }
 
@@ -118,7 +148,10 @@ class SearchDishActivity : AppCompatActivity(), DishesRecyclerViewAdapter.OnItem
         viewModel.dishes.observe(this,
                 Observer{ it?.let{ dishesRecyclerViewAdapter.replaceData(it)} })
 
-        viewModel.loadDishes()
+        if(viewModel.isApplicationCreateFirst){
+            viewModel.loadDishes()
+            viewModel.isApplicationCreateFirst = false
+        }
     }
 
     /**

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:background="@color/colorPrimary"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bell"/>
+
+    <SeekBar
+        android:id="@+id/sb_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/SeekBarColor"
+        />
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:50"
+        android:textSize="60sp"
+        android:textColor="@android:color/black"
+
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/bt_start"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/bt_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="START"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+
+        android:background="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

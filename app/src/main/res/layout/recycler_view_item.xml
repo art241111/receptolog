@@ -28,7 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerInside"
-                app:imageResource="@{dish.imageDish}"/>
+                app:profileImage="@{dish.urlImageRecipe}" />
 
             <TextView
                 android:id="@+id/tv_name_dish"
