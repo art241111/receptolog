@@ -5,7 +5,8 @@ data class DishModel(
     val image: String,
     val ingredientLines: List<String>,
     val label: String,
-    val uri: String
+    val uri: String,
+    val healthLabels: List<String>
 )
 
 data class Recipes(

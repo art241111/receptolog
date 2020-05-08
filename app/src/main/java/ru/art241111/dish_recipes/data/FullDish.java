@@ -112,6 +112,14 @@ public class FullDish implements Parcelable {
         this.descriptionDish = descriptionDish;
     }
 
+    public void setDescriptionDishFromArray(List<String> healthLabels) {
+        StringBuilder out = new StringBuilder();
+        for (String healthLabel:healthLabels) {
+            out.append(healthLabel).append(", ");
+        }
+        this.descriptionDish = out.toString();
+    }
+
     public String getUrlImageRecipe() {
         return urlImageRecipe;
     }

@@ -40,13 +40,15 @@
 
                         android:text="@{full_dish.nameDish}"
                         android:textStyle="bold"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textAlignment="center"/>
                     <TextView
                         android:id="@+id/tv_description_dish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         android:text="@{full_dish.descriptionDish}"
+                        android:textAlignment="center"
                     />
 
                     <TabHost
@@ -79,6 +81,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:text="@{full_dish.stringIngredients}"
+                                        android:textSize="15sp"
                                         />
                                 </LinearLayout>
 

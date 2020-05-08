@@ -83,6 +83,7 @@ class SearchDishViewModel(application: Application)
         fullDish.urlImageRecipe = dishModel.image
         fullDish.nameDish = dishModel.label
         fullDish.ingredients = dishModel.ingredientLines
+        fullDish.setDescriptionDishFromArray(dishModel.healthLabels)
         return fullDish
     }
 
