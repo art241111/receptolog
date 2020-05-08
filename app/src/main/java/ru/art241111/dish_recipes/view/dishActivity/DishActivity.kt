@@ -50,12 +50,12 @@ class DishActivity : AppCompatActivity() {
 
         var tabSpec = binding.tabHost.newTabSpec("tag1")
         tabSpec.setContent(R.id.tab1)
-        tabSpec.setIndicator("Ингредиенты")
+        tabSpec.setIndicator(getString(R.string.ingredients))
         binding.tabHost.addTab(tabSpec)
 
         tabSpec = binding.tabHost.newTabSpec("tag2")
         tabSpec.setContent(R.id.tab2)
-        tabSpec.setIndicator("Рецепт")
+        tabSpec.setIndicator(getString(R.string.recipes))
         binding.tabHost.addTab(tabSpec)
     }
 }
