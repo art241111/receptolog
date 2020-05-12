@@ -1,19 +1,20 @@
-package ru.art241111.dish_recipes.view.dishActivity
+package ru.art241111.dish_recipes.view.viewDishActivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
-import ru.art241111.dish_recipes.databinding.ActivityDishBinding
+import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
+import ru.art241111.dish_recipes.databinding.ActivityViewDishBinding
 
 /**
  * Activate to show recipes in more detail.
  * @author Artem Geraimov.
  */
-class DishActivity : AppCompatActivity() {
+class ViewDishActivity : AppCompatActivity() {
     // binding with layout.
-    private lateinit var binding: ActivityDishBinding
+    private lateinit var binding: ActivityViewDishBinding
 
     /**
      * Take data from intent.
@@ -32,7 +33,7 @@ class DishActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // A binding with layout.
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_dish)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_dish)
 
         // Loading dish data to layout.
         val dish = getDataFromIntent()

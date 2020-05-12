@@ -12,13 +12,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
-import ru.art241111.dish_recipes.view.dishActivity.DishActivity
+import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 
@@ -164,7 +163,7 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
      * @param position - the position of the item on which the user clicked.
      */
     override fun onItemClick(position: Int) {
-        val intent = Intent(this, DishActivity::class.java)
+        val intent = Intent(this, ViewDishActivity::class.java)
         intent.putExtra("Dish", viewModel.dishes.value?.get(position))
 
         this.startActivity(intent)

@@ -14,7 +14,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.dishActivity.DishActivity"
+            tools:context=".view.viewDishActivity.ViewDishActivity"
             android:orientation="vertical">
 
             <ScrollView
@@ -26,30 +26,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="10dp">
-                    <ImageView
-                        android:id="@+id/iv_recipe_dish"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:scaleType="centerInside"
-                        android:paddingBottom="5dp"
-                        app:profileImage="@{full_dish.urlImageRecipe}"/>
-                    <TextView
-                        android:id="@+id/tv_name_dish"
+                    <fragment
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        android:text="@{full_dish.nameDish}"
-                        android:textStyle="bold"
-                        android:textSize="30sp"
-                        android:textAlignment="center"/>
-                    <TextView
-                        android:id="@+id/tv_description_dish"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:text="@{full_dish.descriptionDish}"
-                        android:textAlignment="center"
-                    />
+                        />
 
                     <TabHost
                         android:id="@+id/tabHost"
