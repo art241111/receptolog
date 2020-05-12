@@ -5,9 +5,13 @@
     <li>5 запросов в минуту</li>
 </ul>
 <h2> Ключевые слова: </h2>
+
+<p>
 <img src="https://img.shields.io/badge/-MVVC-brightgreen" height="50"/>
 <img src="https://img.shields.io/badge/-databinding%20-yellowgreen" height="50"/>
 <img src="https://img.shields.io/badge/-retrofit%202-blue" height="50"/>
+</p>
+
 
 <h2> Реализовано два экрана: </h2>
  <ul>
