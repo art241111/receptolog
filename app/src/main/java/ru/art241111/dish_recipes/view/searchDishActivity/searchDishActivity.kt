@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
+import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
 import ru.art241111.dish_recipes.view.dishActivity.DishActivity
@@ -23,7 +24,7 @@ import ru.art241111.dish_recipes.view_models.SearchDishViewModel
  * Activation for searching recipes by ingredients.
  * @author Artem Geraimov.
  */
-class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
+class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
     private lateinit var binding: ActivitySearchDishBinding
     private lateinit var viewModel: SearchDishViewModel
 
@@ -68,7 +69,7 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
         binding.etIngredients.text.clear()
 
         // Load new data
-        viewModel.loadDishes()
+        viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
     }
 
     /**
@@ -134,6 +135,7 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
         imageView.setOnClickListener {
             binding.flListIngredients.removeView(ingredient)
             viewModel.deleteIngredient(ingredientName)
+            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
         }
     }
 
@@ -149,7 +151,7 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
                 Observer{ it?.let{ dishesRecyclerViewAdapter.replaceData(it)} })
 
         if(viewModel.isApplicationCreateFirst){
-            viewModel.loadDishes()
+            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
             viewModel.isApplicationCreateFirst = false
         }
     }
@@ -163,5 +165,9 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener{
         intent.putExtra("Dish", viewModel.dishes.value?.get(position))
 
         this.startActivity(intent)
+    }
+
+    override fun onDataEnd() {
+        viewModel.loadDishesWhenOnScreenEnd()
     }
 }

@@ -63,7 +63,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // data binding
-    kapt "androidx.databinding:databinding-compiler:4.1.0-alpha08"
+    kapt "androidx.databinding:databinding-compiler:4.1.0-alpha09"
 //    kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
     //lifecycle

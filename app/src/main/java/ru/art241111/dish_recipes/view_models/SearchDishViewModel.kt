@@ -22,7 +22,6 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
  */
 class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application) {
-
     // Data repository.
     private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
 
@@ -41,15 +40,34 @@ class SearchDishViewModel(application: Application)
     // is application create firs
     var isApplicationCreateFirst = true
 
+    // start page to load data
+    private var startPosition = 0
+
+    /**
+     * Load new data, when data on screen end
+     */
+    fun loadDishesWhenOnScreenEnd(){
+        startPosition += 10
+        loadDishes()
+    }
+
+    /**
+     * Load new data, when user enter new ingredient
+     */
+    fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
+        startPosition = 10
+        loadDishes()
+    }
+
     /**
      * load dishes from repositories.
      */
-    fun loadDishes() {
+    private fun loadDishes() {
         isLoading.set(true)
 
         // Get information from repository.
         compositeDisposable += dishRepository
-                .getDishes(ingredients)
+                .getDishes(ingredients, startPosition.toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Recipes>>() {

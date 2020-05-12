@@ -13,7 +13,8 @@ interface EdamamAPIService {
     @GET("/search")
     open fun getData(@Query("app_id") appId: String?,
                      @Query("app_key") appKey: String,
-                     @Query("q") ingredients: String)
+                     @Query("q") ingredients: String,
+                     @Query("from") startPosition: String)
             : Observable<Result>
 
     /**

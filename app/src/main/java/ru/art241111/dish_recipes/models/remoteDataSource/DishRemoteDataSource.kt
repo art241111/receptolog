@@ -15,16 +15,16 @@ class DishRemoteDataSource {
     /**
      * Take data from remove repository.
      */
-    fun getDishes(ingredients: ArrayList<String>) : Observable<List<Recipes>> {
+    fun getDishes(ingredients: ArrayList<String>, startPosition: String) : Observable<List<Recipes>> {
         val arrayList = ru.art241111.dish_recipes.models.API.getDishes.getDishes()
-        return getDishesFromEdamamAPI(ingredients).map{it.hits}
+        return getDishesFromEdamamAPI(ingredients, startPosition).map{it.hits}
     }
 
-    private fun getDishesFromEdamamAPI(ingredients: ArrayList<String>):Observable<Result> {
+    private fun getDishesFromEdamamAPI(ingredients: ArrayList<String>, startPosition: String):Observable<Result> {
         val dishesRepository = SearchRepositoryProvider.provideSearchRepository()
         return dishesRepository.getDishes("8c1782dc",
                                           "e90b240c2c8118117d42cba520b31835",
-                                                   ingredients)
+                                                   ingredients, startPosition)
     }
 
 }

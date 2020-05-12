@@ -27,6 +27,7 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     /**
      * Create items.
      */
+    private lateinit var bindingRe:RecyclerViewItemBinding
     class ViewHolder(private var binding: RecyclerViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dish: FullDish, listener: OnItemClickListener?) {
@@ -54,5 +55,13 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     fun replaceData(arrayList: ArrayList<FullDish>) {
         items = arrayList
         notifyDataSetChanged()
+    }
+
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        val layoutPosition = holder.layoutPosition
+
+        if(layoutPosition > (items.size - 2)){
+        }
     }
 }

@@ -19,10 +19,10 @@ class DishRepository(val netManager: NetManager) {
      * else from local repository.
      * @return data from repositories.
      */
-    fun getDishes(ingredients: ArrayList<String>): Observable<List<Recipes>> {
+    fun getDishes(ingredients: ArrayList<String>, startPosition: String): Observable<List<Recipes>> {
         netManager.isConnectedToInternet?.let { it ->
             if (it) {
-                return remoteDataSource.getDishes(ingredients).flatMap {
+                return remoteDataSource.getDishes(ingredients,startPosition).flatMap {
                     return@flatMap localDataSource.saveDishes(it)
                             .toSingleDefault(it)
                             .toObservable()
