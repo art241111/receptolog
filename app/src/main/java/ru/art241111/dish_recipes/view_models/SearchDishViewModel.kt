@@ -27,6 +27,7 @@ class SearchDishViewModel(application: Application)
 
     // Array of dishes.
     val dishes = MutableLiveData<ArrayList<FullDish>>()
+    val dishesArrayList = ArrayList<FullDish>()
 
     // Array of ingredients.
     val ingredients = ArrayList<String>()
@@ -56,6 +57,7 @@ class SearchDishViewModel(application: Application)
      */
     fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
         startPosition = 10
+        isLoading.set(true)
         loadDishes()
     }
 
@@ -63,9 +65,6 @@ class SearchDishViewModel(application: Application)
      * load dishes from repositories.
      */
     private fun loadDishes() {
-        isLoading.set(true)
-
-        // Get information from repository.
         compositeDisposable += dishRepository
                 .getDishes(ingredients, startPosition.toString())
                 .subscribeOn(Schedulers.newThread())
@@ -77,8 +76,9 @@ class SearchDishViewModel(application: Application)
                     }
 
                     override fun onNext(data: List<Recipes>) {
-                        val dishesArrayList = ArrayList<FullDish>()
-                        data.map{dishesArrayList.add(RecipeToDish(it)) }
+                        data.map{
+                            dishesArrayList.add(RecipeToDish(it))
+                        }
                         dishes.value = dishesArrayList
                     }
 

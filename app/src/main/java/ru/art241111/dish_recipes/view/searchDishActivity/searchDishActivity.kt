@@ -2,6 +2,7 @@ package ru.art241111.dish_recipes.view.searchDishActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
@@ -18,6 +20,7 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickL
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
 import ru.art241111.dish_recipes.view.dishActivity.DishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
+
 
 /**
  * Main activity.
@@ -143,7 +146,7 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
      * Customization RecycleView: set layoutManager, adapter, data.
      */
     private fun customizationRecycleView() {
-        val dishesRecyclerViewAdapter = DishesRecyclerViewAdapter(arrayListOf(), this)
+        val dishesRecyclerViewAdapter = DishesRecyclerViewAdapter(arrayListOf(), this,this)
 
         binding.rvDish.layoutManager = LinearLayoutManager(this)
         binding.rvDish.adapter = dishesRecyclerViewAdapter
@@ -169,5 +172,6 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
 
     override fun onDataEnd() {
         viewModel.loadDishesWhenOnScreenEnd()
+        Log.d("end recyler", "end")
     }
 }

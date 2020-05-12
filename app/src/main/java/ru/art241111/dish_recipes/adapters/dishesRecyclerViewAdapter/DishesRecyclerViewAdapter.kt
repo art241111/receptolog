@@ -1,7 +1,9 @@
 package ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
@@ -11,7 +13,8 @@ import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
  * @author Artem Geraimov.
  */
 class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
-                                private var listener: OnItemClickListener)
+                                private var listener: OnItemClickListener,
+                                private var end: OnDataEnd)
                                 : RecyclerView.Adapter<DishesRecyclerViewAdapter.ViewHolder>() {
     /**
      * link data.
@@ -61,7 +64,8 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
         super.onViewAttachedToWindow(holder)
         val layoutPosition = holder.layoutPosition
 
-        if(layoutPosition > (items.size - 2)){
+        if((layoutPosition > (items.size - 2))){
+            end.onDataEnd()
         }
     }
 }
