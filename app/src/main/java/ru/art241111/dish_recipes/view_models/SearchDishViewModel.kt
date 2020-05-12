@@ -12,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
-import ru.art241111.dish_recipes.models.remoteDataSource.DishModel
-import ru.art241111.dish_recipes.models.remoteDataSource.Recipes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.DishModel
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 
 /**

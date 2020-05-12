@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
-import ru.art241111.dish_recipes.models.remoteDataSource.Recipes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
 
 /**
  * Repository for getting data.

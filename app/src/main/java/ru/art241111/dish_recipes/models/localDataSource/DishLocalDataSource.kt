@@ -1,12 +1,10 @@
 package ru.art241111.dish_recipes.models.localDataSource
 
-import android.os.Handler
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ru.art241111.dish_recipes.data.FullDish
-import ru.art241111.dish_recipes.models.API.getDishes.getDishes
-import ru.art241111.dish_recipes.models.remoteDataSource.Recipes
+//import ru.art241111.dish_recipes.models.API.getDishes.getDishes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
 import java.util.concurrent.TimeUnit
 
 /**
@@ -19,8 +17,6 @@ class DishLocalDataSource {
      * @return data from local repository.
      */
     fun getRepositories(): Observable<List<Recipes>> {
-        val arrayList = getDishes()
-//        return Observable.just(arrayList).delay(2, TimeUnit.SECONDS)
         return Observable.empty()
     }
 
@@ -30,6 +26,6 @@ class DishLocalDataSource {
      * @return Information about whether the data was saved or not.
      */
     fun saveDishes(arrayList: List<Recipes>): Completable {
-        return Single.just(1).delay(1, TimeUnit.SECONDS).toCompletable()
+        return Single.just(1).toCompletable()
     }
 }
