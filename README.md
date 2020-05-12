@@ -3,7 +3,7 @@
 <h2> Реализовано два экрана: </h2>
  <ul>
     <li>Главный экран</li>
-    <img src="app/imgExample/StartMeny.png" height="800"/>
+    <img src="app/imgExample/StartMenu.png" height="800"/>
     <li>Экран с рецептами</li>
     <img src="app/imgExample/dish.png" height="800"/>
   </ul>
@@ -11,7 +11,7 @@
 <h2> Также реализован поворот экранов с сохранением состояний: </h2>
  <ul>
     <li>Главный экран</li>
-    <img src="app/imgExample/StartMenyRotate.png" height="400"/>
+    <img src="app/imgExample/StartMenuRotate.png" height="400"/>
     <li>Экран с рецептами</li>
     <img src="app/imgExample/DishRotate.png" height="400"/>
   </ul>
