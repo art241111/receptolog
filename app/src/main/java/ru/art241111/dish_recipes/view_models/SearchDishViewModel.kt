@@ -27,7 +27,7 @@ class SearchDishViewModel(application: Application)
 
     // Array of dishes.
     val dishes = MutableLiveData<ArrayList<FullDish>>()
-    val dishesArrayList = ArrayList<FullDish>()
+    var dishesArrayList = ArrayList<FullDish>()
 
     // Array of ingredients.
     val ingredients = ArrayList<String>()
@@ -58,6 +58,7 @@ class SearchDishViewModel(application: Application)
     fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
         startPosition = 10
         isLoading.set(true)
+        this.dishesArrayList = ArrayList()
         loadDishes()
     }
 
