@@ -9,6 +9,7 @@ import ru.art241111.dish_recipes.DishApplication
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.ActivityViewDishBinding
+import ru.art241111.dish_recipes.view.viewDishActivity.fragments.IngredientsAndRecipeInfoFragment
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.MainInformationFragment
 
 
@@ -27,7 +28,7 @@ class ViewDishActivity : AppCompatActivity() {
     private fun getDataFromIntent(): FullDish {
         val intent = intent
         return if (intent != null) {
-            intent.getParcelableExtra("Dish")
+            intent.getParcelableExtra("Dish")!!
         } else FullDish()
     }
 
@@ -43,12 +44,25 @@ class ViewDishActivity : AppCompatActivity() {
         val dish = getDataFromIntent()
         binding.fullDish = dish
 
-        // Setup and customization tab host.
-        setupTabHost()
 
         //Add fragment with main information about dishes
         addMainInfoFragment(dish)
 
+        addIngredientsAndRecipeFragment(dish)
+
+    }
+
+    private fun addIngredientsAndRecipeFragment(dish: FullDish) {
+        // Get instance FragmentTransaction.
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+        // Create fragment.
+        val fragment = IngredientsAndRecipeInfoFragment.newInstance(dish)
+
+        // Add fragment to LinearLayout.
+        fragmentTransaction.add(R.id.ll_main, fragment)
+        fragmentTransaction.commit()
     }
 
     /**
@@ -69,20 +83,5 @@ class ViewDishActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    /**
-     * Setup and customization tab host.
-     */
-     private fun setupTabHost() {
-        binding.tabHost.setup()
 
-        var tabSpec = binding.tabHost.newTabSpec("tag1")
-        tabSpec.setContent(R.id.tab1)
-        tabSpec.setIndicator(getString(R.string.ingredients))
-        binding.tabHost.addTab(tabSpec)
-
-        tabSpec = binding.tabHost.newTabSpec("tag2")
-        tabSpec.setContent(R.id.tab2)
-        tabSpec.setIndicator(getString(R.string.recipes))
-        binding.tabHost.addTab(tabSpec)
-    }
 }
