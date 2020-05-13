@@ -20,6 +20,8 @@ import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
+ * Fragment show dishes in recyclerView
+ *
  * A simple [Fragment] subclass.
  * Use the [RecyclerViewForDishesFragment.newInstance] factory method to
  * create an instance of this fragment.
@@ -33,6 +35,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         arguments?.let {
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
@@ -68,7 +71,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
     }
 
     /**
-     * this method works when the user clicks on an element RecycleView.
+     * This method works when the user clicks on an element RecycleView.
      * @param position - the position of the item on which the user clicked.
      */
     override fun onItemClick(position: Int) {
@@ -78,6 +81,9 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         this.startActivity(intent)
     }
 
+    /**
+     * This method works when the user reached the end of the recycler view.
+     */
     override fun onDataEnd() {
         viewModel.loadDishesWhenOnScreenEnd()
     }
@@ -89,7 +95,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
          *
          * @return A new instance of fragment RecyclerViewForDishesFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
                 RecyclerViewForDishesFragment().apply {

@@ -16,11 +16,16 @@ import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
+ * Fragment show ingredient search
+ *
  * A simple [Fragment] subclass.
  * Use the [SearchDishesByIngredientsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class SearchDishesByIngredientsFragment : Fragment() {
+    private lateinit var binding:FragmentSearchDishesByIngredientsBinding
+    private lateinit var viewModel:SearchDishViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -28,8 +33,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
         }
     }
 
-    private lateinit var binding:FragmentSearchDishesByIngredientsBinding
-    private lateinit var viewModel:SearchDishViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -133,7 +136,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
             addIngredientToFlowLayout(ingredient)
         }
     }
-
 
     companion object {
         /**
