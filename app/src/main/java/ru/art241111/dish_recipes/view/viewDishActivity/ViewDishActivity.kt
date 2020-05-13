@@ -3,8 +3,7 @@ package ru.art241111.dish_recipes.view.viewDishActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.ActivityViewDishBinding
@@ -49,36 +48,22 @@ class ViewDishActivity : AppCompatActivity() {
 
     }
 
-    private fun addIngredientsAndRecipeFragment(dish: FullDish) {
-        // Get instance FragmentTransaction.
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // Create fragment.
-        val fragment = IngredientsAndRecipeInfoFragment.newInstance(dish)
-
-        // Add fragment to LinearLayout.
-        fragmentTransaction.add(R.id.ll_main, fragment)
-        fragmentTransaction.commit()
-    }
-
     /**
      * Add fragment with main information about dishes:
      * Image, name, description
      * @param dish - data for uploading information about the dish
      */
-    private fun addMainInfoFragment(dish: FullDish) {
-        // Get instance FragmentTransaction.
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+    private fun addMainInfoFragment(dish: FullDish) =
+        supportFragmentManager.beginTransaction()
+                .add(R.id.ll_main, MainInformationFragment.newInstance(dish))
+                .commit()
 
-        // Create fragment.
-        val fragment = MainInformationFragment.newInstance(dish)
-
-        // Add fragment to LinearLayout.
-        fragmentTransaction.add(R.id.ll_main, fragment)
-        fragmentTransaction.commit()
-    }
-
-
+    /**
+     * Add fragment with information about ingredients and recipes
+     * @param dish - data for uploading information about the dish
+     */
+    private fun addIngredientsAndRecipeFragment(dish: FullDish) =
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.ll_main, IngredientsAndRecipeInfoFragment.newInstance(dish))
+                    .commit()
 }
