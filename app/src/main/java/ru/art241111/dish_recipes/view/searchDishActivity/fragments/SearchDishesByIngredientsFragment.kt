@@ -1,52 +1,44 @@
-package ru.art241111.dish_recipes.view.searchDishActivity
+package ru.art241111.dish_recipes.view.searchDishActivity.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.R
-import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
-import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
-import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
-import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
-import ru.art241111.dish_recipes.view.dishActivity.DishActivity
+import ru.art241111.dish_recipes.databinding.FragmentSearchDishesByIngredientsBinding
+import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
-
 /**
- * Main activity.
- * Activation for searching recipes by ingredients.
- * @author Artem Geraimov.
+ * Fragment show ingredient search
+ *
+ * A simple [Fragment] subclass.
+ * Use the [SearchDishesByIngredientsFragment.newInstance] factory method to
+ * create an instance of this fragment.
  */
-class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
-    private lateinit var binding: ActivitySearchDishBinding
-    private lateinit var viewModel: SearchDishViewModel
+class SearchDishesByIngredientsFragment : Fragment() {
+    private lateinit var binding:FragmentSearchDishesByIngredientsBinding
+    private lateinit var viewModel:SearchDishViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
 
-        // A binding with layout.
-        binding = DataBindingUtil.setContentView(this,
-                R.layout.activity_search_dish
-        )
+        }
+    }
 
-        // Add viewModel to binding.
-        viewModel = ViewModelProviders.of(this)
-                                      .get(SearchDishViewModel::class.java)
-        binding.viewModel = viewModel
-        binding.executePendingBindings()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
-        // Customization RecycleView: set layoutManager, adapter, data.
-        customizationRecycleView()
+        viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_search_dishes_by_ingredients, container, false)
 
         // Set click Listener on add button.
         onAddButtonClickListener()
@@ -56,6 +48,8 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
 
         // Ingredients recovery after app death.
         recoveryIngredients()
+
+        return binding.root
     }
 
     /**
@@ -100,15 +94,6 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
     }
 
     /**
-     * Ingredients recovery after app death.
-     */
-    private fun recoveryIngredients() {
-        for (ingredient in viewModel.ingredients){
-            addIngredientToFlowLayout(ingredient)
-        }
-    }
-
-    /**
      * Add ingredient to flow layout.
      * @param ingredientName - name of ingredient.
      */
@@ -140,38 +125,32 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
             viewModel.deleteIngredient(ingredientName)
             viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
         }
+
     }
 
     /**
-     * Customization RecycleView: set layoutManager, adapter, data.
+     * Ingredients recovery after app death.
      */
-    private fun customizationRecycleView() {
-        val dishesRecyclerViewAdapter = DishesRecyclerViewAdapter(arrayListOf(), this,this)
-
-        binding.rvDish.layoutManager = LinearLayoutManager(this)
-        binding.rvDish.adapter = dishesRecyclerViewAdapter
-        viewModel.dishes.observe(this,
-                Observer{ it?.let{ dishesRecyclerViewAdapter.replaceData(it)} })
-
-        if(viewModel.isApplicationCreateFirst){
-            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
-            viewModel.isApplicationCreateFirst = false
+    private fun recoveryIngredients() {
+        for (ingredient in viewModel.ingredients){
+            addIngredientToFlowLayout(ingredient)
         }
     }
 
-    /**
-     * this method works when the user clicks on an element RecycleView.
-     * @param position - the position of the item on which the user clicked.
-     */
-    override fun onItemClick(position: Int) {
-        val intent = Intent(this, DishActivity::class.java)
-        intent.putExtra("Dish", viewModel.dishes.value?.get(position))
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @return A new instance of fragment SearchDishesByIngredientsFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance() =
+                SearchDishesByIngredientsFragment().apply {
+                    arguments = Bundle().apply {
 
-        this.startActivity(intent)
-    }
-
-    override fun onDataEnd() {
-        viewModel.loadDishesWhenOnScreenEnd()
-        Log.d("end recyler", "end")
+                    }
+                }
     }
 }

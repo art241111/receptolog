@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.searchDishActivity.searchDishActivity"    >
 
     <data>
         <import type="android.view.View"/>
@@ -11,54 +11,22 @@
             type="ru.art241111.dish_recipes.view_models.SearchDishViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_main_search_dish_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.searchDishActivity.searchDishActivity"
-        android:padding="10dp">
-
-        <LinearLayout
-            android:id="@+id/ll_add_ingredients"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <fragment
+            android:id="@+id/fr_search_dish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
-
-            <EditText
-                android:id="@+id/et_ingredients"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint = "@string/enter_ingredients"
-                android:ems="10"
-                android:layout_weight="10"
-                android:maxLines="1"
-                android:inputType="text"
-                android:autofillHints="" />
-
-            <ImageButton
-                android:id="@+id/ib_add_ingredients"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-
-                android:src="@drawable/ic_add_white_24dp"
-                android:background="@drawable/background_button" />
-
-        </LinearLayout>
-
-        <org.apmem.tools.layouts.FlowLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/ll_add_ingredients"
-            android:id="@+id/fl_list_ingredients" >
-        </org.apmem.tools.layouts.FlowLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_dish"
+            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.SearchDishesByIngredientsFragment"/>
+        <fragment
+            android:id="@+id/fr_rv_dishes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/fl_list_ingredients"
-            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
-            />
+            android:layout_height="wrap_content"
+            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.RecyclerViewForDishesFragment"/>
 
         <ProgressBar
             android:id="@+id/loading"
@@ -66,9 +34,9 @@
             android:layout_height="48dp"
             android:indeterminate="true"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/rv_dish"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            />
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>
