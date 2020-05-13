@@ -34,16 +34,4 @@ class SearchDishFragment : Fragment() {
 
         return binding.root
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment SearchDishesByIngredientsFragment.
-         */
-        @JvmStatic
-        fun newInstance() = SearchDishFragment()
-    }
-
 }

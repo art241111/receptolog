@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentViewDishBinding
 import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.IngredientsAndRecipeInfoFragment
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.MainInformationFragment
-import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
  * The fragment initialization parameters:
@@ -43,7 +41,7 @@ class ViewDishActivity : Fragment() {
         binding.executePendingBindings()
 
         // Loading dish data to layout.
-        var dish:FullDish = FullDish()
+        var dish = FullDish()
         arguments?.let {
             dish = it.getParcelable(ARG_SELECTED_DISH)!!
         }
@@ -78,21 +76,4 @@ class ViewDishActivity : Fragment() {
                     .beginTransaction()
                     .add(R.id.ll_main, IngredientsAndRecipeInfoFragment.newInstance(dish))
                     .commit()
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param selectedDish The dish that the user selected.
-         * @return A new instance of fragment MainInformationFragment.
-         */
-        @JvmStatic
-        fun newInstance(selectedDish: FullDish?) =
-                ViewDishActivity().apply {
-                    arguments = Bundle().apply {
-                        putParcelable(ARG_SELECTED_DISH, selectedDish)
-                    }
-                }
-    }
 }
