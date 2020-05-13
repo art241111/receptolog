@@ -9,6 +9,8 @@
 <img src="https://img.shields.io/badge/-MVVC-brightgreen" height="30"/>
 <img src="https://img.shields.io/badge/-databinding%20-yellowgreen" height="30"/>
 <img src="https://img.shields.io/badge/-retrofit%202-blue" height="30"/>
+<img src="https://img.shields.io/badge/-Single%20activity-red" height="30"/>
+<img src="https://img.shields.io/badge/-Navigation%20Component-green" height="30"/>
 </p>
 <h2> Реализовано два экрана: </h2>
  <ul>
