@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
@@ -49,17 +50,22 @@ class SearchDishesByIngredientsFragment : Fragment() {
      * Method to add and search ingredients
      */
     private fun addIngredients(){
-        // Add ingredients to array.
-        viewModel.addIngredient(binding.etIngredients.text.toString())
+       val text = binding.etIngredients.text.toString()
+       if(text != ""){
+           // Add ingredients to array.
+           viewModel.addIngredient(text)
 
-        // Create ingredient view.
-        addIngredientToFlowLayout(binding.etIngredients.text.toString())
+           // Create ingredient view.
+           addIngredientToFlowLayout(text)
 
-        // Clear EditText.
-        binding.etIngredients.text.clear()
+           // Clear EditText.
+           binding.etIngredients.text.clear()
 
-        // Load new data
-        viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+           // Load new data
+           viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+       } else{
+           Toast.makeText(activity, R.string.enter_ingredients, Toast.LENGTH_LONG).show()
+       }
     }
 
     /**
