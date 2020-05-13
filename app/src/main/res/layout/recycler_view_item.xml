@@ -28,7 +28,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerInside"
-                app:profileImage="@{dish.urlImageRecipe}" />
+                app:profileImage="@{dish.urlImageRecipe}"
+                android:contentDescription="@string/dish_image_loading" />
 
             <TextView
                 android:id="@+id/tv_name_dish"
@@ -43,48 +44,6 @@
                 android:layout_toEndOf="@id/iv_dish"
                 />
 
-            <LinearLayout
-                android:id="@+id/ll_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                android:layout_below="@id/tv_name_dish"
-                android:layout_alignStart="@id/tv_name_dish"
-                >
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_star_border_black_24dp"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_star_border_black_24dp"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_star_border_black_24dp"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_star_border_black_24dp"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_star_border_black_24dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text = "(0 rating)"
-
-                    android:layout_marginStart="10dp"/>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_description_dish"
@@ -94,8 +53,8 @@
                 android:text="@{dish.descriptionDish}"
                 android:textSize="15sp"
 
-                android:layout_below="@id/ll_rating"
-                android:layout_alignStart="@id/ll_rating"
+                android:layout_below="@id/tv_name_dish"
+                android:layout_alignStart="@id/tv_name_dish"
                 />
         </RelativeLayout>
 

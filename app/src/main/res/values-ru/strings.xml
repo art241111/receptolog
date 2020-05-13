@@ -6,5 +6,5 @@
     <string name="default_value_ingredient">ingredient</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="recipes">Рецепт</string>
-    <string name="dish_image_loading">Dish image loading</string>
+    <string name="dish_image_loading">Изображение блюда загружается</string>
 </resources>

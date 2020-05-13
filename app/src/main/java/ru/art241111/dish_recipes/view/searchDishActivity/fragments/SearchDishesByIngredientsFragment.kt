@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
-import ru.art241111.dish_recipes.databinding.FragmentIngredientsAndRecipeInfoBinding
 import ru.art241111.dish_recipes.databinding.FragmentSearchDishesByIngredientsBinding
 import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
@@ -22,10 +21,6 @@ import ru.art241111.dish_recipes.view_models.SearchDishViewModel
  * create an instance of this fragment.
  */
 class SearchDishesByIngredientsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -145,8 +140,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment SearchDishesByIngredientsFragment.
          */
         // TODO: Rename and change types and number of parameters

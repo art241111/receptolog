@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentIngredientsAndRecipeInfoBinding
-import ru.art241111.dish_recipes.databinding.FragmentMainInformationAboutDishBinding
 
 /**
  * The fragment initialization parameters:
