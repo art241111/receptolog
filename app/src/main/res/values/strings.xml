@@ -6,4 +6,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="recipes">Recipes</string>
     <string name="dish_image_loading">Dish image loading</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_ingredient">+</string>
 </resources>
