@@ -60,6 +60,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+
     // Testing
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -67,7 +71,7 @@ dependencies {
 
     // data binding
     kapt "androidx.databinding:databinding-compiler:4.1.0-alpha09"
-//    kapt "com.android.databinding:compiler:3.2.0-alpha10"
+
 
     //lifecycle
     implementation "android.arch.lifecycle:runtime:1.1.1"

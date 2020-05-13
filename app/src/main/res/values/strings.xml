@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Technopolis recipe</string>
-    <string name="enter_ingredients">Enter the name of the ingredient</string>
+    <string name="enter_ingredients">Please enter the ingredients</string>
     <string name="str_add">+</string>
     <string name="default_value_ingredient">ingredient</string>
     <string name="ingredients">Ingredients</string>

@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity" />
-
-        <activity android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity"
-                  android:windowSoftInputMode="stateHidden">
+        <activity android:name=".view.viewDishActivity.ViewDishActivity" />
+        <activity
+            android:name=".view.AppActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

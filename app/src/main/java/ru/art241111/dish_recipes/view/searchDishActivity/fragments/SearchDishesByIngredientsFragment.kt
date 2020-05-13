@@ -8,11 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.databinding.FragmentSearchDishesByIngredientsBinding
-import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
+import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
@@ -26,17 +27,10 @@ class SearchDishesByIngredientsFragment : Fragment() {
     private lateinit var binding:FragmentSearchDishesByIngredientsBinding
     private lateinit var viewModel:SearchDishViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_search_dishes_by_ingredients, container, false)
 
@@ -56,17 +50,22 @@ class SearchDishesByIngredientsFragment : Fragment() {
      * Method to add and search ingredients
      */
     private fun addIngredients(){
-        // Add ingredients to array.
-        viewModel.addIngredient(binding.etIngredients.text.toString())
+       val text = binding.etIngredients.text.toString()
+       if(text != ""){
+           // Add ingredients to array.
+           viewModel.addIngredient(text)
 
-        // Create ingredient view.
-        addIngredientToFlowLayout(binding.etIngredients.text.toString())
+           // Create ingredient view.
+           addIngredientToFlowLayout(text)
 
-        // Clear EditText.
-        binding.etIngredients.text.clear()
+           // Clear EditText.
+           binding.etIngredients.text.clear()
 
-        // Load new data
-        viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+           // Load new data
+           viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+       } else{
+           Toast.makeText(activity, R.string.enter_ingredients, Toast.LENGTH_LONG).show()
+       }
     }
 
     /**
@@ -125,7 +124,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
             viewModel.deleteIngredient(ingredientName)
             viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
         }
-
     }
 
     /**
@@ -144,13 +142,7 @@ class SearchDishesByIngredientsFragment : Fragment() {
          *
          * @return A new instance of fragment SearchDishesByIngredientsFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance() =
-                SearchDishesByIngredientsFragment().apply {
-                    arguments = Bundle().apply {
-
-                    }
-                }
+        fun newInstance() = SearchDishesByIngredientsFragment()
     }
 }

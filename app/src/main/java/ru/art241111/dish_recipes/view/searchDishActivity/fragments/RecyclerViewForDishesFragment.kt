@@ -1,21 +1,27 @@
 package ru.art241111.dish_recipes.view.searchDishActivity.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_app.*
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
+import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBinding
-import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
+import ru.art241111.dish_recipes.view.AppActivity
+import ru.art241111.dish_recipes.view.navigation.CreateInstance
 import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
@@ -30,15 +36,9 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
     private lateinit var binding: FragmentRecyclerViewForDishesBinding
     private lateinit var viewModel:SearchDishViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recycler_view_for_dishes, container, false)
 
@@ -59,7 +59,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
 
         binding.rvDish.layoutManager = LinearLayoutManager(activity)
         binding.rvDish.adapter = dishesRecyclerViewAdapter
-        viewModel.dishes.observe(this,
+        viewModel.dishes.observe(activity as AppActivity,
                 Observer{
                     it?.let{ dishesRecyclerViewAdapter.replaceData(it)}
                 })
@@ -75,10 +75,10 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
      * @param position - the position of the item on which the user clicked.
      */
     override fun onItemClick(position: Int) {
-        val intent = Intent(activity, ViewDishActivity::class.java)
-        intent.putExtra("Dish", viewModel.dishes.value?.get(position))
+        val dish: FullDish? = viewModel.dishes.value?.get(position)
+        val bundle = bundleOf("selected_dish" to dish)
 
-        this.startActivity(intent)
+        findNavController().navigate(R.id.viewDishActivity, bundle)
     }
 
     /**
@@ -96,10 +96,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
          * @return A new instance of fragment RecyclerViewForDishesFragment.
          */
         @JvmStatic
-        fun newInstance() =
-                RecyclerViewForDishesFragment().apply {
-                    arguments = Bundle().apply {
-                    }
-                }
+        fun newInstance() = RecyclerViewForDishesFragment()
     }
 }
