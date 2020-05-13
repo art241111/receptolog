@@ -19,18 +19,18 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecycl
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.databinding.ActivitySearchDishBinding
+import ru.art241111.dish_recipes.view.searchDishActivity.fragments.RecyclerViewForDishesFragment
 import ru.art241111.dish_recipes.view.searchDishActivity.fragments.SearchDishesByIngredientsFragment
 import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.IngredientsAndRecipeInfoFragment
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
-
 
 /**
  * Main activity.
  * Activation for searching recipes by ingredients.
  * @author Artem Geraimov.
  */
-class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
+class SearchDishActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchDishBinding
     private lateinit var viewModel: SearchDishViewModel
 
@@ -47,57 +47,5 @@ class SearchDishActivity : AppCompatActivity(), OnItemClickListener, OnDataEnd {
                                       .get(SearchDishViewModel::class.java)
         binding.viewModel = viewModel
         binding.executePendingBindings()
-
-        // Customization RecycleView: set layoutManager, adapter, data.
-        customizationRecycleView()
-
-        // Add fragment for search dishes by ingredients
-        addFragmentSearchDishesByIngredients()
-    }
-
-    private fun addFragmentSearchDishesByIngredients() {
-        // Get instance FragmentTransaction.
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // Create fragment.
-        val fragment = SearchDishesByIngredientsFragment.newInstance()
-
-        // Add fragment to LinearLayout.
-        fragmentTransaction.add(R.id.ll_main_search_dish_activity, fragment)
-        fragmentTransaction.commit()
-    }
-
-    /**
-     * Customization RecycleView: set layoutManager, adapter, data.
-     */
-    private fun customizationRecycleView() {
-        val dishesRecyclerViewAdapter = DishesRecyclerViewAdapter(arrayListOf(), this,this)
-
-        binding.rvDish.layoutManager = LinearLayoutManager(this)
-        binding.rvDish.adapter = dishesRecyclerViewAdapter
-        viewModel.dishes.observe(this,
-                Observer{ it?.let{ dishesRecyclerViewAdapter.replaceData(it)} })
-
-        if(viewModel.isApplicationCreateFirst){
-            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
-            viewModel.isApplicationCreateFirst = false
-        }
-    }
-
-    /**
-     * this method works when the user clicks on an element RecycleView.
-     * @param position - the position of the item on which the user clicked.
-     */
-    override fun onItemClick(position: Int) {
-        val intent = Intent(this, ViewDishActivity::class.java)
-        intent.putExtra("Dish", viewModel.dishes.value?.get(position))
-
-        this.startActivity(intent)
-    }
-
-    override fun onDataEnd() {
-        viewModel.loadDishesWhenOnScreenEnd()
-        Log.d("end recyler", "end")
     }
 }

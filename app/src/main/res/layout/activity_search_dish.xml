@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.searchDishActivity.searchDishActivity"    >
 
     <data>
         <import type="android.view.View"/>
@@ -15,18 +16,22 @@
         android:id="@+id/ll_main_search_dish_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.searchDishActivity.searchDishActivity"
+
         android:padding="10dp"
         android:orientation="vertical">
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_dish"
+        <fragment
+            android:id="@+id/fr_search_dish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.SearchDishesByIngredientsFragment"/>
+        <fragment
+            android:id="@+id/fr_rv_dishes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            />
-<!--android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"-->
+            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.RecyclerViewForDishesFragment"/>
+
+
+
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="48dp"
