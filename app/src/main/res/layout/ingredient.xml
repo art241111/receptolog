@@ -17,8 +17,7 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:gravity="center">
         <TextView
             android:id="@+id/tv_name_ingredient"
             android:layout_width="wrap_content"
