@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Technopolis recipe</string>
-    <string name="enter_ingredients">Enter the name of the ingredient</string>
+    <string name="enter_ingredients">Please enter the ingredients</string>
     <string name="str_add">+</string>
     <string name="default_value_ingredient">ingredient</string>
     <string name="ingredients">Ingredients</string>
@@ -8,13 +8,4 @@
     <string name="dish_image_loading">Dish image loading</string>
     <string name="add_ingredient" translatable="false">+</string>
     <string name="delete_view" translatable="false">X</string>
-    <string name="title_activity_app">AppActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
