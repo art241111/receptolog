@@ -4,26 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/searchDishFragment">
-
-    <activity
-        android:id="@+id/appActivity"
-        android:name="ru.art241111.dish_recipes.view.AppActivity"
-        android:label="activity_app"
-        tools:layout="@layout/activity_app" />
-    <fragment
-        android:id="@+id/viewDishActivity"
-        android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity"
-        android:label="ViewDishActivity" >
-        <action
-            android:id="@+id/action_viewDishActivity_to_searchDishFragment"
-            app:destination="@id/searchDishFragment"
-            app:popUpTo="@id/appActivity" />
-        <argument
-            android:name="dish"
-            app:argType="ru.art241111.dish_recipes.data.FullDish"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
     <fragment
         android:id="@+id/searchDishFragment"
         android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishFragment"
@@ -31,5 +11,15 @@
         <action
             android:id="@+id/action_searchDishFragment_to_viewDishActivity"
             app:destination="@id/viewDishActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDishActivity"
+        android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity"
+        android:label="ViewDishActivity" >
+        <argument
+            android:name="FullDish"
+            app:argType="ru.art241111.dish_recipes.data.FullDish"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

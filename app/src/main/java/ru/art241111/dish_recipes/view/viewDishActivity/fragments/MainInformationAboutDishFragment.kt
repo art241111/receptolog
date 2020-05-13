@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentMainInformationAboutDishBinding
+import ru.art241111.dish_recipes.view.AppActivity
 
 /**
  * The fragment initialization parameters:
@@ -44,6 +47,7 @@ class MainInformationFragment : Fragment() {
                 R.layout.fragment_main_information_about_dish, container, false)
 
         binding.fullDish = dish
+binding.ivRecipeDish.setOnClickListener{findNavController().popBackStack()}
         return binding.root
     }
 

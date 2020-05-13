@@ -9,8 +9,11 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_app.*
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
@@ -75,7 +78,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         val dish: FullDish? = viewModel.dishes.value?.get(position)
         val bundle = bundleOf("selected_dish" to dish)
 
-        this.findNavController().navigate(R.id.viewDishActivity, bundle)
+        findNavController().navigate(R.id.viewDishActivity, bundle)
     }
 
     /**

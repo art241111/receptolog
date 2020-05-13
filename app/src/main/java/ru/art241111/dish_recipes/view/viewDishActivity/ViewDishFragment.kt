@@ -1,15 +1,19 @@
 package ru.art241111.dish_recipes.view.viewDishActivity
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
-import ru.art241111.dish_recipes.databinding.ActivityViewDishBinding
+import ru.art241111.dish_recipes.databinding.FragmentViewDishBinding
 import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.IngredientsAndRecipeInfoFragment
 import ru.art241111.dish_recipes.view.viewDishActivity.fragments.MainInformationFragment
+import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
  * The fragment initialization parameters:
@@ -25,26 +29,20 @@ private const val ARG_SELECTED_DISH = "selected_dish"
  */
 class ViewDishActivity : Fragment() {
     // binding with layout.
-    private lateinit var binding: ActivityViewDishBinding
+    private lateinit var binding: FragmentViewDishBinding
 
     /**
-     * Take data from intent.
-     * If intent null, return empty object.
+     * Start activity and draw layout
      */
-    private fun getDataFromIntent(): FullDish {
-        return getDataFromIntent() ?: FullDish()
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
-    /**
-     * Start activity, draw layout.
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // A binding with layout.
-        binding = DataBindingUtil.setContentView(activity as AppActivity, R.layout.activity_view_dish)
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_view_dish, container, false)
+
+        binding.executePendingBindings()
 
         // Loading dish data to layout.
-        //val dish = getDataFromIntent()
         var dish:FullDish = FullDish()
         arguments?.let {
             dish = it.getParcelable(ARG_SELECTED_DISH)!!
@@ -54,6 +52,8 @@ class ViewDishActivity : Fragment() {
 
         //Add fragment with information about ingredients and recipes
         addIngredientsAndRecipeFragment(dish)
+
+        return binding.root
     }
 
     /**
@@ -78,10 +78,6 @@ class ViewDishActivity : Fragment() {
                     .beginTransaction()
                     .add(R.id.ll_main, IngredientsAndRecipeInfoFragment.newInstance(dish))
                     .commit()
-
-
-
-
 
     companion object {
         /**
