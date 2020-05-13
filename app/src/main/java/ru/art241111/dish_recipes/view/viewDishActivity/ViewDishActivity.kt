@@ -42,8 +42,6 @@ class ViewDishActivity : AppCompatActivity() {
 
         // Loading dish data to layout.
         val dish = getDataFromIntent()
-        binding.fullDish = dish
-
 
         //Add fragment with main information about dishes
         addMainInfoFragment(dish)
