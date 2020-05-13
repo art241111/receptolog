@@ -6,12 +6,12 @@
 </ul>
 <h2> Ключевые слова: </h2>
 <p>
-<img src="https://img.shields.io/badge/-MVVC-brightgreen" height="10"/>
-<img src="https://img.shields.io/badge/-databinding%20-yellowgreen" height="10"/>
-<img src="https://img.shields.io/badge/-retrofit%202-blue" height="10"/>
-<img src="https://img.shields.io/badge/-Single%20activity-red" height="10"/>
-<img src="https://img.shields.io/badge/-Navigation%20Component-green" height="10"/>
-<img src="https://img.shields.io/badge/-fragments-orange" height="10"/>
+<img src="https://img.shields.io/badge/-MVVC-brightgreen" height="20"/>
+<img src="https://img.shields.io/badge/-databinding%20-yellowgreen" height="20"/>
+<img src="https://img.shields.io/badge/-retrofit%202-blue" height="20"/>
+<img src="https://img.shields.io/badge/-Single%20activity-red" height="20"/>
+<img src="https://img.shields.io/badge/-Navigation%20Component-green" height="20"/>
+<img src="https://img.shields.io/badge/-fragments-orange" height="20"/>
 </p>
 <h2> Реализовано два экрана: </h2>
  <ul>
