@@ -26,13 +26,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
     private lateinit var binding:FragmentSearchDishesByIngredientsBinding
     private lateinit var viewModel:SearchDishViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -125,7 +118,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
             viewModel.deleteIngredient(ingredientName)
             viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
         }
-
     }
 
     /**
@@ -144,13 +136,7 @@ class SearchDishesByIngredientsFragment : Fragment() {
          *
          * @return A new instance of fragment SearchDishesByIngredientsFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance() =
-                SearchDishesByIngredientsFragment().apply {
-                    arguments = Bundle().apply {
-
-                    }
-                }
+        fun newInstance() = SearchDishesByIngredientsFragment()
     }
 }

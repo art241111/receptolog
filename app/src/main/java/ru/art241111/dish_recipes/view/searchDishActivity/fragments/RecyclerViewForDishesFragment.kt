@@ -31,12 +31,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
     private lateinit var binding: FragmentRecyclerViewForDishesBinding
     private lateinit var viewModel:SearchDishViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
@@ -97,10 +91,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
          * @return A new instance of fragment RecyclerViewForDishesFragment.
          */
         @JvmStatic
-        fun newInstance() =
-                RecyclerViewForDishesFragment().apply {
-                    arguments = Bundle().apply {
-                    }
-                }
+        fun newInstance() = RecyclerViewForDishesFragment()
     }
 }
