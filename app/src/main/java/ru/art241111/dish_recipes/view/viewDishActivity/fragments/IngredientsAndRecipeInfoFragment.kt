@@ -29,7 +29,6 @@ private const val ARG_SELECTED_DISH = "selected_dish"
  * @author Artem Gerasimov
  */
 class IngredientsAndRecipeInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var dish = FullDish()
 
     override fun onCreate(savedInstanceState: Bundle?) {
