@@ -3,7 +3,6 @@ package ru.art241111.dish_recipes.view.viewDishActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.ActivityViewDishBinding
@@ -44,8 +43,8 @@ class ViewDishActivity : AppCompatActivity() {
         //Add fragment with main information about dishes
         addMainInfoFragment(dish)
 
+        //Add fragment with information about ingredients and recipes
         addIngredientsAndRecipeFragment(dish)
-
     }
 
     /**
