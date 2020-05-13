@@ -15,7 +15,7 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecycl
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBinding
-import ru.art241111.dish_recipes.view.searchDishActivity.SearchDishActivity
+import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
@@ -32,7 +32,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProviders.of(activity as SearchDishActivity).get(SearchDishViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recycler_view_for_dishes, container, false)
 
