@@ -103,6 +103,8 @@ class SearchDishViewModel(application: Application)
         fullDish.nameDish = dishModel.label
         fullDish.ingredients = dishModel.ingredientLines
         fullDish.setDescriptionDishFromArray(dishModel.healthLabels)
+
+        fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
         return fullDish
     }
 
