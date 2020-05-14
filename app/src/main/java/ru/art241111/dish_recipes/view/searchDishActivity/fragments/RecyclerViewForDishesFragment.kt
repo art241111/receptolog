@@ -9,11 +9,8 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_app.*
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
@@ -21,8 +18,6 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickL
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBinding
 import ru.art241111.dish_recipes.view.AppActivity
-import ru.art241111.dish_recipes.view.navigation.CreateInstance
-import ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 /**
