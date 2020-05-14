@@ -102,8 +102,10 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         if (dish != null) {
             if(!dish.isFavorite){
                 DishRepository(null).addFavoriteDishes(dish)
+                dish.isFavorite = !dish.isFavorite
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
+                dish.isFavorite = !dish.isFavorite
             }
         }
     }
