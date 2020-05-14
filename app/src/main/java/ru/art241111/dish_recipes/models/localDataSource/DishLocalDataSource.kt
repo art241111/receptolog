@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.FavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 //import ru.art241111.dish_recipes.models.API.getDishes.getDishes
@@ -13,7 +14,8 @@ import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByI
  * Repository for getting and saving local data.
  * @author Artem Geraimov.
  */
-class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes, removeFavoriteDishes {
+class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes,
+                           removeFavoriteDishes, isDishFavorite {
     /**
      * Take data from local repository.
      * @return data from local repository.
@@ -45,4 +47,7 @@ class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes, removeFavor
      */
     override fun getAllFavoriteDishes(): List<FullDish> =
                 FavoriteDishes().getAllFavoriteDishes()
+
+    override fun isDishFavorite(dish: FullDish): Boolean =
+                FavoriteDishes().isDishFavorite(dish)
 }

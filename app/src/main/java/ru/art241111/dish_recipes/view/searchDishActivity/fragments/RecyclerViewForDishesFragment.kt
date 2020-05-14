@@ -91,6 +91,23 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         viewModel.loadDishesWhenOnScreenEnd()
     }
 
+
+    /**
+     * If user click on favorite button on recycler view
+     * @param position - position of element
+     */
+    override fun onClickFavoriteButton(position: Int) {
+        val dish: FullDish? = viewModel.dishes.value?.get(position)
+
+        if (dish != null) {
+            if(!dish.isFavorite){
+                DishRepository(null).addFavoriteDishes(dish)
+            } else {
+                DishRepository(null).removeFavoriteDishes(dish)
+            }
+        }
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -100,14 +117,5 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
          */
         @JvmStatic
         fun newInstance() = RecyclerViewForDishesFragment()
-    }
-
-    override fun onClickFavoriteButton(position: Int) {
-        val dish: FullDish? = viewModel.dishes.value?.get(position)
-
-        if (dish != null) {
-            DishRepository(null).addFavoriteDishes(dish)
-            DishRepository(null).getAllFavoriteDishes()
-        }
     }
 }

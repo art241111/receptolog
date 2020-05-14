@@ -25,6 +25,7 @@ public class FullDish implements Parcelable {
     private String recipe;
     private String urlImageRecipe;
     private List<String> ingredients;
+    private boolean isFavorite = false;
 
     public static Creator<FullDish> getCREATOR() {
         return CREATOR;
@@ -118,6 +119,14 @@ public class FullDish implements Parcelable {
             out.append(healthLabel).append(", ");
         }
         this.descriptionDish = out.toString();
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public String getUrlImageRecipe() {

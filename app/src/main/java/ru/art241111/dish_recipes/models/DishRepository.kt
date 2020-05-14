@@ -6,6 +6,7 @@ import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.FavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
@@ -16,7 +17,7 @@ import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByI
  * @author Artem Geraimov.
  */
 class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, getAllFavoriteDishes,
-                                                           removeFavoriteDishes {
+                                                           removeFavoriteDishes, isDishFavorite {
     private val localDataSource = DishLocalDataSource()
     private val remoteDataSource = DishRemoteDataSource()
 
@@ -56,6 +57,9 @@ class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, g
      * Get all favorite dishes from local repository.
      * @return Observable array with favorite dishes.
      */
-    override fun getAllFavoriteDishes(): List<FullDish>
-                    = localDataSource.getAllFavoriteDishes()
+    override fun getAllFavoriteDishes(): List<FullDish> =
+               localDataSource.getAllFavoriteDishes()
+
+    override fun isDishFavorite(dish: FullDish): Boolean =
+                localDataSource.isDishFavorite(dish)
 }

@@ -2,11 +2,13 @@ package ru.art241111.dish_recipes.models.localDataSource.favoriteDishes
 
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.art241111.dish_recipes.DishApplication
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 
@@ -14,7 +16,8 @@ import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols
 private const val APP_PREFERENCES = "preferences_favorite_dish"
 private const val APP_FAVORITE_DISH = "favorite_dish"
 
-class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes, removeFavoriteDishes {
+class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes,
+                         removeFavoriteDishes, isDishFavorite {
 
     /**
      * Add dish to favorite list
@@ -30,6 +33,8 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes, removeFavorit
 
         // Add dish to saved array.
         dishes.add(dish)
+
+        Log.d("change_shared", "add $dishes.toString()")
 
         // Save favorite dish in SharedPreferences.
         editor.putString(APP_FAVORITE_DISH,Gson().toJson(dishes))
@@ -51,6 +56,7 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes, removeFavorit
         // Add dish to saved array.
         dishes.remove(dish)
 
+        Log.d("change_shared", "remove $dishes.toString()")
         // Save favorite dish in SharedPreferences.
         editor.putString(APP_FAVORITE_DISH,Gson().toJson(dishes))
                 .apply()
@@ -66,6 +72,18 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes, removeFavorit
 
         // Return array with favorite dishes.
         return readArrayFromSharedPreferences(pref)
+    }
+
+    /**
+     * Checking whether the dish is in the favorite
+     * @return true, if dish is in the favorite and false if is not
+     */
+    override fun isDishFavorite(dish: FullDish): Boolean {
+        // Create access to SharedPreferences.
+        val pref = DishApplication.prefHelper.customPrefs(APP_PREFERENCES)
+
+        // Return array with favorite dishes.
+        return readArrayFromSharedPreferences(pref).contains(dish)
     }
 
     private fun readArrayFromSharedPreferences(pref: SharedPreferences):MutableList<FullDish>{
@@ -84,4 +102,6 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes, removeFavorit
 
         return dishes
     }
+
+
 }
