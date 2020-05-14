@@ -12,7 +12,7 @@
             type="ru.art241111.dish_recipes.data.FullDish" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -24,7 +24,16 @@
             android:scaleType="centerInside"
             android:paddingBottom="5dp"
             app:profileImage="@{full_dish.urlImageRecipe}"
-            android:contentDescription="@string/dish_image_loading" />
+            android:contentDescription="@string/dish_image_loading"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"/>
+
         <TextView
             android:id="@+id/tv_name_dish"
             android:layout_width="match_parent"
@@ -33,7 +42,10 @@
             android:text="@{full_dish.nameDish}"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+
+            android:layout_below="@+id/iv_recipe_dish"
+            android:layout_centerHorizontal="true"/>
         <TextView
             android:id="@+id/tv_description_dish"
             android:layout_width="match_parent"
@@ -41,6 +53,8 @@
 
             android:text="@{full_dish.descriptionDish}"
             android:textAlignment="center"
+            android:layout_below="@+id/tv_name_dish"
+            android:layout_centerHorizontal="true"
             />
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

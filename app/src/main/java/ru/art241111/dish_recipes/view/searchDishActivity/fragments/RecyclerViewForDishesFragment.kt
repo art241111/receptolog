@@ -1,6 +1,7 @@
 package ru.art241111.dish_recipes.view.searchDishActivity.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,9 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBinding
+import ru.art241111.dish_recipes.managers.NetManager
+import ru.art241111.dish_recipes.models.DishRepository
+import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
 import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
@@ -27,7 +31,7 @@ import ru.art241111.dish_recipes.view_models.SearchDishViewModel
  * Use the [RecyclerViewForDishesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd {
+class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd, onClickFavoriteButton {
     private lateinit var binding: FragmentRecyclerViewForDishesBinding
     private lateinit var viewModel:SearchDishViewModel
 
@@ -50,7 +54,11 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
      * Customization RecycleView: set layoutManager, adapter, data.
      */
     private fun customizationRecycleView() {
-        val dishesRecyclerViewAdapter = DishesRecyclerViewAdapter(arrayListOf(), this,this)
+        val dishesRecyclerViewAdapter =
+                DishesRecyclerViewAdapter(arrayListOf(),
+                               this,
+                        this,
+                                     this)
 
         binding.rvDish.layoutManager = LinearLayoutManager(activity)
         binding.rvDish.adapter = dishesRecyclerViewAdapter
@@ -92,5 +100,14 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
          */
         @JvmStatic
         fun newInstance() = RecyclerViewForDishesFragment()
+    }
+
+    override fun onClickFavoriteButton(position: Int) {
+        val dish: FullDish? = viewModel.dishes.value?.get(position)
+
+        if (dish != null) {
+            DishRepository(null).addFavoriteDishes(dish)
+            DishRepository(null).getAllFavoriteDishes()
+        }
     }
 }
