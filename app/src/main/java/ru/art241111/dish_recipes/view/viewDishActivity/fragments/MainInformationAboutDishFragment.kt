@@ -45,7 +45,6 @@ class MainInformationFragment : Fragment() {
                 R.layout.fragment_main_information_about_dish, container, false)
 
         binding.fullDish = dish
-binding.ivRecipeDish.setOnClickListener{findNavController().popBackStack()}
         return binding.root
     }
 
