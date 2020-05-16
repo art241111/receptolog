@@ -6,7 +6,8 @@
     app:startDestination="@id/searchDishFragment">
     <fragment
         android:id="@+id/searchDishFragment"
-        android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishFragment">
+        android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishFragment"
+        android:label="Receptolog">
         <action
             android:id="@+id/action_searchDishFragment_to_viewDishActivity"
             app:destination="@id/viewDishActivity" />
@@ -23,5 +24,6 @@
     <fragment
         android:id="@+id/favoriteDishesFragment"
         android:name="ru.art241111.dish_recipes.view.favoriteDishes.FavoriteDishesFragment"
+        android:label="Favorite dishes"
         tools:layout="@layout/favorite_dishes_fragment" />
 </navigation>
