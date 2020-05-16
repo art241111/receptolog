@@ -56,12 +56,12 @@ class MainInformationFragment : Fragment() {
 
     private fun setClickListenerOnFavoriteButton(binding: FragmentMainInformationAboutDishBinding) {
         binding.ivFavoriteMain.setOnClickListener {
-            if(!dish.isFavorite){
+            dish.isFavorite = !dish.isFavorite
+            if(dish.isFavorite){
                 DishRepository(null).addFavoriteDishes(dish)
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
-            dish.isFavorite = !dish.isFavorite
             binding.isFavorite = dish.isFavorite
         }
     }

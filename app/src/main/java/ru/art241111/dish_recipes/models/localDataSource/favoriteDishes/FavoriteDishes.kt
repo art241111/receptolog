@@ -28,13 +28,13 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes,
         val pref = DishApplication.prefHelper.customPrefs(APP_PREFERENCES)
         val editor = pref.edit()
 
+        //editor.clear().apply()
+
         // Read JSON from SharedPreferences.
         val dishes = readArrayFromSharedPreferences(pref)
 
         // Add dish to saved array.
         dishes.add(dish)
-
-        Log.d("change_shared", "add $dishes.toString()")
 
         // Save favorite dish in SharedPreferences.
         editor.putString(APP_FAVORITE_DISH,Gson().toJson(dishes))
@@ -89,7 +89,7 @@ class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes,
     private fun readArrayFromSharedPreferences(pref: SharedPreferences):MutableList<FullDish>{
         // Read JSON from SharedPreferences.
         val jsonRead = pref.getString(APP_FAVORITE_DISH,
-                Gson().toJson(listOf<FullDish>(FullDish())))
+                Gson().toJson(listOf<FullDish>()))
 
         // Converting json to array.
         var dishes: MutableList<FullDish>? = Gson().fromJson(jsonRead,

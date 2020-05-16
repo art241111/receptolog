@@ -21,6 +21,8 @@ import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
 import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view_models.FavoriteDishesViewModel
+import ru.art241111.dish_recipes.view_models.SearchDishViewModel
+import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 
 /**
  * Fragment show dishes in recyclerView
@@ -85,14 +87,19 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
      * @param position - position of element
      */
     override fun onClickFavoriteButton(position: Int) {
+        val viewModelWithLiveData
+                = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
+
         val dish: FullDish? = viewModel.dishes.value?.get(position)
 
         if (dish != null) {
-            if(!dish.isFavorite){
+            dish.isFavorite = !dish.isFavorite
+            if(dish.isFavorite){
                 DishRepository(null).addFavoriteDishes(dish)
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
+            (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)
         }
     }
 
