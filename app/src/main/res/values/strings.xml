@@ -8,4 +8,6 @@
     <string name="dish_image_loading">Dish image loading</string>
     <string name="add_ingredient" translatable="false">+</string>
     <string name="delete_view" translatable="false">X</string>
+    <string name="favorite_dishes">Favorite dishes</string>
+    <string name="add_favorite">Add favorite</string>
 </resources>

@@ -47,6 +47,7 @@ class MainInformationFragment : Fragment() {
 
         binding.fullDish = dish
         binding.isFavorite = dish.isFavorite
+
         // Set click listener on favorite button
         setClickListenerOnFavoriteButton(binding)
 
