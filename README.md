@@ -28,3 +28,6 @@
     <li>Экран с рецептами</li>
     <img src="app/imgExample/DishRotate.png" height="400"/>
   </ul>
+
+<h2> У поьзователя есть возможность добавлять рецепты в избранные: </h2>
+<img src="app/imgExample/open_favorite.gif" height="800"/>
