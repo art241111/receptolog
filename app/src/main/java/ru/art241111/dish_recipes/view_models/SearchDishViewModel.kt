@@ -14,6 +14,7 @@ import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.DishModel
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
+import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 
 /**
@@ -21,7 +22,7 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
  * @author Artem Geraimov.
  */
 class SearchDishViewModel(application: Application)
-                             : AndroidViewModel(application) {
+                             : AndroidViewModel(application), UpdateFavorite {
     // Data repository.
     private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
 
@@ -103,7 +104,24 @@ class SearchDishViewModel(application: Application)
         fullDish.nameDish = dishModel.label
         fullDish.ingredients = dishModel.ingredientLines
         fullDish.setDescriptionDishFromArray(dishModel.healthLabels)
+
+        fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
         return fullDish
+    }
+
+    override fun updateFavoriteAtAllArray() {
+        dishesArrayList.map { updateFavoriteAtOneDish(it) }
+        dishes.value = dishesArrayList
+
+    }
+
+    override fun updateFavoriteAtOneDish(dish: FullDish) {
+        dishesArrayList.forEach{
+            if(it == dish){
+                it.isFavorite = dish.isFavorite
+            }
+        }
+        dishes.value = dishesArrayList
     }
 
     /**

@@ -7,19 +7,23 @@
     <fragment
         android:id="@+id/searchDishFragment"
         android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishFragment"
-        android:label="SearchDishFragment" >
+        android:label="Receptolog">
         <action
             android:id="@+id/action_searchDishFragment_to_viewDishActivity"
             app:destination="@id/viewDishActivity" />
     </fragment>
     <fragment
         android:id="@+id/viewDishActivity"
-        android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity"
-        android:label="ViewDishActivity" >
+        android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity">
         <argument
             android:name="FullDish"
+            android:defaultValue="@null"
             app:argType="ru.art241111.dish_recipes.data.FullDish"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteDishesFragment"
+        android:name="ru.art241111.dish_recipes.view.favoriteDishes.FavoriteDishesFragment"
+        android:label="Favorite dishes"
+        tools:layout="@layout/favorite_dishes_fragment" />
 </navigation>

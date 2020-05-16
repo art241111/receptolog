@@ -9,6 +9,9 @@
             name="dish"
             type="ru.art241111.dish_recipes.data.FullDish" />
 
+        <variable
+            name="isFavorite"
+            type="Boolean" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -31,18 +34,31 @@
                 app:profileImage="@{dish.urlImageRecipe}"
                 android:contentDescription="@string/dish_image_loading" />
 
-            <TextView
-                android:id="@+id/tv_name_dish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:text="@{dish.nameDish}"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                <TextView
+                    android:id="@+id/tv_name_dish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_dish"
-                />
+                    android:text="@{dish.nameDish}"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_dish"
+                    android:layout_toStartOf="@+id/iv_favorite"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_favorite"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@{isFavorite ? @drawable/ic_baseline_favorite_pirple_24 :@drawable/ic_baseline_favorite_border_24}"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/tv_name_dish"
+                    />
+
 
 
             <TextView

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentMainInformationAboutDishBinding
+import ru.art241111.dish_recipes.models.DishRepository
 
 /**
  * The fragment initialization parameters:
@@ -45,8 +46,24 @@ class MainInformationFragment : Fragment() {
                 R.layout.fragment_main_information_about_dish, container, false)
 
         binding.fullDish = dish
-binding.ivRecipeDish.setOnClickListener{findNavController().popBackStack()}
+        binding.isFavorite = dish.isFavorite
+
+        // Set click listener on favorite button
+        setClickListenerOnFavoriteButton(binding)
+
         return binding.root
+    }
+
+    private fun setClickListenerOnFavoriteButton(binding: FragmentMainInformationAboutDishBinding) {
+        binding.ivFavoriteMain.setOnClickListener {
+            dish.isFavorite = !dish.isFavorite
+            if(dish.isFavorite){
+                DishRepository(null).addFavoriteDishes(dish)
+            } else {
+                DishRepository(null).removeFavoriteDishes(dish)
+            }
+            binding.isFavorite = dish.isFavorite
+        }
     }
 
     companion object {

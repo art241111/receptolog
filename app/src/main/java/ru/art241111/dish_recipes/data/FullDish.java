@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
@@ -20,11 +21,12 @@ public class FullDish implements Parcelable {
     // Deprecated
     private int imageDish;
 
-    private String nameDish;
-    private String descriptionDish;
-    private String recipe;
-    private String urlImageRecipe;
-    private List<String> ingredients;
+    private String nameDish = "";
+    private String descriptionDish = "";
+    private String recipe = "";
+    private String urlImageRecipe = "";
+    private List<String> ingredients = new ArrayList<>();
+    private boolean isFavorite = false;
 
     public static Creator<FullDish> getCREATOR() {
         return CREATOR;
@@ -120,6 +122,14 @@ public class FullDish implements Parcelable {
         this.descriptionDish = out.toString();
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     public String getUrlImageRecipe() {
         return urlImageRecipe;
     }
@@ -149,5 +159,48 @@ public class FullDish implements Parcelable {
         Glide.with(view.getContext())
                 .load(imageUrl).apply(new RequestOptions().circleCrop())
                 .into(view);
+    }
+
+    /**
+     * Since we have to compare the values of this class, we need to redefine the hashcode
+     * @return hashcode that depends on the data, not the address
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result  = 1;
+        result = prime * result + ((this.descriptionDish == null) ? 0 : this.descriptionDish.hashCode());
+        result = prime * result + ((this.nameDish  == null) ? 0 : this.nameDish.hashCode());
+        result = prime * result + ((this.recipe == null) ? 0 : this.recipe.hashCode());
+        result = prime * result + ((this.urlImageRecipe == null) ? 0 : this.urlImageRecipe.hashCode());
+
+        result = prime * result + this.imageDish;
+
+        return result;
+
+    }
+
+    /**
+     * Since we have to compare the values of this class, we need to redefine the equals
+     * @param obj - the object we are comparing
+     * @return true - if the objects have the same parameters
+     *         false - if not
+     */
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        FullDish fullDishObj = (FullDish) obj;
+        return (fullDishObj.descriptionDish.equals(this.descriptionDish)) &&
+                (fullDishObj.imageDish == this.imageDish) &&
+                (fullDishObj.nameDish.equals(this.nameDish)) &&
+                (fullDishObj.recipe.equals(this.recipe)) &&
+                (fullDishObj.urlImageRecipe.equals(this.urlImageRecipe));
     }
 }

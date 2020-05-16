@@ -7,4 +7,5 @@
     <string name="ingredients">Ингредиенты</string>
     <string name="recipes">Рецепт</string>
     <string name="dish_image_loading">Изображение блюда загружается</string>
+    <string name="favorite_dishes">Любимые рецепты</string>
 </resources>

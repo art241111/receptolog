@@ -7,20 +7,22 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
+import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
 
 /**
  * RecyclerView adapter.
  * @author Artem Geraimov.
  */
 class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
-                                private var listener: OnItemClickListener,
+                                private var itemListener: OnItemClickListener,
+                                private var favoriteButtonListener: onClickFavoriteButton,
                                 private var end: OnDataEnd)
                                 : RecyclerView.Adapter<DishesRecyclerViewAdapter.ViewHolder>() {
     /**
      * link data.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
-            = holder.bind(items[position], listener)
+            = holder.bind(items[position], itemListener, favoriteButtonListener)
 
     /**
      * Set size
@@ -33,12 +35,19 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     private lateinit var bindingRe:RecyclerViewItemBinding
     class ViewHolder(private var binding: RecyclerViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(dish: FullDish, listener: OnItemClickListener?) {
+        fun bind(dish: FullDish, listener: OnItemClickListener?, favoriteButtonListener:onClickFavoriteButton?) {
             binding.dish = dish
+            binding.isFavorite = dish.isFavorite
             if (listener != null) {
                 binding.root.setOnClickListener { listener.onItemClick(layoutPosition) }
             }
 
+            if (favoriteButtonListener != null) {
+                binding.ivFavorite.setOnClickListener {
+                    binding.isFavorite = !(binding.isFavorite!!)
+                    favoriteButtonListener.onClickFavoriteButton(position = layoutPosition)
+                }
+            }
             binding.executePendingBindings()
         }
     }
