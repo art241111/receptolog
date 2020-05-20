@@ -37,7 +37,6 @@ class ViewDishActivity : Fragment() {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_view_dish, container, false)
 
