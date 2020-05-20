@@ -46,7 +46,6 @@ class MainInformationFragment : Fragment() {
                 R.layout.fragment_main_information_about_dish, container, false)
 
         binding.fullDish = dish
-        binding.isFavorite = dish.isFavorite
 
         // Set click listener on favorite button
         setClickListenerOnFavoriteButton(binding)
@@ -57,12 +56,12 @@ class MainInformationFragment : Fragment() {
     private fun setClickListenerOnFavoriteButton(binding: FragmentMainInformationAboutDishBinding) {
         binding.ivFavoriteMain.setOnClickListener {
             dish.isFavorite = !dish.isFavorite
+            binding.invalidateAll()
             if(dish.isFavorite){
                 DishRepository(null).addFavoriteDishes(dish)
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
-            binding.isFavorite = dish.isFavorite
         }
     }
 

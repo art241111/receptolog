@@ -10,10 +10,6 @@
         <variable
             name="full_dish"
             type="ru.art241111.dish_recipes.data.FullDish" />
-
-        <variable
-            name="isFavorite"
-            type="Boolean" />
     </data>
 
     <RelativeLayout
@@ -35,7 +31,7 @@
             android:id="@+id/iv_favorite_main"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@{isFavorite ? @drawable/ic_baseline_favorite_pirple_24 :@drawable/ic_baseline_favorite_border_24}"
+            android:src="@{full_dish.isFavorite ? @drawable/ic_baseline_favorite_pirple_24 :@drawable/ic_baseline_favorite_border_24}"
             android:layout_marginEnd="10dp"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/add_favorite" />
