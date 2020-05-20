@@ -37,15 +37,14 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dish: FullDish, listener: OnItemClickListener?, favoriteButtonListener:onClickFavoriteButton?) {
             binding.dish = dish
-            binding.isFavorite = dish.isFavorite
             if (listener != null) {
                 binding.root.setOnClickListener { listener.onItemClick(layoutPosition) }
             }
 
             if (favoriteButtonListener != null) {
                 binding.ivFavorite.setOnClickListener {
-                    binding.isFavorite = !(binding.isFavorite!!)
                     favoriteButtonListener.onClickFavoriteButton(position = layoutPosition)
+                    binding.invalidateAll()
                 }
             }
             binding.executePendingBindings()
