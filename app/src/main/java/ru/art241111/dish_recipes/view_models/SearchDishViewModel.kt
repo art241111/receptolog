@@ -12,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.DishModel
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.DishModel
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.Recipes
 import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 
@@ -71,15 +71,15 @@ class SearchDishViewModel(application: Application)
                 .getDishes(ingredients, startPosition.toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<Recipes>>() {
+                .subscribeWith(object : DisposableObserver<List<FullDish>>() {
                     override fun onError(e: Throwable) {
                         Log.e("SearchDishViewModel.kt",
                                 "Error with reading data + ${e.message}")
                     }
 
-                    override fun onNext(data: List<Recipes>) {
+                    override fun onNext(data: List<FullDish>) {
                         data.map{
-                            dishesArrayList.add(RecipeToDish(it))
+                            dishesArrayList.add(it)
                         }
                         dishes.value = dishesArrayList
                     }
@@ -88,25 +88,6 @@ class SearchDishViewModel(application: Application)
                         isLoading.set(false)
                     }
                 })
-    }
-
-    /**
-     * Convert recipe model to FullDish model.
-     * Set title, imageUrl.
-     * @param recipes - recipe model to convert.
-     * @return convertible recipe.
-     */
-    private fun RecipeToDish(recipes: Recipes): FullDish {
-        val dishModel: DishModel = recipes.recipe
-        val fullDish = FullDish()
-
-        fullDish.urlImageRecipe = dishModel.image
-        fullDish.nameDish = dishModel.label
-        fullDish.ingredients = dishModel.ingredientLines
-        fullDish.setDescriptionDishFromArray(dishModel.healthLabels)
-
-        fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
-        return fullDish
     }
 
     override fun updateFavoriteAtAllArray() {

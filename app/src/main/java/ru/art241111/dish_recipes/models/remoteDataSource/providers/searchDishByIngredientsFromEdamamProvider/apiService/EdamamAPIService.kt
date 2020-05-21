@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.apiService
+package ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.apiService
 
 
 import io.reactivex.Observable
@@ -7,7 +7,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Result
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.ResultEdamamApi
 
 /**
  * API service for a request from a site edamam.com
@@ -26,7 +26,7 @@ interface EdamamAPIService {
                      @Query("app_key") appKey: String,
                      @Query("q") ingredients: String,
                      @Query("from") startPosition: String)
-            : Observable<Result>
+            : Observable<ResultEdamamApi>
 
     /**
      * Companion object to create the EdamamAPIService

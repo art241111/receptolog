@@ -4,13 +4,12 @@ import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.FavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.Recipes
 
 /**
  * Repository for getting data.
@@ -27,7 +26,7 @@ class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, g
      * else from local repository.
      * @return data from repositories.
      */
-    fun getDishes(ingredients: ArrayList<String>, startPosition: String): Observable<List<Recipes>> {
+    fun getDishes(ingredients: ArrayList<String>, startPosition: String): Observable<List<FullDish>> {
         netManager?.isConnectedToInternet?.let { it ->
             if (it) {
                 return remoteDataSource.getDishes(ingredients,startPosition)

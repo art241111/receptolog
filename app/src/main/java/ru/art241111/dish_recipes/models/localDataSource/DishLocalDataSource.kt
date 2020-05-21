@@ -8,7 +8,7 @@ import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 //import ru.art241111.dish_recipes.models.API.getDishes.getDishes
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Recipes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.Recipes
 
 /**
  * Repository for getting and saving local data.
@@ -20,7 +20,7 @@ class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes,
      * Take data from local repository.
      * @return data from local repository.
      */
-    fun getRepositories(): Observable<List<Recipes>> {
+    fun getRepositories(): Observable<List<FullDish>> {
         return Observable.empty()
     }
 

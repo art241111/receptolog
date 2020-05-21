@@ -1,13 +1,18 @@
 package ru.art241111.dish_recipes.models.remoteDataSource.providers
 
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.SearchDishes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.SearchDishes
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromTechnopolisApi.SearchDishesFromTechnopolis
 
 /**
  * Object that stores implementations providers.
  * @author Artem Gerasimov.
  */
 object SearchRepositoryProvider {
-    fun provideSearchRepository(): SearchDishes {
+    fun provideSearchRepositoryFromEdamam(): SearchDishes {
         return SearchDishes()
+    }
+
+    fun provideSearchRepositoryFromTechnopolis():SearchDishesFromTechnopolis{
+        return SearchDishesFromTechnopolis()
     }
 }

@@ -1,8 +1,8 @@
-package ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider
+package ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider
 
 import io.reactivex.Observable
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.apiService.EdamamAPIService
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsProvider.dataModel.Result
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.apiService.EdamamAPIService
+import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.ResultEdamamApi
 
 /**
  * Provider for requesting dishes by ingredients to the service
@@ -18,7 +18,7 @@ class SearchDishes(){
      */
     fun getDishes(appId:String, appKey: String,
                   ingredients: List<String>,
-                  startPosition: String): Observable<Result> {
+                  startPosition: String): Observable<ResultEdamamApi> {
         val apiService = EdamamAPIService.create()
 
         return if(ingredients.isEmpty()){
@@ -37,7 +37,7 @@ class SearchDishes(){
      */
     private fun addEmptyRequest(apiService: EdamamAPIService,
                                 appId:String, appKey: String,
-                                startPosition: String): Observable<Result> {
+                                startPosition: String): Observable<ResultEdamamApi> {
         return apiService.getData(appId = appId,
                 appKey = appKey,
                 ingredients = "null",
@@ -55,7 +55,7 @@ class SearchDishes(){
     private fun addIngredientsRequest(apiService: EdamamAPIService,
                                       appId:String, appKey: String,
                                       ingredients: List<String>,
-                                      startPosition: String): Observable<Result> {
+                                      startPosition: String): Observable<ResultEdamamApi> {
         var queryIngredients = ""
         for(ingredient in ingredients){
             queryIngredients += "$ingredient,"

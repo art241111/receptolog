@@ -47,6 +47,7 @@ class ViewDishActivity : Fragment() {
         arguments?.let {
             dish = it.getParcelable(ARG_SELECTED_DISH)!!
         }
+
         //Add fragment with main information about dishes
         addMainInfoFragment(dish)
 
@@ -62,7 +63,6 @@ class ViewDishActivity : Fragment() {
      * @param dish - data for uploading information about the dish
      */
     private fun addMainInfoFragment(dish: FullDish) {
-
         (activity as AppActivity).supportFragmentManager
                 .beginTransaction()
                 .add(R.id.ll_main, MainInformationFragment.newInstance(dish))

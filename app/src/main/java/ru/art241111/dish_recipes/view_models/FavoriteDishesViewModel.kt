@@ -20,7 +20,6 @@ class FavoriteDishesViewModel (application: Application): AndroidViewModel(appli
      * load dishes from repositories.
      */
     fun loadFavoriteDishes() {
-
         dishes.value = dishRepository.getAllFavoriteDishes()
     }
 
