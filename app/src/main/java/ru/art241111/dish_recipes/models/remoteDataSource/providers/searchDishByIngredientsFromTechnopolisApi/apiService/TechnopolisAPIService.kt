@@ -17,11 +17,17 @@ interface TechnopolisAPIService {
      * @param countOfIngredients (count) - count
      * @return JSON object based on Result
      */
-    @GET("/with-these-ingredients")
+    @GET("/recipes/with-these-ingredients?")
     fun getDataWhenLeastOneIngredientIsPresent(
                 @Query("ing") ingredients: String,
                 @Query("from") startPosition: String,
                 @Query("count") countOfIngredients: String)
+            : Observable<ResultTechnopolisAPI>
+
+    @GET("/recipes-list")
+    fun getDishesWithoutParameters(
+            @Query("from") startPosition: String,
+            @Query("count") countOfIngredients: String)
             : Observable<ResultTechnopolisAPI>
 
     /**
@@ -32,7 +38,7 @@ interface TechnopolisAPIService {
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://recipetolog.herokuapp.com/recipes")
+                    .baseUrl("https://recipetolog.herokuapp.com")
                     .build()
 
             return retrofit.create(TechnopolisAPIService::class.java);

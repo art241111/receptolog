@@ -44,10 +44,10 @@ class SearchDishesFromTechnopolis{
     private fun addEmptyRequest(apiService: TechnopolisAPIService,
                                  startPosition: String,
                                 countOfIngredients: String): Observable<ResultTechnopolisAPI> {
-        return apiService.getDataWhenLeastOneIngredientIsPresent(
-                ingredients = "null",
+        return apiService.getDishesWithoutParameters(
                 startPosition = startPosition,
-                countOfIngredients = countOfIngredients)
+                countOfIngredients = countOfIngredients
+        )
     }
 
     /**
