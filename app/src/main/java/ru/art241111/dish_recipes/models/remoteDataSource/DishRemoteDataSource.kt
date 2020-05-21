@@ -80,7 +80,7 @@ class DishRemoteDataSource {
         val fullDish = FullDish()
 
         fullDish.urlImageRecipe = dish.imageUrl
-        fullDish.nameDish = dish.name
+        fullDish.nameDish = dish.name.capitalize()
         fullDish.ingredients = ingredientsFromTechnopolisAPiToFullDishIngredients(dish.ingredients)
         fullDish.descriptionDish = dish.description
         fullDish.recipe = dish.directions.toString() //TODO: Refactoring list output

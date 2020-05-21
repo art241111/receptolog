@@ -49,7 +49,7 @@ class SearchDishViewModel(application: Application)
      * Load new data, when data on screen end
      */
     fun loadDishesWhenOnScreenEnd(){
-        startPosition += 10
+        startPosition += 11
         loadDishes()
     }
 
@@ -57,7 +57,7 @@ class SearchDishViewModel(application: Application)
      * Load new data, when user enter new ingredient
      */
     fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
-        startPosition = 10
+        startPosition = 0
         isLoading.set(true)
         this.dishesArrayList = ArrayList()
         loadDishes()

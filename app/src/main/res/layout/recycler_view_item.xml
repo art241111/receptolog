@@ -68,6 +68,10 @@
 
                 android:layout_below="@id/tv_name_dish"
                 android:layout_alignStart="@id/tv_name_dish"
+
+                android:maxLines = "5"
+                android:ellipsize="end"
+
                 />
         </RelativeLayout>
 
