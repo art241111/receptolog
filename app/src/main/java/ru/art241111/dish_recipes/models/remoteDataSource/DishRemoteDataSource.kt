@@ -7,8 +7,6 @@ import ru.art241111.dish_recipes.models.remoteDataSource.providers.SearchReposit
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.DishModel
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromTechnopolisApi.dataModel.DishFromTechnopolisAPI
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromTechnopolisApi.dataModel.Ingredients
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromTechnopolisApi.dataModel.ResultTechnopolisAPI
-
 
 /**
  * Repository for getting remote data.
@@ -39,10 +37,11 @@ class DishRemoteDataSource {
                                 }
 
     }
+
     /**
      * Convert Dish model to FullDish model.
      * Set title, imageUrl.
-     * @param recipes - recipe model to convert.
+     * @param dishModel - recipe model to convert.
      * @return convertible recipe.
      */
     private fun migrateDishModelToFullDish(dishModel: DishModel):FullDish {
@@ -83,7 +82,7 @@ class DishRemoteDataSource {
         fullDish.nameDish = dish.name.capitalize()
         fullDish.ingredients = ingredientsFromTechnopolisAPiToFullDishIngredients(dish.ingredients)
         fullDish.descriptionDish = dish.description
-        fullDish.recipe = migrateRecipeArrayToRecipeString(dish.directions) //TODO: Refactoring list output
+        fullDish.recipe = migrateRecipeArrayToRecipeString(dish.directions)
 
         fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
         return fullDish
@@ -95,11 +94,9 @@ class DishRemoteDataSource {
         return returnString
     }
 
-
-    private fun ingredientsFromTechnopolisAPiToFullDishIngredients(ingredients: List<Ingredients>): MutableList<String>? {
+    private fun ingredientsFromTechnopolisAPiToFullDishIngredients(ingredients: List<Ingredients>): MutableList<String> {
         val returnIngredientsList = mutableListOf<String>()
         ingredients.forEach{returnIngredientsList.add(it.ingredient.name + " " + it.amount)}
         return returnIngredientsList
     }
-
 }
