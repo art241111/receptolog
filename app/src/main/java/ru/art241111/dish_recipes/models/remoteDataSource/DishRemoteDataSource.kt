@@ -83,11 +83,18 @@ class DishRemoteDataSource {
         fullDish.nameDish = dish.name.capitalize()
         fullDish.ingredients = ingredientsFromTechnopolisAPiToFullDishIngredients(dish.ingredients)
         fullDish.descriptionDish = dish.description
-        fullDish.recipe = dish.directions.toString() //TODO: Refactoring list output
+        fullDish.recipe = migrateRecipeArrayToRecipeString(dish.directions) //TODO: Refactoring list output
 
         fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
         return fullDish
     }
+
+    private fun migrateRecipeArrayToRecipeString(directions: List<String>): String {
+        var returnString = ""
+        directions.forEach{returnString += "$it \n" }
+        return returnString
+    }
+
 
     private fun ingredientsFromTechnopolisAPiToFullDishIngredients(ingredients: List<Ingredients>): MutableList<String>? {
         val returnIngredientsList = mutableListOf<String>()
