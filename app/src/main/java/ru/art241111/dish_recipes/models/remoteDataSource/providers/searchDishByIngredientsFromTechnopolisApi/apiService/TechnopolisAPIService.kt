@@ -24,6 +24,13 @@ interface TechnopolisAPIService {
                 @Query("count") countOfIngredients: String)
             : Observable<ResultTechnopolisAPI>
 
+
+    /**
+     * Method for selecting dishes without parameters
+     * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
+     * @param countOfIngredients (count) - count
+     * @return JSON object based on Result
+     */
     @GET("/recipes-list")
     fun getDishesWithoutParameters(
             @Query("from") startPosition: String,
