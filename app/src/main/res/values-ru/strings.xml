@@ -10,4 +10,11 @@
     <string name="favorite_dishes">Любимые рецепты</string>
     <string name="no_internet_connection">Проверьте подключение к интернету</string>
     <string name="no_recipes_with_this_ingredient_were_found">Рецептов с таким ингредиентом не найдено</string>
+
+    <string-array name="typeSearch">
+        <item>По имени</item>
+        <item>Каждый ингредиент присутствует </item>
+        <item>Хотя бы один ингредиент</item>
+    </string-array>
+
 </resources>
