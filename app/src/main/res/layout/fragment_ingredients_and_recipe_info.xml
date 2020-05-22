@@ -20,10 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TabWidget
                     android:id="@android:id/tabs"
+                    style="@android:style/Widget.Material.Light.TabWidget"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textDirection="locale" />
                 <FrameLayout
                     android:id="@android:id/tabcontent"
                     android:layout_width="match_parent"

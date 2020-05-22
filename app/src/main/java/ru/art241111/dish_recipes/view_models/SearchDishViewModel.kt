@@ -14,8 +14,6 @@ import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.DishModel
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.Recipes
 import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 

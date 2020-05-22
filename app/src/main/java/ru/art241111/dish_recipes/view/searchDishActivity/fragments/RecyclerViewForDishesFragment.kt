@@ -1,7 +1,6 @@
 package ru.art241111.dish_recipes.view.searchDishActivity.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,6 @@ import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBinding
-import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
 import ru.art241111.dish_recipes.view.AppActivity

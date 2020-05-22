@@ -1,9 +1,7 @@
 package ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding

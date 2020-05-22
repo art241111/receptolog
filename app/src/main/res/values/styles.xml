@@ -8,8 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
+        <item name="android:textColor">#B40C0205</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/times_new_roman</item>
         <item name="fontFamily">@font/times_new_roman</item> <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
     </style>
+
 </resources>
 

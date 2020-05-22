@@ -65,6 +65,7 @@ class IngredientsAndRecipeInfoFragment : Fragment() {
         tabSpec = binding.tabHost.newTabSpec("tag2")
         tabSpec.setContent(R.id.tab2)
         tabSpec.setIndicator(getString(R.string.recipes))
+
         binding.tabHost.addTab(tabSpec)
     }
 

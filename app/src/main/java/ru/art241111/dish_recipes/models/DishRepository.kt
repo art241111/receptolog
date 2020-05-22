@@ -9,7 +9,6 @@ import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
-import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.Recipes
 
 /**
  * Repository for getting data.

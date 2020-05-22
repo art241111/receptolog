@@ -12,7 +12,7 @@
             android:id="@+id/s_search_params"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/typeSearch"/>
+            android:entries="@array/typeSearch" />
 
         <LinearLayout
             android:id="@+id/ll_add_ingredients"

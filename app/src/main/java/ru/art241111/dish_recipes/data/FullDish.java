@@ -140,8 +140,9 @@ public class FullDish implements Parcelable {
 
     public String getStringIngredients() {
         StringBuilder out = new StringBuilder();
+        int i = 0;
         for (String ingredient:ingredients) {
-            out.append(ingredient).append("\n");
+            out.append(++i).append(". ").append(ingredient).append("\n");
         }
         return out.toString();
     }

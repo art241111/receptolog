@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Reciptolog</string>
+    <string name="fragment_favorite">Favorite dishes</string>
+    <string name="fragment_dishes">Dishes</string>
+
     <string name="enter_ingredients">Please enter the ingredients</string>
     <string name="str_add">+</string>
     <string name="default_value_ingredient">ingredient</string>

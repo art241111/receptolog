@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentViewDishBinding
@@ -47,6 +45,9 @@ class ViewDishActivity : Fragment() {
         arguments?.let {
             dish = it.getParcelable(ARG_SELECTED_DISH)!!
         }
+
+        // Set name of dish in toolbar
+        (activity?.findViewById(R.id.toolbar) as Toolbar).title = dish.nameDish
 
         //Add fragment with main information about dishes
         addMainInfoFragment(dish)
