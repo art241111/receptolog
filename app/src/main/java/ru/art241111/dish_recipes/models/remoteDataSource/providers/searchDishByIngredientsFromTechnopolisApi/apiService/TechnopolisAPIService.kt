@@ -11,6 +11,18 @@ import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByI
 
 interface TechnopolisAPIService {
     /**
+     * Method for selecting dishes without parameters
+     * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
+     * @param countOfIngredients (count) - count
+     * @return JSON object based on Result
+     */
+    @GET("/recipes-list")
+    fun getDishesWithoutParameters(
+            @Query("from") startPosition: String,
+            @Query("count") countOfIngredients: String)
+            : Observable<ResultTechnopolisAPI>
+
+    /**
      * Method for selecting dishes by ingredients
      * @param ingredients (ing) - ingredients that we want to get from the API
      * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
@@ -24,14 +36,16 @@ interface TechnopolisAPIService {
                 @Query("count") countOfIngredients: String)
             : Observable<ResultTechnopolisAPI>
 
+
     /**
-     * Method for selecting dishes without parameters
-     * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
-     * @param countOfIngredients (count) - count
-     * @return JSON object based on Result
-     */
-    @GET("/recipes-list")
-    fun getDishesWithoutParameters(
+    * Method for selecting dishes without parameters
+    * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
+    * @param countOfIngredients (count) - count
+    * @return JSON object based on Result
+    */
+    @GET("/recipes/with-all-these-ingredients")
+    fun getAllIngredientsMustBePresent(
+            @Query("ing") ingredients: String,
             @Query("from") startPosition: String,
             @Query("count") countOfIngredients: String)
             : Observable<ResultTechnopolisAPI>
@@ -47,7 +61,7 @@ interface TechnopolisAPIService {
                     .baseUrl("https://recipetolog.herokuapp.com")
                     .build()
 
-            return retrofit.create(TechnopolisAPIService::class.java);
+            return retrofit.create(TechnopolisAPIService::class.java)
         }
     }
 }
