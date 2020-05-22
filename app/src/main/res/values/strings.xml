@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Receptolog</string>
+    <string name="app_name">Reciptolog</string>
     <string name="enter_ingredients">Please enter the ingredients</string>
     <string name="str_add">+</string>
     <string name="default_value_ingredient">ingredient</string>
@@ -14,8 +14,8 @@
     <string name="no_recipes_with_this_ingredient_were_found">No recipes with this ingredient were found</string>
 
     <string-array name="typeSearch">
-        <item>Name</item>
-        <item>One to one</item>
-        <item>At least one</item>
+        <item>Search by name</item>
+        <item>Each ingredient must be present</item>
+        <item>At least one ingredient is present</item>
     </string-array>
 </resources>

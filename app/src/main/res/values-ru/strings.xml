@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Technopolis recipe</string>
+    <string name="app_name">Рецептолог</string>
     <string name="enter_ingredients">Введите название ингредиента</string>
     <string name="str_add">+</string>
     <string name="default_value_ingredient">ingredient</string>
@@ -12,9 +12,9 @@
     <string name="no_recipes_with_this_ingredient_were_found">Рецептов с таким ингредиентом не найдено</string>
 
     <string-array name="typeSearch">
-        <item>По имени</item>
-        <item>Каждый ингредиент присутствует </item>
-        <item>Хотя бы один ингредиент</item>
+        <item>Поиск по имени</item>
+        <item>Каждый ингредиент должен присутствовать</item>
+        <item>Хотя бы один ингредиент присутствует</item>
     </string-array>
 
 </resources>
