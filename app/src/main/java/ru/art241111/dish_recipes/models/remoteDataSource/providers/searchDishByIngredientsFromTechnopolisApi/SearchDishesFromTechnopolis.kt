@@ -22,6 +22,7 @@ class SearchDishesFromTechnopolis{
                   countOfIngredients: String): Observable<ResultTechnopolisAPI> {
         val apiService = TechnopolisAPIService.create()
 
+
         return if(ingredients.isEmpty()){
             addEmptyRequest(apiService = apiService,
                             startPosition = startPosition,

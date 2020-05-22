@@ -21,7 +21,7 @@ class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes,
      * @return data from local repository.
      */
     fun getRepositories(): Observable<List<FullDish>> {
-        return Observable.empty()
+        return Observable.fromArray(listOf())
     }
 
     /**

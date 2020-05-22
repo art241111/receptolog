@@ -1,6 +1,7 @@
 package ru.art241111.dish_recipes.view_models
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
@@ -9,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
@@ -24,7 +26,8 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application), UpdateFavorite {
     // Data repository.
-    private val dishRepository: DishRepository = DishRepository(NetManager(getApplication()))
+    private val netManager = NetManager(getApplication())
+    private val dishRepository: DishRepository = DishRepository(netManager)
 
     // Array of dishes.
     val dishes = MutableLiveData<ArrayList<FullDish>>()
@@ -35,6 +38,7 @@ class SearchDishViewModel(application: Application)
 
     // Check data is loading or not.
     val isLoading = ObservableField(false)
+    val warningText = ObservableField("")
 
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
@@ -49,20 +53,41 @@ class SearchDishViewModel(application: Application)
      * Load new data, when data on screen end
      */
     fun loadDishesWhenOnScreenEnd(){
-        startPosition += 11
-        loadDishes()
+        if(netManager.isConnectedToInternet){
+            startPosition += 11
+
+            loadDishes()
+            setWarningText("")
+        } else{
+            setWarningText(R.string.no_internet_connection)
+        }
     }
 
     /**
      * Load new data, when user enter new ingredient
      */
     fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
-        startPosition = 0
-        isLoading.set(true)
-        this.dishesArrayList = ArrayList()
-        loadDishes()
+        if(netManager.isConnectedToInternet){
+            startPosition = 0
+            isLoading.set(true)
+            this.dishesArrayList = ArrayList()
+
+            loadDishes()
+            setWarningText("")
+        } else{
+            setWarningText(R.string.no_internet_connection)
+            dishes.value = arrayListOf()
+        }
     }
 
+    private fun setWarningText(warning: Int){
+        val context: Context = getApplication()
+        warningText.set(context.getString(warning))
+    }
+
+    private fun setWarningText(warning: String){
+        warningText.set(warning)
+    }
     /**
      * load dishes from repositories.
      */
@@ -78,9 +103,13 @@ class SearchDishViewModel(application: Application)
                     }
 
                     override fun onNext(data: List<FullDish>) {
-                        data.map{
-                            dishesArrayList.add(it)
+                        if(data.isEmpty()) {
+                            setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
+                            dishes.value = arrayListOf()
                         }
+                         data.map{
+                                dishesArrayList.add(it)
+                            }
                         dishes.value = dishesArrayList
                     }
 

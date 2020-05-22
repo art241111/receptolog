@@ -10,4 +10,6 @@
     <string name="delete_view" translatable="false">X</string>
     <string name="favorite_dishes">Favorite dishes</string>
     <string name="add_favorite">Add favorite</string>
+    <string name="no_internet_connection">Check your Internet connection</string>
+    <string name="no_recipes_with_this_ingredient_were_found">No recipes with this ingredient were found</string>
 </resources>
