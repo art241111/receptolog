@@ -30,21 +30,21 @@
 Реализовано три экрана:
 -----------------------
 * Главный экран
-![](app/imgExample/StartMenu.png)
+![](app/imageExample/StartMenu.png)
 * Экран с рецептами
-![](app/imgExample/Dish.png)
+![](app/imageExample/dish.png)
 * Экран с любимыми рецептами
-![](app/imgExample/favorite.png)
+![](app/imageExample/favorite.png)
 * 
 Также для главного экрана реализован поворот экранов с сохранением состояния:
 ------------------------------------------------------------------------------------------
 * Главный экран
-![](app/imgExample/StartMenuRotate.png)
+![](app/imageExample/StartMenuRotate.png)
 
 У пользователя есть возможность добавлять рецепты в избранные:
 --------------------------------------------------------------
-![](app/imgExample/open_favorite.gif)
+![](app/imageExample/open_favorite.gif)
 
 Обработка потери связи с интернетом обработана таким образом:
 -------------------------------------------------------------
-![](app/imgExample/withoutInternet.png)
+![](app/imageExample/withoutInternet.png)
