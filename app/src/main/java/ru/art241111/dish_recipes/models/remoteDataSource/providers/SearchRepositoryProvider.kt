@@ -15,6 +15,4 @@ object SearchRepositoryProvider {
     fun provideAtLeastOneSearchRepositoryFromTechnopolis(): SearchDishesFromTechnopolis {
         return SearchDishesFromTechnopolis()
     }
-
-
 }
