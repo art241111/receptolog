@@ -39,6 +39,7 @@ class SearchDishViewModel(application: Application)
     // Check data is loading or not.
     val isLoading = ObservableField(false)
     val warningText = ObservableField("")
+    var areThereAnyOtherRecipes = true
 
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
@@ -59,10 +60,12 @@ class SearchDishViewModel(application: Application)
      */
     fun loadDishesWhenOnScreenEnd(){
         if(netManager.isConnectedToInternet){
-            startPosition += 11
+            if(areThereAnyOtherRecipes){
+                startPosition += 11
 
-            loadDishes()
-            setWarningText("")
+                loadDishes()
+                setWarningText("")
+            }
         } else{
             setWarningText(R.string.no_internet_connection)
         }
@@ -73,6 +76,7 @@ class SearchDishViewModel(application: Application)
      */
     fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
         if(netManager.isConnectedToInternet){
+            areThereAnyOtherRecipes = true
             startPosition = 0
             isLoading.set(true)
             this.dishesArrayList = ArrayList()
@@ -116,6 +120,8 @@ class SearchDishViewModel(application: Application)
                                 dishesArrayList.add(it)
                             }
                         dishes.value = dishesArrayList
+
+                        if(data.size < 10) areThereAnyOtherRecipes = false
                     }
 
                     override fun onComplete() {
