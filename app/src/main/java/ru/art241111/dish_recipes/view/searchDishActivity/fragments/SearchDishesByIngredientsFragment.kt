@@ -1,15 +1,11 @@
 package ru.art241111.dish_recipes.view.searchDishActivity.fragments
 
 import android.os.Bundle
-import android.view.KeyEvent
+import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.AdapterViewBindingAdapter
 import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.databinding.FragmentSearchDishesByIngredientsBinding
@@ -42,6 +38,20 @@ class SearchDishesByIngredientsFragment : Fragment() {
 
         // Ingredients recovery after app death.
         recoveryIngredients()
+
+        binding.sSearchParams.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                // Set position of search type
+                viewModel.setSpinnerPosition(pos)
+
+                // Load new data
+                viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<out Adapter>?) {
+
+            }
+        }
 
         return binding.root
     }
