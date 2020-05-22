@@ -2,6 +2,7 @@ package ru.art241111.dish_recipes.models.remoteDataSource
 
 import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
+import ru.art241111.dish_recipes.extensionFunctions.toStringWithEnter
 import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.SearchRepositoryProvider
 import ru.art241111.dish_recipes.models.remoteDataSource.providers.searchDishByIngredientsFromEdamamProvider.dataModel.DishModel
@@ -16,9 +17,51 @@ class DishRemoteDataSource {
     /**
      * Take data from  remove repository.
      */
-    fun getDishes(ingredients: ArrayList<String>, startPosition: String) : Observable<List<FullDish>> {
-//        return getDishesFromEdamamAPI(ingredients, startPosition)
-        return getDishesFromTechnopolisAPI(ingredients, startPosition,"10")
+    fun getDishes(ingredients: ArrayList<String>, startPosition: String, searchType: Int)
+                                                        : Observable<List<FullDish>> {
+
+        return getDishesFromTechnopolisAPI(ingredients, startPosition,"10",searchType)
+    }
+    /**
+     * Take dishes from technopolis API
+     */
+    private fun getDishesFromTechnopolisAPI(ingredients: ArrayList<String>,
+                                            startPosition: String,
+                                            countOfIngredients: String,
+                                            searchType: Int):Observable<List<FullDish>> {
+        val dishesRepository
+                = SearchRepositoryProvider.provideAtLeastOneSearchRepositoryFromTechnopolis()
+        return dishesRepository.getDishes( ingredients = ingredients,
+                                            startPosition = startPosition,
+                                            countOfIngredients = countOfIngredients,
+                                            searchType = searchType)
+                                .map {it.recipes}
+                                .map{recipe ->
+                                    return@map recipe.map{
+                                        dish -> migrateDishFromTechnopolisApiToFullDish(dish)
+                                    }
+                                }
+    }
+
+    private fun migrateDishFromTechnopolisApiToFullDish(dish: DishFromTechnopolisAPI):FullDish {
+        val fullDish = FullDish()
+
+        fullDish.urlImageRecipe = dish.imageUrl
+        fullDish.nameDish = dish.name.capitalize()
+        fullDish.ingredients = ingredientsFromTechnopolisAPiToFullDishIngredients(dish.ingredients)
+        fullDish.descriptionDish = dish.description
+        fullDish.recipe = dish.directions.toStringWithEnter()
+
+        fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
+        return fullDish
+    }
+
+
+
+    private fun ingredientsFromTechnopolisAPiToFullDishIngredients(ingredients: List<Ingredients>): MutableList<String> {
+        val returnIngredientsList = mutableListOf<String>()
+        ingredients.forEach{returnIngredientsList.add(it.ingredient.name + " " + it.amount)}
+        return returnIngredientsList
     }
 
     /**
@@ -56,47 +99,4 @@ class DishRemoteDataSource {
         return fullDish
     }
 
-    /**
-     * Take dishes from technopolis API
-     */
-    private fun getDishesFromTechnopolisAPI(ingredients: ArrayList<String>,
-                                            startPosition: String,
-                                            countOfIngredients: String):Observable<List<FullDish>> {
-        val dishesRepository = SearchRepositoryProvider.provideSearchRepositoryFromTechnopolis()
-
-        return dishesRepository.getDishes( ingredients = ingredients,
-                                                 startPosition = startPosition,
-                                                 countOfIngredients = countOfIngredients)
-                .map { it.recipes}
-                .map{recipe ->
-                    return@map recipe.map{
-                        dish -> migrateDishFromTechnopolisApiToFullDish(dish)
-                    }
-                }
-    }
-
-    private fun migrateDishFromTechnopolisApiToFullDish(dish: DishFromTechnopolisAPI):FullDish {
-        val fullDish = FullDish()
-
-        fullDish.urlImageRecipe = dish.imageUrl
-        fullDish.nameDish = dish.name.capitalize()
-        fullDish.ingredients = ingredientsFromTechnopolisAPiToFullDishIngredients(dish.ingredients)
-        fullDish.descriptionDish = dish.description
-        fullDish.recipe = migrateRecipeArrayToRecipeString(dish.directions)
-
-        fullDish.isFavorite = DishRepository(null).isDishFavorite(fullDish)
-        return fullDish
-    }
-
-    private fun migrateRecipeArrayToRecipeString(directions: List<String>): String {
-        var returnString = ""
-        directions.forEach{returnString += "$it \n" }
-        return returnString
-    }
-
-    private fun ingredientsFromTechnopolisAPiToFullDishIngredients(ingredients: List<Ingredients>): MutableList<String> {
-        val returnIngredientsList = mutableListOf<String>()
-        ingredients.forEach{returnIngredientsList.add(it.ingredient.name + " " + it.amount)}
-        return returnIngredientsList
-    }
 }

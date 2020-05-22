@@ -55,6 +55,9 @@ class SearchDishesByIngredientsFragment : Fragment() {
            // Add ingredients to array.
            viewModel.addIngredient(text)
 
+           // Set position of search type
+           viewModel.setSpinnerPosition(binding.sSearchParams.selectedItemPosition)
+
            // Create ingredient view.
            addIngredientToFlowLayout(text)
 

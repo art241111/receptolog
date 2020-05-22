@@ -12,7 +12,9 @@ object SearchRepositoryProvider {
         return SearchDishes()
     }
 
-    fun provideSearchRepositoryFromTechnopolis():SearchDishesFromTechnopolis{
+    fun provideAtLeastOneSearchRepositoryFromTechnopolis(): SearchDishesFromTechnopolis {
         return SearchDishesFromTechnopolis()
     }
+
+
 }

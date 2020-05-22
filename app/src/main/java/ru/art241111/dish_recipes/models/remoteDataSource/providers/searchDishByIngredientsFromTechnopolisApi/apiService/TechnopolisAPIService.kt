@@ -43,7 +43,7 @@ interface TechnopolisAPIService {
     * @param countOfIngredients (count) - count
     * @return JSON object based on Result
     */
-    @GET("/recipes/with-all-these-ingredients")
+    @GET("/recipes/with-all-these-ingredients?")
     fun getAllIngredientsMustBePresent(
             @Query("ing") ingredients: String,
             @Query("from") startPosition: String,

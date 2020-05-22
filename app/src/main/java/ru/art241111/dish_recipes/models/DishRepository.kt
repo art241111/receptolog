@@ -26,10 +26,11 @@ class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, g
      * else from local repository.
      * @return data from repositories.
      */
-    fun getDishes(ingredients: ArrayList<String>, startPosition: String): Observable<List<FullDish>> {
+    fun getDishes(ingredients: ArrayList<String>, startPosition: String, searchType: Int)
+                                                                    : Observable<List<FullDish>> {
         netManager?.isConnectedToInternet?.let { it ->
             if (it) {
-                return remoteDataSource.getDishes(ingredients,startPosition)
+                return remoteDataSource.getDishes(ingredients,startPosition,searchType)
             }
         }
         return localDataSource.getRepositories()

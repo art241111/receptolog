@@ -49,6 +49,11 @@ class SearchDishViewModel(application: Application)
     // start page to load data
     private var startPosition = 0
 
+    // spinner position
+    private var spinnerPosition = 0
+    fun setSpinnerPosition(position: Int){
+        spinnerPosition = position
+    }
     /**
      * Load new data, when data on screen end
      */
@@ -93,7 +98,7 @@ class SearchDishViewModel(application: Application)
      */
     private fun loadDishes() {
         compositeDisposable += dishRepository
-                .getDishes(ingredients, startPosition.toString())
+                .getDishes(ingredients, startPosition.toString(), spinnerPosition)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<FullDish>>() {
@@ -105,7 +110,7 @@ class SearchDishViewModel(application: Application)
                     override fun onNext(data: List<FullDish>) {
                         if(data.isEmpty()) {
                             setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
-                            dishes.value = arrayListOf()
+                            dishes.value= arrayListOf()
                         }
                          data.map{
                                 dishesArrayList.add(it)
