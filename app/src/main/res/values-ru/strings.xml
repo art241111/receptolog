@@ -15,8 +15,8 @@
     <string name="no_recipes_with_this_ingredient_were_found">Рецептов с таким ингредиентом не найдено</string>
 
     <string-array name="typeSearch">
-        <item>Каждый ингредиент должен присутствовать</item>
         <item>Хотя бы один ингредиент присутствует</item>
+        <item>Каждый ингредиент должен присутствовать</item>
     </string-array>
 
 </resources>

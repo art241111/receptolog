@@ -17,7 +17,7 @@
     <string name="no_recipes_with_this_ingredient_were_found">No recipes with this ingredient were found</string>
 
     <string-array name="typeSearch">
-        <item>Each ingredient must be present</item>
         <item>At least one ingredient is present</item>
+        <item>Each ingredient must be present</item>
     </string-array>
 </resources>
