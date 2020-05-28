@@ -16,12 +16,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_dish"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
-            />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_dish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+                />
 
     </LinearLayout>
 </layout>

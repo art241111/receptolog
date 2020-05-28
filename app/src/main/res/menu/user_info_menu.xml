@@ -8,5 +8,8 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="@string/favorite_dishes" />
+
+
+
 </menu>
 

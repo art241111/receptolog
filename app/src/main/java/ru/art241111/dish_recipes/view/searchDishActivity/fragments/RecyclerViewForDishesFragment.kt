@@ -45,6 +45,8 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
+
+
         return binding.root
     }
 

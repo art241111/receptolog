@@ -32,6 +32,8 @@ class SearchDishFragment : Fragment() {
         binding.viewModel = viewModel
         binding.executePendingBindings()
 
+
+
         return binding.root
     }
 }
