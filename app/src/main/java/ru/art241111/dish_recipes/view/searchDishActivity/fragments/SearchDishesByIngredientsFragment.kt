@@ -39,21 +39,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
         // Ingredients recovery after app death.
         recoveryIngredients()
 
-        // TODO: Fix bug with rotate
-//        binding.sSearchParams.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-////                // Set position of search type
-////                viewModel.setSpinnerPosition(pos)
-////
-////                // Load new data
-////                viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<out Adapter>?) {
-//
-//            }
-//        }
-
         return binding.root
     }
 

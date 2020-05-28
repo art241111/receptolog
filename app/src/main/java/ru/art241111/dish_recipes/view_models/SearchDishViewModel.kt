@@ -3,6 +3,9 @@ package ru.art241111.dish_recipes.view_models
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import android.view.View
+import android.widget.Adapter
+import android.widget.AdapterView
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -50,6 +53,7 @@ class SearchDishViewModel(application: Application)
 
     // spinner position
     private var spinnerPosition = 0
+
     fun setSpinnerPosition(position: Int){
         spinnerPosition = position
     }
