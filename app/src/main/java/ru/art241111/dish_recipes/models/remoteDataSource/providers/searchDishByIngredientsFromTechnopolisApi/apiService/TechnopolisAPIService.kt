@@ -51,6 +51,20 @@ interface TechnopolisAPIService {
             : Observable<ResultTechnopolisAPI>
 
     /**
+     * Method for selecting dishes by name
+     * @param name - dishes name
+     * @param startPosition (from) - the position from which we want to make a request (multiple of 10)
+     * @param countOfIngredients (count) - count
+     * @return JSON object based on Result
+     */
+    @GET("/recipes-by-name?")
+    fun getDishesByName(
+            @Query("name") name: String,
+            @Query("from") startPosition: String,
+            @Query("count") countOfIngredients: String)
+            : Observable<ResultTechnopolisAPI>
+
+    /**
      * Companion object to create the TechnopolisAPIService
      */
     companion object Factory {
