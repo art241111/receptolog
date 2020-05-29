@@ -52,11 +52,8 @@ class SearchDishViewModel(application: Application)
     private var startPosition = 0
 
     // spinner position
-    private var spinnerPosition = 0
+    var spinnerPosition = 0
 
-    fun setSpinnerPosition(position: Int){
-        spinnerPosition = position
-    }
     /**
      * Load new data, when data on screen end
      */
