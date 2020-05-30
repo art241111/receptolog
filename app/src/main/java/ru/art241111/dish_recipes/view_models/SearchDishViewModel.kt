@@ -3,9 +3,6 @@ package ru.art241111.dish_recipes.view_models
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import android.view.View
-import android.widget.Adapter
-import android.widget.AdapterView
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -32,7 +29,7 @@ class SearchDishViewModel(application: Application)
 
     // Array of dishes.
     val dishes = MutableLiveData<ArrayList<FullDish>>()
-    var dishesArrayList = ArrayList<FullDish>()
+    private var dishesArrayList = ArrayList<FullDish>()
 
     // Array of ingredients.
     val ingredients = ArrayList<String>()
@@ -45,9 +42,6 @@ class SearchDishViewModel(application: Application)
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
 
-    // is application create firs
-    var isApplicationCreateFirst = true
-
     // start page to load data
     private var startPosition = 0
 
@@ -57,7 +51,7 @@ class SearchDishViewModel(application: Application)
     /**
      * Load new data, when data on screen end
      */
-    fun loadDishesWhenOnScreenEnd(){
+    fun loadDishesWhenDataEnd(){
         if(netManager.isConnectedToInternet){
             if(areThereAnyOtherRecipes){
                 startPosition += 11
@@ -70,10 +64,17 @@ class SearchDishViewModel(application: Application)
         }
     }
 
+    fun loadDishesWhenScreenCreate(){
+        if(dishesArrayList.isEmpty()){
+            loadNewDishes()
+        } else{
+            dishes.value = dishesArrayList
+        }
+    }
     /**
      * Load new data, when user enter new ingredient
      */
-    fun loadDishesWhenUserAddNewIngredientOrStartApplication(){
+    fun loadNewDishes(){
         if(netManager.isConnectedToInternet){
             areThereAnyOtherRecipes = true
             startPosition = 0
@@ -116,10 +117,10 @@ class SearchDishViewModel(application: Application)
                             dishes.value= arrayListOf()
                         }
 
-                        dishesArrayList = data as ArrayList<FullDish>
-//                         data.map{
-//                                dishesArrayList.add(it)
-//                            }
+//                        dishesArrayList = data as ArrayList<FullDish>
+                         data.map{
+                                dishesArrayList.add(it)
+                            }
                         dishes.value = dishesArrayList
 
                         if(data.size < 10) areThereAnyOtherRecipes = false

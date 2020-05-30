@@ -45,8 +45,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
-
-
         return binding.root
     }
 
@@ -67,10 +65,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
                     it?.let{ dishesRecyclerViewAdapter.replaceData(it)}
                 })
 
-        if(viewModel.isApplicationCreateFirst){
-            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
-            viewModel.isApplicationCreateFirst = false
-        }
+        viewModel.loadDishesWhenScreenCreate()
     }
 
     /**
@@ -88,9 +83,8 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
      * This method works when the user reached the end of the recycler view.
      */
     override fun onDataEnd() {
-        viewModel.loadDishesWhenOnScreenEnd()
+        viewModel.loadDishesWhenDataEnd()
     }
-
 
     /**
      * If user click on favorite button on recycler view

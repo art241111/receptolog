@@ -44,6 +44,13 @@ class SearchDishesByIngredientsFragment : Fragment() {
         // Ingredients recovery after app death.
         recoveryIngredients()
 
+        // Add item click listener on spinner
+        customizationSpinner()
+
+        return binding.root
+    }
+
+    private fun customizationSpinner() {
         binding.sSearchParams.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -52,11 +59,10 @@ class SearchDishesByIngredientsFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(viewModel.spinnerPosition != position){
                     viewModel.spinnerPosition = position
-                    viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+                    viewModel.loadNewDishes()
                 }
             }
         }
-        return binding.root
     }
 
     /**
@@ -78,7 +84,7 @@ class SearchDishesByIngredientsFragment : Fragment() {
            binding.etIngredients.text.clear()
 
            // Load new data
-           viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+           viewModel.loadNewDishes()
        } else{
            Toast.makeText(activity, R.string.enter_ingredients, Toast.LENGTH_LONG).show()
        }
@@ -138,7 +144,7 @@ class SearchDishesByIngredientsFragment : Fragment() {
         imageView.setOnClickListener {
             binding.flListIngredients.removeView(ingredient)
             viewModel.deleteIngredient(ingredientName)
-            viewModel.loadDishesWhenUserAddNewIngredientOrStartApplication()
+            viewModel.loadNewDishes()
         }
     }
 
