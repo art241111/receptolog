@@ -115,9 +115,11 @@ class SearchDishViewModel(application: Application)
                             setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
                             dishes.value= arrayListOf()
                         }
-                         data.map{
-                                dishesArrayList.add(it)
-                            }
+
+                        dishesArrayList = data as ArrayList<FullDish>
+//                         data.map{
+//                                dishesArrayList.add(it)
+//                            }
                         dishes.value = dishesArrayList
 
                         if(data.size < 10) areThereAnyOtherRecipes = false
@@ -129,19 +131,12 @@ class SearchDishViewModel(application: Application)
                 })
     }
 
-    override fun updateFavoriteAtAllArray() {
-        dishesArrayList.map { updateFavoriteAtOneDish(it) }
-        dishes.value = dishesArrayList
-
-    }
-
     override fun updateFavoriteAtOneDish(dish: FullDish) {
-        dishesArrayList.forEach{
+        dishes.value?.forEach{
             if(it == dish){
                 it.isFavorite = dish.isFavorite
             }
         }
-        dishes.value = dishesArrayList
     }
 
     /**
@@ -166,5 +161,12 @@ class SearchDishViewModel(application: Application)
      */
     fun deleteIngredient(ingredient: String) {
         ingredients.remove(ingredient)
+    }
+
+    /**
+     * load dishes from repositories.
+     */
+    fun loadFavoriteDishes() {
+        dishes.value = dishRepository.getAllFavoriteDishes() as ArrayList<FullDish>
     }
 }

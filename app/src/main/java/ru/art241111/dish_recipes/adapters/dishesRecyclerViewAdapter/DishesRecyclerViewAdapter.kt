@@ -32,7 +32,6 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     /**
      * Create items.
      */
-    private lateinit var bindingRe:RecyclerViewItemBinding
     class ViewHolder(private var binding: RecyclerViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dish: FullDish, listener: OnItemClickListener?, favoriteButtonListener:onClickFavoriteButton?) {
