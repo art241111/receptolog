@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.DishesRecyclerViewAdapter
-import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnDataEnd
-import ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter.OnItemClickListener
+import ru.art241111.dish_recipes.adapters.protocols.OnDataEnd
+import ru.art241111.dish_recipes.adapters.protocols.OnItemClickListener
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForFavoriteDishesBinding
 import ru.art241111.dish_recipes.models.DishRepository
