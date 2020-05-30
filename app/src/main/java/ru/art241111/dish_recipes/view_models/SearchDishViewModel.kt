@@ -138,6 +138,11 @@ class SearchDishViewModel(application: Application)
                 it.isFavorite = dish.isFavorite
             }
         }
+        dishesArrayList.forEach(){
+            if(it == dish){
+                it.isFavorite = dish.isFavorite
+            }
+        }
     }
 
     /**

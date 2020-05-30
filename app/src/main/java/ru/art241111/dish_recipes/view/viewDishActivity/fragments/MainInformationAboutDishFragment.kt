@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentMainInformationAboutDishBinding
 import ru.art241111.dish_recipes.models.DishRepository
+import ru.art241111.dish_recipes.view.AppActivity
+import ru.art241111.dish_recipes.view_models.SearchDishViewModel
+import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 
 /**
  * The fragment initialization parameters:
@@ -54,6 +58,9 @@ class MainInformationFragment : Fragment() {
 
     private fun setClickListenerOnFavoriteButton(binding: FragmentMainInformationAboutDishBinding) {
         binding.ivFavoriteMain.setOnClickListener {
+            val viewModelWithLiveData
+                    = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
+
             dish.isFavorite = !dish.isFavorite
             binding.invalidateAll()
             if(dish.isFavorite){
@@ -61,6 +68,7 @@ class MainInformationFragment : Fragment() {
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
+            (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)
         }
     }
 
