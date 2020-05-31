@@ -39,7 +39,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recycler_view_for_dishes, container, false)
 
-        binding.viewModel = viewModel
         binding.executePendingBindings()
 
         // Customization RecycleView: set layoutManager, adapter, data.

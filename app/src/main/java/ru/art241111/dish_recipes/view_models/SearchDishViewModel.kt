@@ -56,6 +56,8 @@ class SearchDishViewModel(application: Application)
             if(areThereAnyOtherRecipes){
                 startPosition += 11
 
+                isLoading.set(true)
+
                 loadDishes()
                 setWarningText("")
             }

@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.SearchDishesByIngredientsFragment"/>
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fr_rv_dishes"
             android:layout_width="match_parent"

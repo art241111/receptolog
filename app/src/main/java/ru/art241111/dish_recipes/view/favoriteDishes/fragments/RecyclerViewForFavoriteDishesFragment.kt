@@ -40,7 +40,6 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recycler_view_for_dishes, container, false)
 
-        binding.viewModel = viewModel
         binding.executePendingBindings()
 
         // Customization RecycleView: set layoutManager, adapter, data.
@@ -63,7 +62,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         binding.rvDish.adapter = dishesRecyclerViewAdapter
         viewModel.dishes.observe(activity as AppActivity,
                 Observer{
-                    it?.let{ dishesRecyclerViewAdapter.replaceData(it as ArrayList<FullDish>)}
+                    it?.let{ dishesRecyclerViewAdapter.replaceData(it)}
                 })
 
         viewModel.loadFavoriteDishes()
