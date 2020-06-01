@@ -6,7 +6,7 @@
     app:startDestination="@id/searchDishFragment">
     <fragment
         android:id="@+id/searchDishFragment"
-        android:name="ru.art241111.dish_recipes.view.searchDishActivity.SearchDishFragment"
+        android:name="ru.art241111.dish_recipes.view.screenSearchDish.SearchDishFragment"
         android:label="@string/app_name">
         <action
             android:id="@+id/action_searchDishFragment_to_viewDishActivity"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewDishActivity"
-        android:name="ru.art241111.dish_recipes.view.viewDishActivity.ViewDishActivity"
+        android:name="ru.art241111.dish_recipes.view.screenViewDish.ViewDishActivity"
         android:label="@string/fragment_dishes">
         <argument
             android:name="FullDish"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteDishesFragment"
-        android:name="ru.art241111.dish_recipes.view.favoriteDishes.FavoriteDishesFragment"
+        android:name="ru.art241111.dish_recipes.view.screenFavoriteDishes.FavoriteDishesFragment"
         android:label="@string/fragment_favorite"
         tools:layout="@layout/favorite_dishes_fragment" />
 </navigation>

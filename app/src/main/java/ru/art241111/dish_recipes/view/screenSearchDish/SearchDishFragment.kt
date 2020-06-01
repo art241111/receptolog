@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.searchDishActivity
+package ru.art241111.dish_recipes.view.screenSearchDish
 
 
 import android.os.Bundle

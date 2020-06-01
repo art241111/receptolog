@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.favoriteDishes.fragments
+package ru.art241111.dish_recipes.view.screenSearchDish.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,16 +21,15 @@ import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.view.protocols.onClickFavoriteButton
 import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
-import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
 
 /**
  * Fragment show dishes in recyclerView
  *
  * A simple [Fragment] subclass.
- * Use the [RecyclerViewForFavoriteDishesFragment.newInstance] factory method to
+ * Use the [RecyclerViewForDishesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, OnDataEnd, onClickFavoriteButton {
+class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd, onClickFavoriteButton {
     private lateinit var binding: FragmentRecyclerViewForDishesBinding
     private lateinit var viewModel:SearchDishViewModel
 
@@ -45,7 +44,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
-        viewModel.loadFavoriteDishes()
+        viewModel.loadDishesWhenScreenCreate()
 
         return binding.root
     }
@@ -80,13 +79,17 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
     }
 
     /**
+     * This method works when the user reached the end of the recycler view.
+     */
+    override fun onDataEnd() {
+        viewModel.loadDishesWhenDataEnd()
+    }
+
+    /**
      * If user click on favorite button on recycler view
      * @param position - position of element
      */
     override fun onClickFavoriteButton(position: Int) {
-        val viewModelWithLiveData
-                = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
-
         val dish: FullDish? = viewModel.dishes.value?.elementAt(position)
 
         if (dish != null) {
@@ -96,11 +99,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
-            (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)
         }
-    }
-
-    override fun onDataEnd() {
     }
 
     companion object {
@@ -111,8 +110,6 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
          * @return A new instance of fragment RecyclerViewForDishesFragment.
          */
         @JvmStatic
-        fun newInstance() = RecyclerViewForFavoriteDishesFragment()
+        fun newInstance() = RecyclerViewForDishesFragment()
     }
-
-
 }

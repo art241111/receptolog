@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.viewDishActivity
+package ru.art241111.dish_recipes.view.screenViewDish
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.FragmentViewDishBinding
 import ru.art241111.dish_recipes.view.AppActivity
-import ru.art241111.dish_recipes.view.viewDishActivity.fragments.IngredientsAndRecipeInfoFragment
-import ru.art241111.dish_recipes.view.viewDishActivity.fragments.MainInformationFragment
+import ru.art241111.dish_recipes.view.screenViewDish.fragments.IngredientsAndRecipeInfoFragment
+import ru.art241111.dish_recipes.view.screenViewDish.fragments.MainInformationFragment
 
 /**
  * The fragment initialization parameters:

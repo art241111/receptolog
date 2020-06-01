@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.favoriteDishes
+package ru.art241111.dish_recipes.view.screenFavoriteDishes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.databinding.FavoriteDishesFragmentBinding
-import ru.art241111.dish_recipes.view.AppActivity
-import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 class FavoriteDishesFragment : Fragment() {
     /**

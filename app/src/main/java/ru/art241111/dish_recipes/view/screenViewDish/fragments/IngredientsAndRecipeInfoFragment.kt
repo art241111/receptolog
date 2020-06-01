@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.viewDishActivity.fragments
+package ru.art241111.dish_recipes.view.screenViewDish.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

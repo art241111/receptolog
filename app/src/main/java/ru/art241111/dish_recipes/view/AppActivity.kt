@@ -4,21 +4,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavController
 
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_app.*
 import ru.art241111.dish_recipes.R
-import ru.art241111.dish_recipes.view.favoriteDishes.FavoriteDishesFragment
 
 
 class AppActivity: AppCompatActivity() {

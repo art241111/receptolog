@@ -1,4 +1,4 @@
-package ru.art241111.dish_recipes.view.searchDishActivity.fragments
+package ru.art241111.dish_recipes.view.screenSearchDish.fragments
 
 import android.os.Bundle
 import android.view.KeyEvent
