@@ -123,7 +123,6 @@ class SearchDishesByIngredientsFragment : Fragment() {
         val ingredient = layoutInflater.inflate(R.layout.ingredient,
                                                        binding.llParent,
                                           false)
-
         // Customization ingredients view.
         fillingInDataToIngredientView(ingredient, ingredientName)
 

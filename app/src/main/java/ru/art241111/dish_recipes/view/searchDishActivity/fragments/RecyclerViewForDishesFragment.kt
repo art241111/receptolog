@@ -44,6 +44,8 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
+        viewModel.loadDishesWhenScreenCreate()
+
         return binding.root
     }
 
@@ -63,8 +65,6 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
                 Observer{
                     it?.let{ dishesRecyclerViewAdapter.replaceData(it.toList())}
                 })
-
-        viewModel.loadDishesWhenScreenCreate()
     }
 
     /**
