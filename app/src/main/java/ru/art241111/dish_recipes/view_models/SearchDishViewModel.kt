@@ -14,7 +14,7 @@ import ru.art241111.dish_recipes.R
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.DishRepository
-import ru.art241111.dish_recipes.view_models.protocols.UpdateFavorite
+import ru.art241111.dish_recipes.view_models.protocols.*
 import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
 
 /**
@@ -22,7 +22,10 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
  * @author Artem Geraimov.
  */
 class SearchDishViewModel(application: Application)
-                             : AndroidViewModel(application), UpdateFavorite {
+                             : AndroidViewModel(application),
+                               UpdateFavorite, AddIngredient,
+                               DeleteIngredient, LoadDishesFromRemoteRepository,
+                               LoadFavoriteDishes {
     // Array of dishes.
     val dishes = MutableLiveData<Set<FullDish>>()
     private var localDishCollection: MutableSet<FullDish> = mutableSetOf()
@@ -69,21 +72,21 @@ class SearchDishViewModel(application: Application)
     /**
      * Add ingredient to ingredients array.
      */
-    fun addIngredient(ingredient: String) {
+    override fun addIngredient(ingredient: String) {
         ingredients.add(ingredient)
     }
 
     /**
      * Remove ingredient to ingredients array.
      */
-    fun deleteIngredient(ingredient: String) {
+    override fun deleteIngredient(ingredient: String) {
         ingredients.remove(ingredient)
     }
 
     /**
      * load dishes from repositories.
      */
-    fun loadFavoriteDishes() {
+    override fun loadFavoriteDishes() {
         dishes.value = dishRepository.getAllFavoriteDishes().toSet()
     }
 
@@ -92,7 +95,7 @@ class SearchDishViewModel(application: Application)
      * If the screen loads for the first time, we request data.
      * If the data is already there, then we load the old ones.
      */
-    fun loadDishesWhenScreenCreate(){
+    override fun loadDishesWhenScreenCreate(){
         if(localDishCollection.isEmpty()){
             loadNewDishes()
         } else{
@@ -103,7 +106,7 @@ class SearchDishViewModel(application: Application)
     /**
      * Load new data, when data on screen end
      */
-    fun loadDishesWhenDataEnd(){
+    override fun loadDishesWhenDataEnd(){
         if(netManager.isConnectedToInternet){
             if(areThereAnyOtherRecipes){
                 startPosition += 11
@@ -117,7 +120,7 @@ class SearchDishViewModel(application: Application)
     /**
      * Load new data, when user enter new ingredient
      */
-    fun loadNewDishes(){
+    override fun loadNewDishes(){
         if(netManager.isConnectedToInternet){
             areThereAnyOtherRecipes = true
             startPosition = 0
