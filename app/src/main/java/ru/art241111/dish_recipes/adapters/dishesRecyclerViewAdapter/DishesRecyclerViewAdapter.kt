@@ -3,11 +3,11 @@ package ru.art241111.dish_recipes.adapters.dishesRecyclerViewAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.art241111.dish_recipes.adapters.protocols.OnDataEnd
-import ru.art241111.dish_recipes.adapters.protocols.OnItemClickListener
+import ru.art241111.dish_recipes.view.sharedFragments.protocols.OnDataEnd
+import ru.art241111.dish_recipes.view.sharedFragments.protocols.OnItemClickListener
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
-import ru.art241111.dish_recipes.view.protocols.onClickFavoriteButton
+import ru.art241111.dish_recipes.view.sharedFragments.protocols.onClickFavoriteButton
 
 /**
  * RecyclerView adapter.

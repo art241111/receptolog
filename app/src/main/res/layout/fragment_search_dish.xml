@@ -17,17 +17,18 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:orientation="vertical">
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fr_search_dish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.SearchDishesByIngredientsFragment"/>
+            android:name="ru.art241111.dish_recipes.view.screenSearchDish.fragments.SearchDishesByIngredientsFragment"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fr_rv_dishes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="ru.art241111.dish_recipes.view.searchDishActivity.fragments.RecyclerViewForDishesFragment"/>
+            android:name="ru.art241111.dish_recipes.view.screenSearchDish.fragments.RecyclerViewForDishesFragment"/>
 
         <ProgressBar
             android:id="@+id/loading"
