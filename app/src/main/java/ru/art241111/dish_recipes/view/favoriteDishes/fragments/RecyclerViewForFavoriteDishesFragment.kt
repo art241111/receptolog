@@ -45,6 +45,8 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
+        viewModel.loadFavoriteDishes()
+
         return binding.root
     }
 
@@ -64,8 +66,6 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
                 Observer{
                     it?.let{ dishesRecyclerViewAdapter.replaceData(it.toList())}
                 })
-
-        viewModel.loadFavoriteDishes()
     }
 
     /**

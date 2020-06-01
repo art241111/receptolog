@@ -13,18 +13,12 @@ import ru.art241111.dish_recipes.view.AppActivity
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
 class FavoriteDishesFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = FavoriteDishesFragment()
-    }
-
-    private lateinit var viewModel: SearchDishViewModel
-    private lateinit var binding: FavoriteDishesFragmentBinding
-
+    /**
+     * Start point of favorite fragment
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater,
+        val binding: FavoriteDishesFragmentBinding = DataBindingUtil.inflate(inflater,
                 R.layout.favorite_dishes_fragment, container, false)
 
         binding.executePendingBindings()
