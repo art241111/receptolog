@@ -11,8 +11,11 @@
     <string name="recipes">Рецепт</string>
     <string name="dish_image_loading">Изображение блюда загружается</string>
     <string name="favorite_dishes">Любимые рецепты</string>
+
+    <!--Errors-->
     <string name="no_internet_connection">Проверьте подключение к интернету</string>
     <string name="no_recipes_with_this_ingredient_were_found">Рецептов с таким ингредиентом не найдено</string>
+    <string name="error_with_read_data">Непредвиденная ошибка. Перезагрузите приложение.</string>
 
     <string-array name="typeSearch">
         <item>Хотя бы один ингредиент присутствует</item>

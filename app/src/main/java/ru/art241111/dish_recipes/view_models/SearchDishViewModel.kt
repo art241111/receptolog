@@ -23,13 +23,9 @@ import ru.art241111.kotlinmvvm.extensionFunctions.plusAssign
  */
 class SearchDishViewModel(application: Application)
                              : AndroidViewModel(application), UpdateFavorite {
-    // Data repository.
-    private val netManager = NetManager(getApplication())
-    private val dishRepository: DishRepository = DishRepository(netManager)
-
     // Array of dishes.
     val dishes = MutableLiveData<Set<FullDish>>()
-    private var dishesArrayList: MutableSet<FullDish> = mutableSetOf()
+    private var localDishCollection: MutableSet<FullDish> = mutableSetOf()
 
     // Array of ingredients.
     val ingredients = ArrayList<String>()
@@ -39,123 +35,25 @@ class SearchDishViewModel(application: Application)
     val warningText = ObservableField("")
     var areThereAnyOtherRecipes = true
 
+    // spinner position
+    var spinnerPosition = 0
+
+    // Data repository.
+    private val netManager = NetManager(getApplication())
+    private val dishRepository: DishRepository = DishRepository(netManager)
+
     // TODO: Read about Disposable
     private val compositeDisposable = CompositeDisposable()
 
     // start page to load data
     private var startPosition = 0
 
-    // spinner position
-    var spinnerPosition = 0
-
     /**
-     * Load new data, when data on screen end
+     * Update favorite status in collections
      */
-    fun loadDishesWhenDataEnd(){
-        if(netManager.isConnectedToInternet){
-            if(areThereAnyOtherRecipes){
-                startPosition += 11
-
-                isLoading.set(true)
-
-                loadDishes()
-                setWarningText("")
-            }
-        } else{
-            setWarningText(R.string.no_internet_connection)
-        }
-    }
-
-    fun loadDishesWhenScreenCreate(){
-        if(dishesArrayList.isEmpty()){
-            loadNewDishes()
-        } else{
-            dishes.value = dishesArrayList
-        }
-    }
-    /**
-     * Load new data, when user enter new ingredient
-     */
-    fun loadNewDishes(){
-        if(netManager.isConnectedToInternet){
-            areThereAnyOtherRecipes = true
-            startPosition = 0
-            isLoading.set(true)
-            this.dishesArrayList = createEmptyCollection()
-
-            loadDishes()
-            setWarningText("")
-        } else{
-            setWarningText(R.string.no_internet_connection)
-            dishes.value = createEmptyCollection()
-        }
-    }
-
-    /**
-     * Set warning text from recourse
-     */
-    private fun setWarningText(warning: Int){
-        val context: Context = getApplication()
-        warningText.set(context.getString(warning))
-    }
-
-    /**
-     * Set warning text from string
-     */
-    private fun setWarningText(warning: String){
-        warningText.set(warning)
-    }
-
-    /**
-     * Create empty collection
-     */
-    private fun createEmptyCollection(): MutableSet<FullDish>{
-        return mutableSetOf()
-    }
-
-    /**
-     * load dishes from repositories.
-     */
-    private fun loadDishes() {
-        compositeDisposable += dishRepository
-                .getDishes(ingredients, startPosition.toString(), spinnerPosition)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<FullDish>>() {
-                    override fun onError(e: Throwable) {
-                        Log.e("SearchDishViewModel.kt",
-                                "Error with reading data + ${e.message}")
-                    }
-
-                    override fun onNext(data: List<FullDish>) {
-                        if(data.isEmpty()) {
-                            setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
-                            dishes.value= createEmptyCollection()
-                        }
-
-                        dishesArrayList.addAll(data)
-                        dishes.value = dishesArrayList
-
-                        if(data.size < 10) areThereAnyOtherRecipes = false
-                    }
-
-                    override fun onComplete() {
-                        isLoading.set(false)
-                    }
-                })
-    }
-
     override fun updateFavoriteAtOneDish(dish: FullDish) {
-        dishes.value?.forEach{
-            if(it == dish){
-                it.isFavorite = dish.isFavorite
-            }
-        }
-        dishesArrayList.forEach(){
-            if(it == dish){
-                it.isFavorite = dish.isFavorite
-            }
-        }
+        replaceFavoriteStatusInCollection(dishes.value?.toMutableSet(), dish)
+        replaceFavoriteStatusInCollection(localDishCollection, dish)
     }
 
     /**
@@ -187,5 +85,116 @@ class SearchDishViewModel(application: Application)
      */
     fun loadFavoriteDishes() {
         dishes.value = dishRepository.getAllFavoriteDishes().toSet()
+    }
+
+    /**
+     * Load dishes when screen create.
+     * If the screen loads for the first time, we request data.
+     * If the data is already there, then we load the old ones.
+     */
+    fun loadDishesWhenScreenCreate(){
+        if(localDishCollection.isEmpty()){
+            loadNewDishes()
+        } else{
+            dishes.value = localDishCollection
+        }
+    }
+
+    /**
+     * Load new data, when data on screen end
+     */
+    fun loadDishesWhenDataEnd(){
+        if(netManager.isConnectedToInternet){
+            if(areThereAnyOtherRecipes){
+                startPosition += 11
+                loadDishes()
+            }
+        } else{
+            setWarningText(R.string.no_internet_connection)
+        }
+    }
+
+    /**
+     * Load new data, when user enter new ingredient
+     */
+    fun loadNewDishes(){
+        if(netManager.isConnectedToInternet){
+            areThereAnyOtherRecipes = true
+            startPosition = 0
+            localDishCollection = createEmptyCollection()
+
+            loadDishes()
+        } else{
+            setWarningText(R.string.no_internet_connection)
+            dishes.value = createEmptyCollection()
+        }
+    }
+
+    /**
+     * load dishes from repositories.
+     */
+    private fun loadDishes() {
+        setEmptyWarningText()
+        isLoading.set(true)
+
+        compositeDisposable += dishRepository
+                .getDishes(ingredients, startPosition.toString(), spinnerPosition)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<FullDish>>() {
+                    override fun onError(e: Throwable) {
+                        Log.e("SearchDishViewModel.kt",
+                                "Error with reading data + ${e.message}")
+                        setWarningText(R.string.error_with_read_data)
+                    }
+
+                    override fun onNext(data: List<FullDish>) {
+                        if(data.isEmpty()) {
+                            setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
+                        }
+                        localDishCollection.addAll(data)
+                        dishes.value = localDishCollection
+
+                        if(data.size < 10) areThereAnyOtherRecipes = false
+                    }
+
+                    override fun onComplete() {
+                        isLoading.set(false)
+                    }
+                })
+    }
+
+    /**
+     * Set warning text from recourse
+     */
+    private fun setWarningText(warning: Int){
+        val context: Context = getApplication()
+        warningText.set(context.getString(warning))
+    }
+
+    /**
+     * Set warning text from string
+     */
+    private fun setEmptyWarningText(){
+        warningText.set("")
+    }
+
+    /**
+     * Create empty collection
+     */
+    private fun createEmptyCollection(): MutableSet<FullDish>{
+        return mutableSetOf()
+    }
+
+    /**
+     * Change favorite status in collection
+     */
+    private fun replaceFavoriteStatusInCollection(set: MutableSet<FullDish>?, dish: FullDish){
+        set?.forEach{
+            if(it == dish){
+                it.isFavorite = dish.isFavorite
+                return@forEach
+            }
+        }
     }
 }

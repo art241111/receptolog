@@ -13,8 +13,11 @@
     <string name="delete_view" translatable="false">X</string>
     <string name="favorite_dishes">Favorite dishes</string>
     <string name="add_favorite" translatable="false">Add favorite</string>
+
+    <!--Errors -->
     <string name="no_internet_connection">Check your Internet connection</string>
     <string name="no_recipes_with_this_ingredient_were_found">No recipes with this ingredient were found</string>
+    <string name="error_with_read_data">Unexpected error. Restart the app.</string>
 
     <string-array name="typeSearch">
         <item>At least one ingredient is present</item>
