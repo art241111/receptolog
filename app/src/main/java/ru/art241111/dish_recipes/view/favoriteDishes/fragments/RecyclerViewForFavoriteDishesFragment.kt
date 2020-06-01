@@ -62,7 +62,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         binding.rvDish.adapter = dishesRecyclerViewAdapter
         viewModel.dishes.observe(activity as AppActivity,
                 Observer{
-                    it?.let{ dishesRecyclerViewAdapter.replaceData(it)}
+                    it?.let{ dishesRecyclerViewAdapter.replaceData(it.toList())}
                 })
 
         viewModel.loadFavoriteDishes()
@@ -73,7 +73,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
      * @param position - the position of the item on which the user clicked.
      */
     override fun onItemClick(position: Int) {
-        val dish: FullDish? = viewModel.dishes.value?.get(position)
+        val dish: FullDish? = viewModel.dishes.value?.elementAt(position)
         val bundle = bundleOf("selected_dish" to dish)
 
         findNavController().navigate(R.id.viewDishActivity, bundle)
@@ -87,7 +87,7 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         val viewModelWithLiveData
                 = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
 
-        val dish: FullDish? = viewModel.dishes.value?.get(position)
+        val dish: FullDish? = viewModel.dishes.value?.elementAt(position)
 
         if (dish != null) {
             dish.isFavorite = !dish.isFavorite

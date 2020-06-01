@@ -13,7 +13,7 @@ import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
  * RecyclerView adapter.
  * @author Artem Geraimov.
  */
-class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
+class DishesRecyclerViewAdapter(private var items: List<FullDish>,
                                 private var itemListener: OnItemClickListener,
                                 private var favoriteButtonListener: onClickFavoriteButton,
                                 private var end: OnDataEnd)
@@ -62,7 +62,7 @@ class DishesRecyclerViewAdapter(private var items: ArrayList<FullDish>,
     /**
      * Data refresh.
      */
-    fun replaceData(arrayList: ArrayList<FullDish>) {
+    fun replaceData(arrayList: List<FullDish>) {
         items = arrayList
         notifyDataSetChanged()
     }

@@ -28,8 +28,8 @@ class SearchDishViewModel(application: Application)
     private val dishRepository: DishRepository = DishRepository(netManager)
 
     // Array of dishes.
-    val dishes = MutableLiveData<ArrayList<FullDish>>()
-    private var dishesArrayList = ArrayList<FullDish>()
+    val dishes = MutableLiveData<Set<FullDish>>()
+    private var dishesArrayList: MutableSet<FullDish> = mutableSetOf()
 
     // Array of ingredients.
     val ingredients = ArrayList<String>()
@@ -81,24 +81,38 @@ class SearchDishViewModel(application: Application)
             areThereAnyOtherRecipes = true
             startPosition = 0
             isLoading.set(true)
-            this.dishesArrayList = ArrayList()
+            this.dishesArrayList = createEmptyCollection()
 
             loadDishes()
             setWarningText("")
         } else{
             setWarningText(R.string.no_internet_connection)
-            dishes.value = arrayListOf()
+            dishes.value = createEmptyCollection()
         }
     }
 
+    /**
+     * Set warning text from recourse
+     */
     private fun setWarningText(warning: Int){
         val context: Context = getApplication()
         warningText.set(context.getString(warning))
     }
 
+    /**
+     * Set warning text from string
+     */
     private fun setWarningText(warning: String){
         warningText.set(warning)
     }
+
+    /**
+     * Create empty collection
+     */
+    private fun createEmptyCollection(): MutableSet<FullDish>{
+        return mutableSetOf()
+    }
+
     /**
      * load dishes from repositories.
      */
@@ -116,13 +130,10 @@ class SearchDishViewModel(application: Application)
                     override fun onNext(data: List<FullDish>) {
                         if(data.isEmpty()) {
                             setWarningText(R.string.no_recipes_with_this_ingredient_were_found)
-                            dishes.value= arrayListOf()
+                            dishes.value= createEmptyCollection()
                         }
 
-//                        dishesArrayList = data as ArrayList<FullDish>
-                         data.map{
-                                dishesArrayList.add(it)
-                            }
+                        dishesArrayList.addAll(data)
                         dishes.value = dishesArrayList
 
                         if(data.size < 10) areThereAnyOtherRecipes = false
@@ -175,6 +186,6 @@ class SearchDishViewModel(application: Application)
      * load dishes from repositories.
      */
     fun loadFavoriteDishes() {
-        dishes.value = dishRepository.getAllFavoriteDishes() as ArrayList<FullDish>
+        dishes.value = dishRepository.getAllFavoriteDishes().toSet()
     }
 }
