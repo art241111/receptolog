@@ -26,10 +26,18 @@ class AppActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
 
+        // Set toolbar
         setSupportActionBar(toolbar);
 
+        // Reference to the displayed fragment
+        // Here my_nav_host_fragment is an ID of the fragment tag in your
+        // content_main.xml with android:name="androidx.navigation.fragment.NavHostFragment"
         val host: NavHostFragment = supportFragmentManager
                 .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
+
+        // Get the navigation controller
+        // From documentation:
+        // NavController manages app navigation within a {@link NavHost}
         val navController = host.navController
 
 
@@ -38,11 +46,22 @@ class AppActivity: AppCompatActivity() {
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
+    /**
+     * Initialize the contents of the Activity's standard options menu
+     * This is only called once, the first time the options menu is displayed.
+     * @param menu - The options menu in which you place your items.
+     * @return You must return true for the menu to be displayed; if you return
+     * false it will not be shown.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.user_info_menu, menu);
         return true;
     }
 
+    /**
+     * Installing NavController on the Bottom menu
+     * @param navController - NavController associated with navigation
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         return item.onNavDestinationSelected(findNavController(R.id.my_nav_host_fragment))
                 || super.onOptionsItemSelected(item)
