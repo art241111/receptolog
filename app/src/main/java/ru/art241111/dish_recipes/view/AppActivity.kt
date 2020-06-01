@@ -60,7 +60,7 @@ class AppActivity: AppCompatActivity() {
 
     /**
      * Installing NavController on the Bottom menu
-     * @param navController - NavController associated with navigation
+     * @param item - NavController associated with navigation
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         return item.onNavDestinationSelected(findNavController(R.id.my_nav_host_fragment))
