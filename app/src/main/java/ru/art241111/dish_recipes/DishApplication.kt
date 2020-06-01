@@ -8,7 +8,9 @@ class DishApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DishApplication.prefHelper = PreferenceHelper(this)
+
+        // Creating access to SharedPreferences
+        prefHelper = PreferenceHelper(this)
     }
 
     companion object {
