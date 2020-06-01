@@ -5,10 +5,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +21,7 @@ import ru.art241111.dish_recipes.view_models.SearchDishViewModel
  * Use the [SearchDishesByIngredientsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@Suppress("CAST_NEVER_SUCCEEDS")
 class SearchDishesByIngredientsFragment : Fragment() {
     private lateinit var binding:FragmentSearchDishesByIngredientsBinding
     private lateinit var viewModel:SearchDishViewModel
@@ -50,6 +48,9 @@ class SearchDishesByIngredientsFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Set item selected listener. When user change type of search - do new request
+     */
     private fun customizationSpinner() {
         binding.sSearchParams.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -119,8 +120,9 @@ class SearchDishesByIngredientsFragment : Fragment() {
      * @param ingredientName - name of ingredient.
      */
     private fun addIngredientToFlowLayout(ingredientName: String) {
-        val inflater = layoutInflater
-        val ingredient = inflater.inflate(R.layout.ingredient, null)
+        val ingredient = layoutInflater.inflate(R.layout.ingredient,
+                                                       binding.llParent,
+                                          false)
 
         // Customization ingredients view.
         fillingInDataToIngredientView(ingredient, ingredientName)
