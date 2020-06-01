@@ -27,56 +27,47 @@ private const val ARG_SELECTED_DISH = "selected_dish"
  * @author Artem Geraimov.
  */
 class ViewDishActivity : Fragment() {
-    // binding with layout.
-    private lateinit var binding: FragmentViewDishBinding
-
     /**
      * Start activity and draw layout
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,
+        val binding: FragmentViewDishBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_view_dish, container, false)
 
-        binding.executePendingBindings()
-
-        // Loading dish data to layout.
-        var dish = FullDish()
-        arguments?.let {
-            dish = it.getParcelable(ARG_SELECTED_DISH)!!
-        }
+        // Loading dish data
+        val dish = loadDishFromArguments()
 
         // Set name of dish in toolbar
         (activity?.findViewById(R.id.toolbar) as Toolbar).title = dish.nameDish
 
         //Add fragment with main information about dishes
-        addMainInfoFragment(dish)
+        addFragment(MainInformationFragment.newInstance(dish))
 
         //Add fragment with information about ingredients and recipes
-        addIngredientsAndRecipeFragment(dish)
+        addFragment(IngredientsAndRecipeInfoFragment.newInstance(dish))
 
         return binding.root
     }
 
     /**
-     * Add fragment with main information about dishes:
-     * Image, name, description
-     * @param dish - data for uploading information about the dish
+     * Load data form arguments
      */
-    private fun addMainInfoFragment(dish: FullDish) {
-        (activity as AppActivity).supportFragmentManager
-                .beginTransaction()
-                .add(R.id.ll_main, MainInformationFragment.newInstance(dish))
-                .commit()
+    private fun loadDishFromArguments(): FullDish{
+        var dish = FullDish()
+        arguments?.let {
+            dish = it.getParcelable(ARG_SELECTED_DISH)!!
+        }
+        return dish
     }
 
     /**
-     * Add fragment with information about ingredients and recipes
-     * @param dish - data for uploading information about the dish
+     * Add fragment into view fragment:
      */
-    private fun addIngredientsAndRecipeFragment(dish: FullDish) =
-            (activity as AppActivity).supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.ll_main, IngredientsAndRecipeInfoFragment.newInstance(dish))
-                    .commit()
+    private fun addFragment(fragment: Fragment){
+        (activity as AppActivity).supportFragmentManager
+                .beginTransaction()
+                .add(R.id.ll_main, fragment)
+                .commit()
+    }
 }
