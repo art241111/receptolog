@@ -7,7 +7,7 @@ import ru.art241111.dish_recipes.adapters.protocols.OnDataEnd
 import ru.art241111.dish_recipes.adapters.protocols.OnItemClickListener
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.databinding.RecyclerViewItemBinding
-import ru.art241111.dish_recipes.protocols.onClickFavoriteButton
+import ru.art241111.dish_recipes.view.protocols.onClickFavoriteButton
 
 /**
  * RecyclerView adapter.
