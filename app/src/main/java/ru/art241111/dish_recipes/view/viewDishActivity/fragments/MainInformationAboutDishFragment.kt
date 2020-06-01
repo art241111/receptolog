@@ -56,19 +56,25 @@ class MainInformationFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Method work when user click on favorite button
+     */
     private fun setClickListenerOnFavoriteButton(binding: FragmentMainInformationAboutDishBinding) {
         binding.ivFavoriteMain.setOnClickListener {
             val viewModelWithLiveData
                     = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
 
+            // Change status
             dish.isFavorite = !dish.isFavorite
-            binding.invalidateAll()
             if(dish.isFavorite){
                 DishRepository(null).addFavoriteDishes(dish)
             } else {
                 DishRepository(null).removeFavoriteDishes(dish)
             }
+
+            // Data refresh
             (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)
+            binding.invalidateAll()
         }
     }
 
