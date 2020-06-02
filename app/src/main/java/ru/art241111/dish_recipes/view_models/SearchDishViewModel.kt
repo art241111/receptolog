@@ -149,6 +149,8 @@ class SearchDishViewModel(application: Application)
                         Log.e("SearchDishViewModel.kt",
                                 "Error with reading data + ${e.message}")
                         setWarningText(R.string.error_with_read_data)
+
+                        loadDishes()
                     }
 
                     override fun onNext(data: List<FullDish>) {
