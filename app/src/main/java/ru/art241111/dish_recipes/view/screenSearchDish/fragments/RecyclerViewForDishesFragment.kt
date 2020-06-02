@@ -93,12 +93,7 @@ class RecyclerViewForDishesFragment : Fragment(), OnItemClickListener, OnDataEnd
         val dish: FullDish? = viewModel.dishes.value?.elementAt(position)
 
         if (dish != null) {
-            dish.isFavorite = !dish.isFavorite
-            if(dish.isFavorite){
-                DishRepository(null).addFavoriteDishes(dish)
-            } else {
-                DishRepository(null).removeFavoriteDishes(dish)
-            }
+            DishRepository(null).changeFavoriteStatus(dish)
         }
     }
 

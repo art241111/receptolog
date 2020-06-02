@@ -7,17 +7,17 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.art241111.dish_recipes.DishApplication
 import ru.art241111.dish_recipes.data.FullDish
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.GetAllFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.IsDishFavorite
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.RemoveFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.SaveFavoriteDishes
 
 
 private const val APP_PREFERENCES = "preferences_favorite_dish"
 private const val APP_FAVORITE_DISH = "favorite_dish"
 
-class FavoriteDishes() : saveFavoriteDishes, getAllFavoriteDishes,
-                         removeFavoriteDishes, isDishFavorite {
+class FavoriteDishes() : SaveFavoriteDishes, GetAllFavoriteDishes,
+                         RemoveFavoriteDishes, IsDishFavorite {
 
     /**
      * Add dish to favorite list

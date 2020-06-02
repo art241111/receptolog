@@ -4,18 +4,16 @@ import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.managers.NetManager
 import ru.art241111.dish_recipes.models.localDataSource.DishLocalDataSource
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.*
 import ru.art241111.dish_recipes.models.remoteDataSource.DishRemoteDataSource
 
 /**
  * Repository for getting data.
  * @author Artem Geraimov.
  */
-class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, getAllFavoriteDishes,
-                                                           removeFavoriteDishes, isDishFavorite {
+class DishRepository(private val netManager: NetManager?): SaveFavoriteDishes, GetAllFavoriteDishes,
+                                                           RemoveFavoriteDishes, IsDishFavorite,
+                                                           ChangeFavoriteStatus {
     private val localDataSource = DishLocalDataSource()
     private val remoteDataSource = DishRemoteDataSource()
 
@@ -36,9 +34,21 @@ class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, g
     }
 
     /**
+     * Change favorite status of dishes.
+     * @param dish - The dish that needs to change its status.
+     */
+    override fun changeFavoriteStatus(dish: FullDish) {
+        dish.isFavorite = !dish.isFavorite
+        if(dish.isFavorite){
+            addFavoriteDishes(dish)
+        } else {
+            removeFavoriteDishes(dish)
+        }
+    }
+
+    /**
      * Save favorite dish to local repository.
      * @param dish - Dish, which the user added to favorite.
-     * @return Information about whether the data was saved or not.
      */
     override fun addFavoriteDishes(dish: FullDish) {
         localDataSource.addFavoriteDishes(dish)
@@ -59,6 +69,10 @@ class DishRepository(private val netManager: NetManager?): saveFavoriteDishes, g
     override fun getAllFavoriteDishes(): List<FullDish> =
                localDataSource.getAllFavoriteDishes()
 
+    /**
+     * Return dish favorite status.
+     * @return favorite status .
+     */
     override fun isDishFavorite(dish: FullDish): Boolean =
                 localDataSource.isDishFavorite(dish)
 }

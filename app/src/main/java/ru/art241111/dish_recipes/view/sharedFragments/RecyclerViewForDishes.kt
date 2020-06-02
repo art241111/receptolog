@@ -20,14 +20,25 @@ import ru.art241111.dish_recipes.databinding.FragmentRecyclerViewForDishesBindin
 import ru.art241111.dish_recipes.models.DishRepository
 import ru.art241111.dish_recipes.view.sharedFragments.protocols.onClickFavoriteButton
 import ru.art241111.dish_recipes.view.AppActivity
+import ru.art241111.dish_recipes.view.screenViewDish.fragments.IngredientsAndRecipeInfoFragment
+import ru.art241111.dish_recipes.view.sharedFragments.protocols.onLoadDishes
 import ru.art241111.dish_recipes.view_models.SearchDishViewModel
 
-class RecyclerViewForDishes: Fragment(), OnItemClickListener, OnDataEnd, onClickFavoriteButton {
+class RecyclerViewForDishes: Fragment(), OnItemClickListener, OnDataEnd, onClickFavoriteButton, onLoadDishes {
     private lateinit var binding: FragmentRecyclerViewForDishesBinding
     private lateinit var viewModel: SearchDishViewModel
 
+    private lateinit var onDataEnd: OnDataEnd
+    private lateinit var onClickFavoriteButton: onClickFavoriteButton
+    private lateinit var onLoadDishes: onLoadDishes
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        arguments?.let {
+//            onDataEnd = it.get
+//            dish = it.getParcelable(ARG_SELECTED_DISH)!!
+        }
+
         viewModel = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_recycler_view_for_dishes, container, false)
@@ -37,9 +48,13 @@ class RecyclerViewForDishes: Fragment(), OnItemClickListener, OnDataEnd, onClick
         // Customization RecycleView: set layoutManager, adapter, data.
         customizationRecycleView()
 
-        viewModel.loadDishesWhenScreenCreate()
+        loadDishes()
 
         return binding.root
+    }
+
+    override fun loadDishes() {
+        viewModel.loadDishesWhenScreenCreate()
     }
 
     /**
@@ -103,6 +118,15 @@ class RecyclerViewForDishes: Fragment(), OnItemClickListener, OnDataEnd, onClick
          * @return A new instance of fragment RecyclerViewForDishesFragment.
          */
         @JvmStatic
-        fun newInstance() = RecyclerViewForDishes()
+        fun newInstance(onDataEnd: OnDataEnd,
+                        onClickFavoriteButton: onClickFavoriteButton,
+                        onLoadDishes: onLoadDishes) =
+                    IngredientsAndRecipeInfoFragment().apply {
+                        arguments = Bundle().apply {
+//                            putParcelable("onLoadDishes",onLoadDishes)
+//                            putParcelable("onItemClickListener", onDataEnd)
+//                            putParcelable("onItemClickListener", onClickFavoriteButton)
+                        }
+                    }
     }
 }

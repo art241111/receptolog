@@ -65,12 +65,7 @@ class MainInformationFragment : Fragment() {
                     = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
 
             // Change status
-            dish.isFavorite = !dish.isFavorite
-            if(dish.isFavorite){
-                DishRepository(null).addFavoriteDishes(dish)
-            } else {
-                DishRepository(null).removeFavoriteDishes(dish)
-            }
+            DishRepository(null).changeFavoriteStatus(dish)
 
             // Data refresh
             (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)

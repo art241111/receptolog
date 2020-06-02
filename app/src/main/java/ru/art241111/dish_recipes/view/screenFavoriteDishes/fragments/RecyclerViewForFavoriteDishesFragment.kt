@@ -86,16 +86,10 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
     override fun onClickFavoriteButton(position: Int) {
         val viewModelWithLiveData
                 = ViewModelProviders.of(activity as AppActivity).get(SearchDishViewModel::class.java)
-
         val dish: FullDish? = viewModel.dishes.value?.elementAt(position)
 
         if (dish != null) {
-            dish.isFavorite = !dish.isFavorite
-            if(dish.isFavorite){
-                DishRepository(null).addFavoriteDishes(dish)
-            } else {
-                DishRepository(null).removeFavoriteDishes(dish)
-            }
+            DishRepository(null).changeFavoriteStatus(dish)
             (viewModelWithLiveData as UpdateFavorite).updateFavoriteAtOneDish(dish)
         }
     }

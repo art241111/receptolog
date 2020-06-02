@@ -3,18 +3,16 @@ package ru.art241111.dish_recipes.models.localDataSource
 import io.reactivex.Observable
 import ru.art241111.dish_recipes.data.FullDish
 import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.FavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.getAllFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.isDishFavorite
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.removeFavoriteDishes
-import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.saveFavoriteDishes
+import ru.art241111.dish_recipes.models.localDataSource.favoriteDishes.protocols.*
+
 //import ru.art241111.dish_recipes.models.API.getDishes.getDishes
 
 /**
  * Repository for getting and saving local data.
  * @author Artem Geraimov.
  */
-class DishLocalDataSource: saveFavoriteDishes, getAllFavoriteDishes,
-                           removeFavoriteDishes, isDishFavorite {
+class DishLocalDataSource: SaveFavoriteDishes, GetAllFavoriteDishes,
+                           RemoveFavoriteDishes, IsDishFavorite {
     /**
      * Take data from local repository.
      * @return data from local repository.
