@@ -20,7 +20,7 @@ class AppActivity: AppCompatActivity() {
         setContentView(R.layout.activity_app)
 
         // Set toolbar
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar)
 
         // Reference to the displayed fragment
         // Here my_nav_host_fragment is an ID of the fragment tag in your
@@ -47,8 +47,8 @@ class AppActivity: AppCompatActivity() {
      * false it will not be shown.
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.user_info_menu, menu);
-        return true;
+        menuInflater.inflate(R.menu.user_info_menu, menu)
+        return true
     }
 
     /**

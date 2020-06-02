@@ -107,6 +107,4 @@ class RecyclerViewForFavoriteDishesFragment : Fragment(), OnItemClickListener, O
         @JvmStatic
         fun newInstance() = RecyclerViewForFavoriteDishesFragment()
     }
-
-
 }
