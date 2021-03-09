@@ -4,8 +4,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /**
- * TODO: Read about this.
- * @author Artem Geraimov.
+ * @author Artem Gerasimov.
  */
 operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
     add(disposable)
